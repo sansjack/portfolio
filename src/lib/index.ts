@@ -26,7 +26,7 @@ export const projects = [
     title: 'portfolo.app',
     icon: PortfoloIcon,
     description: 'Create A Portfolio And Add Projects Using Markdown',
-    link: 'https://portfolio.app',
+    link: 'https://portfolo.app',
     date: 'beta',
   },
   {

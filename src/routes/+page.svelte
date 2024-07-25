@@ -80,7 +80,11 @@
                 this={project.icon}
                 class="size-7 grayscale group-hover:grayscale-0 "
               />
-              <a href={project.link} class="link hover:link-primary font-bold">
+              <a
+                target="_blank"
+                href={project.link}
+                class="link hover:link-primary font-bold"
+              >
                 {project.title}</a
               >
             </div>
