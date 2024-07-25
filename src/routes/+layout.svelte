@@ -17,9 +17,9 @@ const url = $state(data.url);
 
 
 
-<footer class="footer">
+<footer class="footer px-2">
 
-    <ul class="flex flex-row-reverse gap-1 items-center w-full my-1">
+    <ul class="flex flex-row-reverse gap-2 items-center w-full my-1 ">
         <li class="link link-primary group ">
             <a href="https://www.linkedin.com/in/sansjack/" target="_blank"><Linkedin class="size-7 group-hover:stroke-[#0072b1]"/></a>
         </li>

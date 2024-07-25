@@ -1,11 +1,14 @@
 <script lang="ts">
   import Markdown from '@magidoc/plugin-svelte-marked'
+  import { ArrowLeft } from 'lucide-svelte'
   const { data } = $props()
   const { writeup } = data
 </script>
 
 <div class="absolute top-0 left-0">
-  <a href="/" class="relative w-full h-full"> back </a>
+  <a href="/" class="relative w-full h-full">
+    <ArrowLeft class="size-7 m-1" />
+  </a>
 </div>
 <div class="flex flex-col items-center w-full h-full">
   <div class="w-full m-8 p-8 md:p-2 md:m-1 md:w-3/4 lg:w-[60%]">

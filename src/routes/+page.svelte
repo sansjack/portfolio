@@ -30,7 +30,7 @@
           </div>
         </div>
       </div>
-      <p class="text-md opacity-80">
+      <p class="text-md opacity-80 text-center">
         site reliability enginer / software engineer
       </p>
     </div>
@@ -44,15 +44,18 @@
     <div><AWSIcon class="size-10" /></div>
     <div><VercelIcon class="size-12" /></div>
   </div>
-  <div class="flex flex-col items-center justify-center">
+  <div class="flex flex-col items-center justify-center m-8 md:m-1">
     <ul class="w-full space-y-2 sm:space-y-0">
       <h3>Writeups 🖊️</h3>
-      <div class="divider my-0" />
+      <div class="divider !my-1" />
       {#each writeups as writeup}
         <li
-          class="flex flex-row justify-between hover:bg-text -mx-2 px-2 space-x-5"
+          class="flex flex-row justify-between hover:bg-text -mx-2 px-2 space-x-5 text-sm md:text-base"
         >
-          <div class="tooltip" data-tip={writeup.description}>
+          <div
+            class="tooltip items-start text-start"
+            data-tip={writeup.description}
+          >
             <a href={writeup.link} class="link link-primary font-bold"
               >{writeup.title}</a
             >
@@ -64,7 +67,7 @@
     <div class="w-full my-4">
       <ul class="w-full space-y-4 gap-8 sm:space-y-0 my-2">
         <h3>Projects 🏗️</h3>
-        <div class="divider my-0" />
+        <div class="divider !my-1" />
         {#each projects as project}
           <li
             class="flex flex-row justify-between hover:bg-text -mx-2 px-2 space-x-5"
@@ -93,26 +96,6 @@
       </ul>
     </div>
   </div>
-</div>
-
-<div id="tech-list" class="animateTech flex flex-row items-center gap-4 mb-4">
-  <SvelteIcon class="size-10" />
-  <PostgresIcon class="size-10" />
-  <MongoIcon class="size-10" />
-  <SupabaseIcon class="size-10" />
-  <CloudflareIcon class="size-10" />
-  <AWSIcon class="size-10" />
-  <VercelIcon class="size-12" />
-</div>
-
-<div id="tech-list" class="animateTech flex flex-row items-center gap-4 mb-4">
-  <SvelteIcon class="size-10" />
-  <PostgresIcon class="size-10" />
-  <MongoIcon class="size-10" />
-  <SupabaseIcon class="size-10" />
-  <CloudflareIcon class="size-10" />
-  <AWSIcon class="size-10" />
-  <VercelIcon class="size-12" />
 </div>
 
 <style>
