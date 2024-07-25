@@ -1,13 +1,27 @@
-// See https://kit.svelte.dev/docs/types#app
-// for information about these interfaces
+import '@poppanator/sveltekit-svg/dist/svg'
 declare global {
-	namespace App {
-		// interface Error {}
-		// interface Locals {}
-		// interface PageData {}
-		// interface PageState {}
-		// interface Platform {}
-	}
+  interface Writeup {
+    title: string
+    description: string
+    link: string
+    data: string
+    date: number
+  }
+  interface Project {
+    id: number
+    title: string
+    icon: any
+    description: string
+    link: string
+    date: string
+  }
+  namespace App {
+    // interface Error {}
+    // interface Locals {}
+    // interface PageData {}
+    // interface PageState {}
+    // interface Platform {}
+  }
 }
 
-export {};
+export {}
