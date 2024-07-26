@@ -20,7 +20,7 @@ const { children, data } = $props();
 
     <ul class="flex flex-row-reverse gap-2 items-center w-full my-1 ">
         <li class="link link-primary group ">
-            <a href="https://www.linkedin.com/in/sansjack/" target="_blank"><Linkedin class="size-7 group-hover:stroke-[#0072b1]"/></a>
+            <a href="https://www.linkedin.com/in/jacksansom" target="_blank"><Linkedin class="size-7 group-hover:stroke-[#0072b1]"/></a>
         </li>
         <li class="link link-primary group">
             <a href="https://github.com/sansjack" target="_blank"><Github class="size-7 group-hover:stroke-[#2dba4e]"/></a>
