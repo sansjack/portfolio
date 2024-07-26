@@ -35,7 +35,7 @@
         </div>
       </div>
       <p class="text-md opacity-80 text-center">
-        site reliability enginer / software engineer
+        site reliability engineer / software engineer
       </p>
     </div>
   </div>

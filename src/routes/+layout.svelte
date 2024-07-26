@@ -58,7 +58,7 @@ const { children, data } = $props();
 
 </svelte:head>
 {#key data.url}
-<section class="flex flex-col h-full" in:fly={{ delay: 300, duration: 500, x: -700, opacity: 0.5, easing: cubicInOut }} out:fly={{ delay: 100, duration: 500, x: -700, opacity: 0.5, easing: cubicInOut }}>  
+<section class="flex flex-col h-full animate-fade" in:fly={{ delay: 300, duration: 500, x: -700, opacity: 0.5, easing: cubicInOut }} out:fly={{ delay: 100, duration: 500, x: -700, opacity: 0.5, easing: cubicInOut }}>  
 
 <div class="h-full w-full overflow-y-scroll" >
     {@render children()}

@@ -19,7 +19,6 @@
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@tailwindcss/typography": "^0.5.13",
     "@types/marked": "^6.0.0",
-    "@types/prismjs": "^1.26.4",
     "autoprefixer": "^10.4.19",
     "daisyui": "^4.12.10",
     "dayjs": "^1.11.12",
