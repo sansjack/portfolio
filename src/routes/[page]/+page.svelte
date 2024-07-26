@@ -25,6 +25,15 @@
     name="description"
     content="Jack Sansom's Portfolio, Featuring My Projects And Writeups."
   />
+  <meta
+    name="keywords"
+    content="javascript, typescript, monitoring, SRE, reliability, javascript monitoring, sansjack dev, Jack Sansom, sveltekit developer, UK svelte developer, svelte developer, svelte, backend developer, frontend developer, frontend engineer, backend engineer, software engineer, software developer, devops engineer, devops developer, devops, monitoring, discord monitoring, slack monitoring, telegram monitoring, monitors, javascript log monitor"
+  />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="language" content="English" />
+  <meta name="author" content="sansjack" />
+
+  <meta name="robots" content="index, follow" />
   <meta name="og:type" content="article" />
   <meta name="og:description" content={writeup.description} />
   <meta name="og:title" content="{writeup.title} | sansjack.dev" />
@@ -48,14 +57,16 @@
     <p>
       {writeup.description}
     </p>
-    <div class="flex justify-end items-end mt-2">
-      <a
-        href={writeup.external_ref}
-        target="_blank"
-        class="btn btn-sm text-sm btn-primary self-end"
-        >Check it out! <Link class="size-4" /></a
-      >
-    </div>
+    {#if writeup.external_ref}
+      <div class="flex justify-end items-end mt-2">
+        <a
+          href={writeup.external_ref}
+          target="_blank"
+          class="btn btn-sm text-sm btn-primary self-end"
+          >Check it out! <Link class="size-4" /></a
+        >
+      </div>
+    {/if}
     <!-- svelte-ignore element_invalid_self_closing_tag -->
     <div class="divider mt-1" />
     <div

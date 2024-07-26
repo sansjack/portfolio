@@ -18,6 +18,53 @@
   const { writeups } = data
 </script>
 
+<svelte:head>
+  <!-- Primary Meta Tags -->
+  <title>sansjack.dev | Portfolio</title>
+  <meta name="title" content="sansjack.dev | Portfolio" />
+  <meta
+    name="description"
+    content="Jack Sansom's Portfolio, Featuring My Projects And Writeups."
+  />
+
+  <meta
+    name="keywords"
+    content="javascript, typescript, monitoring, SRE, reliability, javascript monitoring, sansjack dev, Jack Sansom, sveltekit developer, UK svelte developer, svelte developer, svelte, backend developer, frontend developer, frontend engineer, backend engineer, software engineer, software developer, devops engineer, devops developer, devops, monitoring, discord monitoring, slack monitoring, telegram monitoring, monitors, javascript log monitor"
+  />
+  <meta name="robots" content="index, follow" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="language" content="English" />
+  <meta name="author" content="sansjack" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="sansjack.dev" />
+  <meta property="profile:first_name" content="Jack" />
+  <meta property="profile:last_name" content="Sansom" />
+  <meta property="profile:username" content="sansjack" />
+  <meta property="og:url" content="https://sansjack.dev" />
+  <meta property="og:title" content="sansjack.dev | Portfolio" />
+  <meta
+    property="og:description"
+    content="Jack Sansom's Portfolio, Featuring My Projects And Writeups."
+  />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://sansjack.dev" />
+  <meta
+    property="twitter:title"
+    content="Jack Sansom's Portfolio, Featuring My Projects And Writeups."
+  />
+  <meta
+    property="twitter:description"
+    content="The easy way monitor you code and receive logs to Slack, Discord & Telegram"
+  />
+  <!-- <meta
+    property="twitter:image"
+    content="https://monitro.dev/images/og-text.png"
+  /> -->
+</svelte:head>
 <div
   class="flex flex-col w-full h-full overflow-y-scroll sm:flex items-center justify-center"
 >
@@ -56,36 +103,36 @@
       <h3 class="justify-start self-start text-center">Writeups 🖊️</h3>
       <div class="divider !my-1" />
       <ul
-        class="w-full space-y-2 items-center justify-center sm:space-y-0 max-h-1/2 overflow-y-scroll"
+        class="relative w-full space-y-2 items-center justify-center sm:space-y-0"
       >
         {#each writeups as writeup}
           <li
             class="flex flex-row justify-between gap-0 hover:bg-text text-sm md:text-base"
           >
             <div
-              class="tooltip items-start text-start md:w-[90%]"
+              class="items-start text-start md:w-[90%] tooltip tooltip-top"
               data-tip={writeup.description}
             >
               <a href={writeup.link} class="link link-primary font-bold"
                 >{writeup.title}</a
               >
             </div>
-            <p class="text-xs min-w-24">{dayjs.unix(writeup.date).fromNow()}</p>
+            <p class="text-xs min-w-24">
+              {dayjs.unix(writeup.date).fromNow()}
+            </p>
           </li>
         {/each}
       </ul>
       <div class="w-full my-4">
         <h3>Projects 🏗️</h3>
         <div class="divider !my-1" />
-        <ul
-          class="w-full space-y-4 gap-8 sm:space-y-0 my-2 max-h-1/2 overflow-y-scroll"
-        >
+        <ul class="relative w-full space-y-4 gap-8 sm:space-y-0 my-2">
           {#each projects as project}
             <li
-              class="flex flex-row justify-between hover:bg-text -mx-2 px-2 space-x-5"
+              class=" flex flex-row justify-between hover:bg-text -mx-2 px-2 space-x-5"
             >
               <div
-                class="tooltip tooltip-top flex flex-row gap-2 my-1 group z-[99]"
+                class="flex flex-row gap-2 my-1 group tooltip"
                 data-tip={project.description}
               >
                 <svelte:component
