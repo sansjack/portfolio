@@ -5,9 +5,58 @@ import { cubicInOut, quintOut } from "svelte/easing";
 import { fly, slide } from "svelte/transition";
 
 const { children, data } = $props();
-
-const url = $state(data.url);
 </script>
+<svelte:head>
+  <!-- Primary Meta Tags -->
+  <title>sansjack.dev | Portfolio</title>
+  <meta name="title" content="sansjack.dev | Portfolio" />
+  <meta
+    name="description"
+    content="Jack Sansom's portfolio site, featuring my projects and writeups."
+  />
+
+  <meta
+    name="keywords"
+    content="javascript, typescript, monitoring, SRE, reliability, javascript monitoring, sansjack dev, Jack Sansom, sveltekit developer, UK svelte developer, svelte developer, svelte, backend developer, frontend developer, frontend engineer, backend engineer, software engineer, software developer, devops engineer, devops developer, devops, monitoring, discord monitoring, slack monitoring, telegram monitoring, monitors, javascript log monitor"
+  />
+  <meta name="robots" content="index, follow" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="language" content="English" />
+  <meta name="author" content="sansjack" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="sansjack.dev" />
+  <meta property="profile:first_name" content="Jack" />
+  <meta property="profile:last_name" content="Sansom" />
+  <meta property="profile:username" content="sansjack" />
+  <meta property="og:url" content="https://sansjack.dev" />
+  <meta
+    property="og:title"
+    content="sansjack.dev | Portfolio"
+  />
+  <meta
+    property="og:description"
+    content="Jack Sansom's portfolio site, featuring my projects and writeups."
+  />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://sansjack.dev" />
+  <meta
+    property="twitter:title"
+    content="Jack Sansom's portfolio site, featuring my projects and writeups."
+  />
+  <meta
+    property="twitter:description"
+    content="The easy way monitor you code and receive logs to Slack, Discord & Telegram"
+  />
+  <!-- <meta
+    property="twitter:image"
+    content="https://monitro.dev/images/og-text.png"
+  /> -->
+
+</svelte:head>
 {#key data.url}
 <section class="flex flex-col h-full" in:fly={{ delay: 300, duration: 500, x: -700, opacity: 0.5, easing: cubicInOut }} out:fly={{ delay: 100, duration: 500, x: -700, opacity: 0.5, easing: cubicInOut }}>  
 
