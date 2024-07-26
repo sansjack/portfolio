@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import { MONGO_URI } from '$env/static/private'
+
 const connection = await mongoose.connect(MONGO_URI)
 
 const projectSchema = new mongoose.Schema<Project>(

@@ -12,7 +12,7 @@ export const writeups = [
   },
   {
     id: 319741,
-    title: 'Discord Bot Comment Creation For Shortcut.com',
+    title: 'Discord Automated Comment Creation',
     description:
       'An automation using shortcut.com to create comments on discord',
     link: 'https://github.com/sansjack/telegram-forwarder',
@@ -22,21 +22,22 @@ export const writeups = [
 
 export const projects = [
   {
-    id: 2,
-    title: 'portfolo.app',
-    icon: PortfoloIcon,
-    description: 'Create A Portfolio And Add Projects Using Markdown',
-    link: 'https://portfolo.app',
-    date: 'beta',
-  },
-  {
     id: 1,
     title: 'monitro.dev',
     icon: MonitroIcon,
     description: 'Simple & Cheap Log Monitoring',
     link: 'https://monitro.dev',
+    date: 'beta',
+  },
+  {
+    id: 2,
+    title: 'portfolo.app',
+    icon: PortfoloIcon,
+    description: 'Create A Portfolio And Add Projects Using Markdown',
+    link: 'https://portfolo.app',
     date: 1718121600,
   },
+
   {
     id: 0,
     title: 'boilermate.site',

@@ -1,8 +1,21 @@
 <script lang="ts">
   import Markdown from '@magidoc/plugin-svelte-marked'
   import { ArrowLeft } from 'lucide-svelte'
+
+  import '../../code.css'
+  import hljs from 'highlight.js'
+
+  import { browser } from '$app/environment'
+  import { onMount } from 'svelte'
+
   const { data } = $props()
   const { writeup } = data
+
+  onMount(() => {
+    if (browser) {
+      hljs.highlightAll()
+    }
+  })
 </script>
 
 <div class="absolute top-0 left-0">
