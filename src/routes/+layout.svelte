@@ -29,7 +29,10 @@ const url = $state(data.url);
         <li class="link link-primary group">
             <a href="https://twitter.com/sansjackdev" target="_blank"><Twitter class="size-7 group-hover:stroke-[#1DA1F2]"/></a>
         </li>
-        <code class="self-end mx-2">contact@sansjack.dev</code>
+        <div class="mx-2">
+            open for freelance work, drop me an email:
+        <code class="self-end link font-bold"> <a href="mailto:contact@sansjack.dev">contact@sansjack.dev</a></code>
+    </div>
     
     </ul>
     

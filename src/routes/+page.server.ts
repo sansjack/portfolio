@@ -1,8 +1,8 @@
-// import { montiro } from '$lib/server'
-// export const load = async () => {
-//   montiro.info(
-//     'User Has Loaded Landing Page!',
-//     'A User has landed on the landing page 🚀'
-//   )
-//   return {}
-// }
+import { serializeNonPOJOs, writeupModel } from '$lib/server/mongo'
+
+export const load = async () => {
+  const writeups = serializeNonPOJOs(
+    await writeupModel.find({}, { _id: false })
+  )
+  return { writeups }
+}

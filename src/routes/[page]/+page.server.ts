@@ -11,7 +11,7 @@ export const load = async ({ params }) => {
 
   const writeup = serializeNonPOJOs(
     await writeupModel.findOne({ title: parsedPage }, { _id: false })
-  )
+  ) as Writeup
 
   if (!writeup) {
     throw redirect(307, '/')

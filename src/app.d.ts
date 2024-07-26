@@ -4,6 +4,7 @@ declare global {
     title: string
     description: string
     link: string
+    external_ref?: string
     data: string
     date: number
   }

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { projects, writeups } from '$lib'
+  import { projects } from '$lib'
   import dayjs from 'dayjs'
   import {
     SvelteIcon,
@@ -12,6 +12,10 @@
   } from '$lib/icons'
   import relativeTime from 'dayjs/plugin/relativeTime'
   dayjs.extend(relativeTime)
+
+  const { data } = $props()
+
+  const { writeups } = data
 </script>
 
 <div
@@ -47,64 +51,66 @@
     <div><AWSIcon class="size-10" /></div>
     <div><VercelIcon class="size-12" /></div>
   </div>
-  <div class="flex flex-col m-3 sm:m-4 md:m-1 w-[90%] md:w-3/4">
-    <h3 class="justify-start self-start text-center">Writeups 🖊️</h3>
-    <div class="divider !my-1" />
-    <ul
-      class="w-full space-y-2 items-center justify-center sm:space-y-0 max-h-1/2 overflow-y-scroll"
-    >
-      {#each writeups as writeup}
-        <li
-          class="flex flex-row justify-between gap-0 hover:bg-text text-sm md:text-base"
-        >
-          <div
-            class="tooltip items-start text-start md:w-[90%]"
-            data-tip={writeup.description}
-          >
-            <a href={writeup.link} class="link link-primary font-bold"
-              >{writeup.title}</a
-            >
-          </div>
-          <p class="text-xs min-w-24">{dayjs.unix(writeup.date).fromNow()}</p>
-        </li>
-      {/each}
-    </ul>
-    <div class="w-full my-4">
-      <h3>Projects 🏗️</h3>
+  <div class="w-full flex items-center justify-center">
+    <div class="flex flex-col m-3 sm:m-4 md:m-1 w-[90%] md:w-3/4">
+      <h3 class="justify-start self-start text-center">Writeups 🖊️</h3>
       <div class="divider !my-1" />
       <ul
-        class="w-full space-y-4 gap-8 sm:space-y-0 my-2 max-h-1/2 overflow-y-scroll"
+        class="w-full space-y-2 items-center justify-center sm:space-y-0 max-h-1/2 overflow-y-scroll"
       >
-        {#each projects as project}
+        {#each writeups as writeup}
           <li
-            class="flex flex-row justify-between hover:bg-text -mx-2 px-2 space-x-5"
+            class="flex flex-row justify-between gap-0 hover:bg-text text-sm md:text-base"
           >
             <div
-              class="tooltip flex flex-row gap-2 my-1 group"
-              data-tip={project.description}
+              class="tooltip items-start text-start md:w-[90%]"
+              data-tip={writeup.description}
             >
-              <svelte:component
-                this={project.icon}
-                class="size-7 grayscale group-hover:grayscale-0 "
-              />
-              <a
-                target="_blank"
-                href={project.link}
-                class="link hover:link-primary font-bold"
-              >
-                {project.title}</a
+              <a href={writeup.link} class="link link-primary font-bold"
+                >{writeup.title}</a
               >
             </div>
-            <p class="text-xs">
-              {#if typeof project.date === 'number'}
-                {dayjs.unix(project.date).fromNow()}
-              {:else}
-                <span class="badge badge-accent"> {project.date}</span>
-              {/if}
-            </p>
+            <p class="text-xs min-w-24">{dayjs.unix(writeup.date).fromNow()}</p>
           </li>
         {/each}
       </ul>
+      <div class="w-full my-4">
+        <h3>Projects 🏗️</h3>
+        <div class="divider !my-1" />
+        <ul
+          class="w-full space-y-4 gap-8 sm:space-y-0 my-2 max-h-1/2 overflow-y-scroll"
+        >
+          {#each projects as project}
+            <li
+              class="flex flex-row justify-between hover:bg-text -mx-2 px-2 space-x-5"
+            >
+              <div
+                class="tooltip tooltip-top flex flex-row gap-2 my-1 group z-[99]"
+                data-tip={project.description}
+              >
+                <svelte:component
+                  this={project.icon}
+                  class="size-7 grayscale group-hover:grayscale-0 "
+                />
+                <a
+                  target="_blank"
+                  href={project.link}
+                  class="link hover:link-primary font-bold"
+                >
+                  {project.title}</a
+                >
+              </div>
+              <p class="text-xs">
+                {#if typeof project.date === 'number'}
+                  {dayjs.unix(project.date).fromNow()}
+                {:else}
+                  <span class="badge badge-accent"> {project.date}</span>
+                {/if}
+              </p>
+            </li>
+          {/each}
+        </ul>
+      </div>
     </div>
   </div>
 </div>

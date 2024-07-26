@@ -25,6 +25,7 @@ const writeupSchema = new mongoose.Schema<Writeup>(
     description: String,
     link: String,
     data: String,
+    external_ref: String,
     date: Number,
   },
   {
