@@ -4,7 +4,7 @@
 
   import '../../code.css'
   import hljs from 'highlight.js'
-
+  import dayjs from 'dayjs'
   import { browser } from '$app/environment'
   import { onMount } from 'svelte'
 
@@ -18,6 +18,27 @@
   })
 </script>
 
+<svelte:head>
+  <title>{writeup.title} | sansjack.dev</title>
+  <meta name="title" content="{writeup.title} | sansjack.dev" />
+  <meta
+    name="description"
+    content="Jack Sansom's Portfolio, Featuring My Projects And Writeups."
+  />
+  <meta name="og:type" content="article" />
+  <meta name="og:title" content="{writeup.title} | sansjack.dev" />
+  <meta
+    name="article:published_time"
+    content={dayjs.unix(writeup.date).toISOString()}
+  />
+  <meta name="article:author" content="sansjack" />
+  <meta name="article:section" content="software development" />
+  <meta
+    name="og:description"
+    content="Jack Sansom's Portfolio, Featuring My Projects And Writeups."
+  />
+  <!-- <meta name="article:tag" content="/images/og-text.png" /> -->
+</svelte:head>
 <div class="absolute top-0 left-0">
   <a href="/" class="relative w-full h-full">
     <ArrowLeft class="size-7 m-1" />

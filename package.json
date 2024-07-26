@@ -22,7 +22,7 @@
     "@types/prismjs": "^1.26.4",
     "autoprefixer": "^10.4.19",
     "daisyui": "^4.12.10",
-    "dayjs": "^1.11.11",
+    "dayjs": "^1.11.12",
     "highlight.js": "^11.10.0",
     "lucide-svelte": "^0.408.0",
     "marked": "^13.0.2",

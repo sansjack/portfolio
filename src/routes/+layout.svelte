@@ -12,7 +12,7 @@ const { children, data } = $props();
   <meta name="title" content="sansjack.dev | Portfolio" />
   <meta
     name="description"
-    content="Jack Sansom's portfolio site, featuring my projects and writeups."
+    content="Jack Sansom's Portfolio, Featuring My Projects And Writeups."
   />
 
   <meta
@@ -37,7 +37,7 @@ const { children, data } = $props();
   />
   <meta
     property="og:description"
-    content="Jack Sansom's portfolio site, featuring my projects and writeups."
+    content="Jack Sansom's Portfolio, Featuring My Projects And Writeups."
   />
 
   <!-- Twitter -->
@@ -45,7 +45,7 @@ const { children, data } = $props();
   <meta property="twitter:url" content="https://sansjack.dev" />
   <meta
     property="twitter:title"
-    content="Jack Sansom's portfolio site, featuring my projects and writeups."
+    content="Jack Sansom's Portfolio, Featuring My Projects And Writeups."
   />
   <meta
     property="twitter:description"
