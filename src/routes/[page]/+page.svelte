@@ -1,7 +1,7 @@
 <script lang="ts">
   import Markdown from '@magidoc/plugin-svelte-marked'
+  import { MarkdownImage, MarkdownLink } from '$lib/components'
   import { ArrowLeft, Link } from 'lucide-svelte'
-
   import '../../code.css'
   import hljs from 'highlight.js'
   import dayjs from 'dayjs'
@@ -51,12 +51,13 @@
   </a>
 </div>
 <div class="flex flex-col items-center w-full h-full mt-4">
-  <div class="w-full m-8 p-8 md:p-2 md:m-1 md:w-3/4 lg:w-[60%]">
+  <div class="w-full m-8 p-8 md:p-2 md:m-1 md:w-[80%] lg:[70%]">
     <h1 class="text-4xl text-primary">{writeup.title}</h1>
 
     <p>
       {writeup.description}
     </p>
+
     {#if writeup.external_ref}
       <div class="flex justify-end items-end mt-2">
         <a
@@ -72,7 +73,7 @@
     <div
       class="flex flex-col prose [&>*]:mb-1 [&>*]:pl-0 [&>pre]:p-3 min-w-full h-full overflow-y-scroll"
     >
-      <Markdown source={writeup.data} />
+      <Markdown renderers={{ link: MarkdownLink, image: MarkdownImage }} source={writeup.data} />
     </div>
   </div>
 </div>

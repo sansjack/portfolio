@@ -1,5 +1,16 @@
 import '@poppanator/sveltekit-svg/dist/svg'
+import type { MarkdownOptions, Renderers } from '@magidoc/plugin-svelte-marked'
 declare global {
+  type MarkdownImageRenderProps = {
+    token: Tokens.Image
+    options: MarkdownOptions | undefined
+    renderers: Renderers | undefined
+  }
+  type MarkdownLinkRenderProps = {
+    token: Tokens.Link
+    options: MarkdownOptions | undefined
+    renderers: Renderers | undefined
+  }
   interface Writeup {
     title: string
     description: string

@@ -102,6 +102,7 @@
     <div class="flex flex-col m-3 sm:m-4 md:m-1 w-[90%] md:w-3/4">
       <h3 class="justify-start self-start text-center">Writeups 🖊️</h3>
       <div class="divider !my-1" />
+      <!-- need to make it scrollable without breaking tootips :) -->
       <ul
         class="relative w-full space-y-2 items-center justify-center sm:space-y-0"
       >
