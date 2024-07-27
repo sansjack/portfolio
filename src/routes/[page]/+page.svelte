@@ -45,8 +45,8 @@
   <meta name="article:section" content="software development" />
   <!-- <meta name="article:tag" content="/images/og-text.png" /> -->
 </svelte:head>
-<div class="absolute top-0 left-0">
-  <a href="/" class="relative w-full h-full">
+<div class="absolute top-0 left-0 !bg-transparent">
+  <a href="/" class="relative !bg-transparent">
     <ArrowLeft class="size-7 m-1" />
   </a>
 </div>
