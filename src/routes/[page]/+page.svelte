@@ -1,21 +1,21 @@
 <script lang="ts">
-  import Markdown from '@magidoc/plugin-svelte-marked'
-  import { MarkdownImage, MarkdownLink } from '$lib/components'
-  import { ArrowLeft, Link } from 'lucide-svelte'
-  import '../../code.css'
-  import hljs from 'highlight.js'
-  import dayjs from 'dayjs'
-  import { browser } from '$app/environment'
-  import { onMount } from 'svelte'
+import Markdown from "@magidoc/plugin-svelte-marked";
+import { MarkdownImage, MarkdownLink, MarkdownList } from "$lib/components";
+import { ArrowLeft, Link } from "lucide-svelte";
+import "../../code.css";
+import hljs from "highlight.js";
+import dayjs from "dayjs";
+import { browser } from "$app/environment";
+import { onMount } from "svelte";
 
-  const { data } = $props()
-  const { writeup } = data
+const { data } = $props();
+const { writeup } = data;
 
-  onMount(() => {
-    if (browser) {
-      hljs.highlightAll()
-    }
-  })
+onMount(() => {
+	if (browser) {
+		hljs.highlightAll();
+	}
+});
 </script>
 
 <svelte:head>
@@ -74,7 +74,7 @@
       class="flex flex-col prose [&>*]:mb-1 [&>*]:pl-0 [&>pre]:p-3 [&>ul]:mt-3 min-w-full h-full !overflow-x-hidden overflow-y-scroll "
     >
       <Markdown
-        renderers={{ link: MarkdownLink, image: MarkdownImage }}
+        renderers={{ link: MarkdownLink, image: MarkdownImage, list: MarkdownList }}
         source={writeup.data}
       />
     </div>

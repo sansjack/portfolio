@@ -1,22 +1,22 @@
 <script lang="ts">
-  import { projects } from '$lib'
-  import dayjs from 'dayjs'
-  import {
-    SvelteIcon,
-    PostgresIcon,
-    SupabaseIcon,
-    VercelIcon,
-    CloudflareIcon,
-    MongoIcon,
-    PythonIcon,
-    AWSIcon,
-  } from '$lib/icons'
-  import relativeTime from 'dayjs/plugin/relativeTime'
-  dayjs.extend(relativeTime)
+import { projects } from "$lib";
+import dayjs from "dayjs";
+import {
+	SvelteIcon,
+	PostgresIcon,
+	SupabaseIcon,
+	VercelIcon,
+	CloudflareIcon,
+	MongoIcon,
+	PythonIcon,
+	AWSIcon,
+} from "$lib/icons";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
-  const { data } = $props()
+const { data } = $props();
 
-  const { writeups } = data
+const { writeups } = data;
 </script>
 
 <svelte:head>
@@ -195,7 +195,7 @@
   .tech-list > *:nth-child(7) {
     --i: 7;
   }
-  .tech-list > *:nth-child(7) {
+  .tech-list > *:nth-child(8) {
     --i: 8;
   }
   @keyframes fadeInUp {
