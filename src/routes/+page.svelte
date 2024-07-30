@@ -8,6 +8,7 @@
     VercelIcon,
     CloudflareIcon,
     MongoIcon,
+    PythonIcon,
     AWSIcon,
   } from '$lib/icons'
   import relativeTime from 'dayjs/plugin/relativeTime'
@@ -91,6 +92,7 @@
     class="tech-list flex flex-row items-center gap-3 mb-4 px-4"
   >
     <div><SvelteIcon class="size-10" /></div>
+    <div><PythonIcon class="size-10" /></div>
     <div><PostgresIcon class="size-10" /></div>
     <div><MongoIcon class="size-10" /></div>
     <div><SupabaseIcon class="size-10" /></div>
@@ -193,7 +195,9 @@
   .tech-list > *:nth-child(7) {
     --i: 7;
   }
-
+  .tech-list > *:nth-child(7) {
+    --i: 8;
+  }
   @keyframes fadeInUp {
     0% {
       opacity: 0;
