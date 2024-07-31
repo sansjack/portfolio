@@ -85,14 +85,14 @@ const { writeups } = data;
       <p class="text-md opacity-80 text-center">
         site reliability engineer / software engineer
       </p>
-      <p class="text-md opacity-80 text-center mt-2">
+      <p class="text-sm md:text-md opacity-80 text-center mt-2">
         📍 London, United Kingdom
       </p>
     </div>
   </div>
   <div
     id="tech-list"
-    class="tech-list flex flex-row items-center gap-2 md:gap-3 mb-4 px-4"
+    class="tech-list flex flex-row items-center gap-2 md:gap-3 mb-4 px-4 mx-2"
   >
     <div><SvelteIcon class="size-10" /></div>
     <div><PythonIcon class="size-10" /></div>
