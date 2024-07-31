@@ -27,7 +27,7 @@ export const projects = [
     icon: MonitroIcon,
     description: 'Simple & Cheap Log Monitoring',
     link: 'https://monitro.dev',
-    date: 'beta',
+    date: 1722413951,
   },
   {
     id: 2,
