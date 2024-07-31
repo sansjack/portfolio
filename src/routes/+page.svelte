@@ -67,7 +67,7 @@ const { writeups } = data;
   /> -->
 </svelte:head>
 <div
-  class="flex flex-col w-full h-full overflow-y-scroll sm:flex items-center justify-center"
+  class="flex flex-col w-full h-full overflow-y-scroll overflow-x-hidden sm:flex items-center justify-center"
 >
   <div
     class="py-4 px-4 max-w-5xl flex flex-col items-center space-y-0 leading-tight gap-2"
@@ -85,11 +85,14 @@ const { writeups } = data;
       <p class="text-md opacity-80 text-center">
         site reliability engineer / software engineer
       </p>
+      <p class="text-md opacity-80 text-center mt-2">
+        📍 London, United Kingdom
+      </p>
     </div>
   </div>
   <div
     id="tech-list"
-    class="tech-list flex flex-row items-center gap-3 mb-4 px-4"
+    class="tech-list flex flex-row items-center gap-2 md:gap-3 mb-4 px-4"
   >
     <div><SvelteIcon class="size-10" /></div>
     <div><PythonIcon class="size-10" /></div>
