@@ -14,6 +14,7 @@
 
   const { content }: MarkdownComponentProps = $props()
   let htmlContent = $state<string>('')
+  let mounted = $state(false)
 
   marked.setOptions({
     breaks: true,
@@ -52,7 +53,22 @@
       htmlContent = '<p>Error parsing markdown content</p>'
     }
   })
+
+  onMount(() => {
+    mounted = true
+    if (typeof window !== 'undefined') {
+      setTimeout(() => {
+        prism.highlightAll()
+      }, 0)
+    }
+  })
 </script>
+
+<div
+  class="markdown-content flex flex-col prose [&>*]:mb-1 [&>*]:pl-0 [&>pre]:p-3 [&>ul]:mt-3 min-w-full h-full !overflow-x-hidden overflow-y-scroll"
+>
+  {@html htmlContent}
+</div>
 
 <div
   class="markdown-content flex flex-col prose [&>*]:mb-1 [&>*]:pl-0 [&>pre]:p-3 [&>ul]:mt-3 min-w-full h-full !overflow-x-hidden overflow-y-scroll"
