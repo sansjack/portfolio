@@ -1,22 +1,22 @@
 <script lang="ts">
-import { projects } from "$lib";
-import dayjs from "dayjs";
-import {
-	SvelteIcon,
-	PostgresIcon,
-	SupabaseIcon,
-	VercelIcon,
-	CloudflareIcon,
-	MongoIcon,
-	PythonIcon,
-	AWSIcon,
-} from "$lib/icons";
-import relativeTime from "dayjs/plugin/relativeTime";
-dayjs.extend(relativeTime);
+  import { projects } from '$lib'
+  import dayjs from 'dayjs'
+  import {
+    SvelteIcon,
+    PostgresIcon,
+    SupabaseIcon,
+    VercelIcon,
+    CloudflareIcon,
+    MongoIcon,
+    PythonIcon,
+    AWSIcon,
+  } from '$lib/icons'
+  import relativeTime from 'dayjs/plugin/relativeTime'
+  dayjs.extend(relativeTime)
 
-const { data } = $props();
+  const { data } = $props()
 
-const { writeups } = data;
+  const { writeups } = data
 </script>
 
 <svelte:head>
@@ -33,7 +33,7 @@ const { writeups } = data;
     content="javascript, typescript, monitoring, SRE, reliability, javascript monitoring, sansjack dev, Jack Sansom, sveltekit developer, UK svelte developer, svelte developer, svelte, backend developer, frontend developer, frontend engineer, backend engineer, software engineer, software developer, devops engineer, devops developer, devops, monitoring, discord monitoring, slack monitoring, telegram monitoring, monitors, javascript log monitor"
   />
   <meta name="robots" content="index, follow" />
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta content="text/html; charset=utf-8" />
   <meta name="language" content="English" />
   <meta name="author" content="sansjack" />
 
