@@ -40,10 +40,12 @@
   </a>
 </div>
 <div class="flex flex-col items-center w-full h-full mt-4">
-  <div class="w-full m-8 p-4 md:p-2 md:m-1 md:w-[80%] lg:[70%]">
+  <div
+    class="w-full m-8 p-4 md:p-2 md:m-1 md:w-[80%] lg:[70%] md:mt-[5rem] lg:max-w-[1440px]"
+  >
     <h1 class="text-4xl text-primary">{writeup.title}</h1>
 
-    <p>
+    <p class="mt-4">
       {writeup.description}
     </p>
 
@@ -58,7 +60,7 @@
       </div>
     {/if}
     <!-- svelte-ignore element_invalid_self_closing_tag -->
-    <div class="divider mt-1" />
+    <div class="divider mt-2" />
     <div
       class="flex flex-col prose [&>*]:mb-1 [&>*]:pl-0 [&>pre]:p-3 [&>ul]:mt-3 min-w-full h-full !overflow-x-hidden overflow-y-scroll"
     >

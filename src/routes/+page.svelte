@@ -104,33 +104,37 @@
     <div><VercelIcon class="size-12" /></div>
   </div>
   <div class="w-full flex items-center justify-center">
-    <div class="flex flex-col m-3 sm:m-4 md:m-1 w-[90%] md:w-3/4">
-      <h3 class="justify-start self-start text-center">Writeups 🖊️</h3>
-      <div class="divider !my-1" />
-      <!-- need to make it scrollable without breaking tootips :) -->
-      <ul
-        class="relative w-full space-y-2 items-center justify-center sm:space-y-0"
-      >
-        {#each writeups as writeup}
-          <li
-            class="flex flex-row justify-between gap-0 hover:bg-text text-sm md:text-base"
-          >
-            <div
-              class="items-start text-start md:w-[90%] tooltip tooltip-top"
-              data-tip={writeup.description}
+    <div
+      class="flex flex-col m-3 sm:m-4 md:m-1 w-[90%] md:w-3/4 lg:max-w-[1110px] gap-4"
+    >
+      <div class="flex flex-col items-center justify-center">
+        <h3 class="justify-start self-start text-center">Writeups ✏️</h3>
+        <div class="divider !my-1" />
+        <!-- need to make it scrollable without breaking tootips :) -->
+        <ul
+          class="relative w-full space-y-2 items-center justify-center sm:space-y-0"
+        >
+          {#each writeups as writeup}
+            <li
+              class="flex flex-row justify-between gap-0 hover:bg-text text-sm md:text-base"
             >
-              <a href={writeup.link} class="link link-primary font-bold"
-                >{writeup.title}</a
+              <div
+                class="items-start text-start md:w-[90%] tooltip tooltip-top"
+                data-tip={writeup.description}
               >
-            </div>
-            <p class="text-xs min-w-24">
-              {dayjs.unix(writeup.date).fromNow()}
-            </p>
-          </li>
-        {/each}
-      </ul>
+                <a href={writeup.link} class="link link-primary font-bold"
+                  >{writeup.title}</a
+                >
+              </div>
+              <p class="text-xs min-w-24">
+                {dayjs.unix(writeup.date).fromNow()}
+              </p>
+            </li>
+          {/each}
+        </ul>
+      </div>
       <div class="w-full my-4">
-        <h3>Projects 🏗️</h3>
+        <h3>Projects / SaaS 🏗️</h3>
         <div class="divider !my-1" />
         <ul class="relative w-full space-y-4 gap-8 sm:space-y-0 my-2">
           {#each projects as project}
