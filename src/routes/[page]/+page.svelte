@@ -1,21 +1,10 @@
 <script lang="ts">
-import Markdown from "@magidoc/plugin-svelte-marked";
-import { MarkdownImage, MarkdownLink, MarkdownList } from "$lib/components";
-import { ArrowLeft, Link } from "lucide-svelte";
-import "../../code.css";
-import hljs from "highlight.js";
-import dayjs from "dayjs";
-import { browser } from "$app/environment";
-import { onMount } from "svelte";
+  import { ArrowLeft, Link } from 'lucide-svelte'
+  import dayjs from 'dayjs'
+  import { MarkdownComponent } from '$lib/components'
 
-const { data } = $props();
-const { writeup } = data;
-
-onMount(() => {
-	if (browser) {
-		hljs.highlightAll();
-	}
-});
+  const { data } = $props()
+  const { writeup } = data
 </script>
 
 <svelte:head>
@@ -29,7 +18,7 @@ onMount(() => {
     name="keywords"
     content="javascript, typescript, monitoring, SRE, reliability, javascript monitoring, sansjack dev, Jack Sansom, sveltekit developer, UK svelte developer, svelte developer, svelte, backend developer, frontend developer, frontend engineer, backend engineer, software engineer, software developer, devops engineer, devops developer, devops, monitoring, discord monitoring, slack monitoring, telegram monitoring, monitors, javascript log monitor"
   />
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta content="text/html; charset=utf-8" />
   <meta name="language" content="English" />
   <meta name="author" content="sansjack" />
 
@@ -51,10 +40,12 @@ onMount(() => {
   </a>
 </div>
 <div class="flex flex-col items-center w-full h-full mt-4">
-  <div class="w-full m-8 p-4 md:p-2 md:m-1 md:w-[80%] lg:[70%]">
+  <div
+    class="w-full m-8 p-4 md:p-2 md:m-1 md:w-[80%] lg:[70%] md:mt-[5rem] lg:max-w-[1440px]"
+  >
     <h1 class="text-4xl text-primary">{writeup.title}</h1>
 
-    <p>
+    <p class="mt-4">
       {writeup.description}
     </p>
 
@@ -69,14 +60,11 @@ onMount(() => {
       </div>
     {/if}
     <!-- svelte-ignore element_invalid_self_closing_tag -->
-    <div class="divider mt-1" />
+    <div class="divider mt-2" />
     <div
-      class="flex flex-col prose [&>*]:mb-1 [&>*]:pl-0 [&>pre]:p-3 [&>ul]:mt-3 min-w-full h-full !overflow-x-hidden overflow-y-scroll "
+      class="flex flex-col prose [&>*]:mb-1 [&>*]:pl-0 [&>pre]:p-3 [&>ul]:mt-3 min-w-full h-full !overflow-x-hidden overflow-y-scroll"
     >
-      <Markdown
-        renderers={{ link: MarkdownLink, image: MarkdownImage, list: MarkdownList }}
-        source={writeup.data}
-      />
+      <MarkdownComponent content={writeup.data} />
     </div>
   </div>
 </div>
