@@ -78,7 +78,7 @@
     background: #333;
     padding: 0.2em 0.4em;
     border-radius: 0.25rem;
-    border: 1px solid #353935;
+    border: 1px solid #1b1c1d;
     color: #f4f4f4;
   }
 
