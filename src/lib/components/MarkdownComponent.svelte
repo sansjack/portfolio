@@ -15,18 +15,27 @@
   const { content }: MarkdownComponentProps = $props()
   let htmlContent = $state<string>('')
 
-  // Configure marked options once, before rendering
   marked.setOptions({
     breaks: true,
     gfm: true,
-    async: false, // Important: This makes marked.parse return a string instead of a Promise
+    async: false,
+    pedantic: false,
+    silent: true,
   })
 
   marked.use(
     markedHighlight({
+      async: false,
       highlight: (code: string, lang: string) => {
         if (prism.languages[lang]) {
-          return prism.highlight(code, prism.languages[lang], lang)
+          try {
+            return prism.highlight(code, prism.languages[lang], lang)
+          } catch (e) {
+            console.warn(
+              `Failed to highlight code block with language: ${lang}`
+            )
+            return code
+          }
         }
         return code
       },
@@ -34,10 +43,13 @@
   )
 
   $effect(() => {
-    if (content) {
-      // Remove any leading/trailing backticks if they exist
-      const cleanContent = content.replace(/^```|```$/g, '')
-      htmlContent = marked.parse(cleanContent) as string
+    if (!content) return
+
+    try {
+      htmlContent = marked.parse(content) as string
+    } catch (error) {
+      console.error('Error parsing markdown:', error)
+      htmlContent = '<p>Error parsing markdown content</p>'
     }
   })
 </script>
