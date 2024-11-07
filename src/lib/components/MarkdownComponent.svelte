@@ -28,7 +28,6 @@
       markedHighlight({
         async: true,
         highlight: (code: string, lang: string) => {
-          console.log(prism.languages[lang])
           if (prism.languages[lang]) {
             try {
               return prism.highlight(code, prism.languages[lang], lang)
