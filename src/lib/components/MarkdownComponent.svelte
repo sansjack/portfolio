@@ -13,53 +13,45 @@
   }
 
   const { content }: MarkdownComponentProps = $props()
-  let htmlContent = $state<string>('')
-  let mounted = $state(false)
+  let htmlContent = $state<string | Promise<string>>()
 
   marked.setOptions({
     breaks: true,
     gfm: true,
-    async: false,
+    async: true,
     pedantic: false,
     silent: true,
   })
 
-  marked.use(
-    markedHighlight({
-      async: false,
-      highlight: (code: string, lang: string) => {
-        if (prism.languages[lang]) {
-          try {
-            return prism.highlight(code, prism.languages[lang], lang)
-          } catch (e) {
-            console.warn(
-              `Failed to highlight code block with language: ${lang}`
-            )
-            return code
+  onMount(() => {
+    marked.use(
+      markedHighlight({
+        async: true,
+        highlight: (code: string, lang: string) => {
+          console.log(prism.languages[lang])
+          if (prism.languages[lang]) {
+            try {
+              return prism.highlight(code, prism.languages[lang], lang)
+            } catch (e) {
+              console.warn(
+                `Failed to highlight code block with language: ${lang}`
+              )
+              return code
+            }
           }
-        }
-        return code
-      },
-    })
-  )
+          return code
+        },
+      })
+    )
+  })
 
   $effect(() => {
     if (!content) return
 
     try {
-      htmlContent = marked.parse(content) as string
+      htmlContent = marked.parse(content)
     } catch (error) {
       console.error('Error parsing markdown:', error)
-      htmlContent = '<p>Error parsing markdown content</p>'
-    }
-  })
-
-  onMount(() => {
-    mounted = true
-    if (typeof window !== 'undefined') {
-      setTimeout(() => {
-        prism.highlightAll()
-      }, 0)
     }
   })
 </script>
@@ -67,13 +59,11 @@
 <div
   class="markdown-content flex flex-col prose [&>*]:mb-1 [&>*]:pl-0 [&>pre]:p-3 [&>ul]:mt-3 min-w-full h-full !overflow-x-hidden overflow-y-scroll"
 >
-  {@html htmlContent}
-</div>
-
-<div
-  class="markdown-content flex flex-col prose [&>*]:mb-1 [&>*]:pl-0 [&>pre]:p-3 [&>ul]:mt-3 min-w-full h-full !overflow-x-hidden overflow-y-scroll"
->
-  {@html htmlContent}
+  {#await htmlContent then content}
+    {@html content}
+  {:catch}
+    <p>There was an issue with rendering the markdown :(</p>
+  {/await}
 </div>
 
 <style>
