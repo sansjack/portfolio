@@ -122,8 +122,11 @@
                 class="items-start text-start md:w-[90%] tooltip tooltip-top"
                 data-tip={writeup.description}
               >
-                <a href={writeup.link} class="link link-primary font-bold"
-                  >{writeup.title}</a
+                <a
+                  href={writeup.link}
+                  data-sveltekit-preload-data
+                  data-sveltekit-preload-code
+                  class="link link-primary font-bold">{writeup.title}</a
                 >
               </div>
               <p class="text-xs min-w-24">
