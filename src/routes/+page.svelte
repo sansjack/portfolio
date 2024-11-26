@@ -78,7 +78,7 @@
 
         <div class="avatar mb-2">
           <div class="w-16 rounded-full">
-            <img src="/images/me.jpg" />
+            <img src="/images/me.webp" alt="picture of jack sansom" />
           </div>
         </div>
       </div>
