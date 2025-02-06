@@ -10,12 +10,68 @@
     PythonIcon,
     AWSIcon,
   } from '$lib/icons'
+
+  import {
+    DunelmIcon,
+    ArkivumIcon,
+    CanopactIcon,
+    CnickIcon,
+    NovusIcon,
+  } from '$lib/icons/jobs'
   import relativeTime from 'dayjs/plugin/relativeTime'
+
   dayjs.extend(relativeTime)
 
   const { data } = $props()
 
   const { writeups } = data
+
+  const jobExperiences = [
+    {
+      company: 'Dunelm',
+      companyIcon: DunelmIcon,
+      href: 'https://www.dunelm.com',
+      position: 'Site Reliability Engineer',
+      startDate: 1648731600,
+      endDate: 1704027600,
+    },
+    {
+      company: 'Arkivum',
+      companyIcon: ArkivumIcon,
+      href: 'https://www.arkivum.com',
+      position: 'Junior Site Reliability Engineer',
+      startDate: 1609419600,
+      endDate: 1646053200,
+    },
+    {
+      company: 'Canopact',
+      companyIcon: CanopactIcon,
+      href: 'https://www.canopact.com',
+      position: 'Python Software Engineer',
+      startDate: 1704027600,
+      endDate: 1709211600,
+      img: true,
+    },
+    {
+      company: 'Cnick',
+      companyIcon: CnickIcon,
+      href: 'https://www.cnick.io',
+      position: 'VueJs Mobile Developer',
+      startDate: 1722434400,
+      endDate: 1725112800,
+      img: true,
+    },
+    {
+      company: 'Novus Studio',
+      companyIcon: NovusIcon,
+      href: 'https://www.novus.studio',
+      position: 'Svelte Fullstack Developer',
+
+      startDate: 1725112800,
+      endDate: dayjs().unix(),
+      img: true,
+    },
+  ]
 </script>
 
 <svelte:head>
@@ -62,31 +118,33 @@
   />
 </svelte:head>
 <div
-  class="flex flex-col w-full h-full overflow-y-scroll overflow-x-hidden sm:flex items-center justify-center"
+  class="flex flex-col w-full overflow-y-scroll overflow-x-hidden sm:flex items-center justify-center"
 >
-  <div
-    class="py-4 px-4 max-w-5xl flex flex-col items-center space-y-0 leading-tight gap-2"
-  >
-    <div class="flex flex-col items-center justify-center">
-      <div class="flex flex-row items-center gap-4">
-        <h1 class="text-4xl text-start">Jack Sansom</h1>
+  <div class="mt-[6rem]">
+    <div
+      class="py-4 px-4 max-w-5xl flex flex-col items-center space-y-0 leading-tight gap-2"
+    >
+      <div class="flex flex-col items-center justify-center">
+        <div class="flex flex-row items-center gap-4">
+          <h1 class="text-4xl text-start">Jack Sansom</h1>
 
-        <div class="avatar mb-2">
-          <div class="w-16 rounded-full">
-            <img
-              src="/images/me.webp"
-              alt="picture of jack sansom"
-              class="scale-150"
-            />
+          <div class="avatar mb-2">
+            <div class="w-16 rounded-full">
+              <img
+                src="/images/me.webp"
+                alt="picture of jack sansom"
+                class="scale-150"
+              />
+            </div>
           </div>
         </div>
+        <p class="text-md opacity-80 text-center">
+          site reliability engineer / software engineer
+        </p>
+        <p class="text-sm md:text-md opacity-80 text-center mt-2">
+          📍 London, United Kingdom
+        </p>
       </div>
-      <p class="text-md opacity-80 text-center">
-        site reliability engineer / software engineer
-      </p>
-      <p class="text-sm md:text-md opacity-80 text-center mt-2">
-        📍 London, United Kingdom
-      </p>
     </div>
   </div>
   <div
@@ -100,6 +158,73 @@
     <div><MongoIcon class="size-10" /></div>
     <div><CloudflareIcon class="size-10" /></div>
     <div><AWSIcon class="size-10" /></div>
+  </div>
+  <div
+    class="flex flex-col m-3 sm:m-4 md:m-1 w-[90%] md:w-3/4 lg:max-w-[1110px] gap-4"
+  >
+    <div class="w-full my-4">
+      <h3>Work Experience 💼</h3>
+      <div class="divider !my-1" />
+      <ul class="relative w-full space-y-4 gap-8 sm:space-y-0 my-2">
+        {#each jobExperiences.sort((a, b) => b.startDate - a.startDate) as job}
+          <li
+            class="flex flex-row items-center justify-between hover:bg-text -mx-1 px-1 space-x-5"
+          >
+            <div
+              class="flex flex-row items-center gap-2 my-1 group"
+              data-tip={job.company}
+            >
+              <a
+                href={job.href}
+                target="_blank"
+                class="tooltip tooltip-top hover:cursor-pointer hover:scale-125 ease-in-out duration-200"
+                data-tip={job.company}
+              >
+                {#if job.img && typeof job.companyIcon === 'string'}
+                  <img
+                    src={job.companyIcon}
+                    alt="canopact logo"
+                    class="size-12 mr-1 rounded-sm"
+                  />
+                {:else if typeof job.companyIcon !== 'string'}
+                  <job.companyIcon class="size-12 mr-1" />
+                {/if}
+              </a>
+              {job.position}
+            </div>
+            <span
+              class={[
+                'hidden md:block badge badge-neutral text-nowrap',
+                {
+                  'badge-primary': dayjs().isSame(
+                    dayjs.unix(job.endDate),
+                    'day'
+                  ),
+                },
+              ]}
+            >
+              {dayjs.unix(job.startDate).format('YYYY MMM')} - {dayjs
+                .unix(job.endDate)
+                .format('YYYY MMM')}
+            </span>
+
+            <span
+              class={[
+                'blcok md:hidden badge badge-neutral text-nowrap',
+                {
+                  'badge-primary': dayjs().isSame(
+                    dayjs.unix(job.endDate),
+                    'day'
+                  ),
+                },
+              ]}
+            >
+              {dayjs.unix(job.endDate).format('YYYY MMM')}
+            </span>
+          </li>
+        {/each}
+      </ul>
+    </div>
   </div>
   <div class="w-full flex items-center justify-center">
     <div
@@ -140,7 +265,7 @@
         <ul class="relative w-full space-y-4 gap-8 sm:space-y-0 my-2">
           {#each projects as project}
             <li
-              class=" flex flex-row justify-between hover:bg-text -mx-2 px-2 space-x-5"
+              class="flex flex-row justify-between hover:bg-text -mx-2 px-2 space-x-5"
             >
               <div
                 class="flex flex-row gap-2 my-1 group tooltip"
