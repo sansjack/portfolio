@@ -4,8 +4,7 @@
   import {
     SvelteIcon,
     PostgresIcon,
-    SupabaseIcon,
-    VercelIcon,
+    TypescriptIcon,
     CloudflareIcon,
     MongoIcon,
     PythonIcon,
@@ -96,6 +95,7 @@
   >
     <div><SvelteIcon class="size-10" /></div>
     <div><PythonIcon class="size-10" /></div>
+    <div><TypescriptIcon class="size-10" /></div>
     <div><PostgresIcon class="size-10" /></div>
     <div><MongoIcon class="size-10" /></div>
     <div><CloudflareIcon class="size-10" /></div>

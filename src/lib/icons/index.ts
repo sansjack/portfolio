@@ -6,6 +6,7 @@ import CloudflareIcon from './cloudflare.svg?component'
 import AWSIcon from './aws.svg?component'
 import MongoIcon from './mongo.svg?component'
 import PythonIcon from './python.svg?component'
+import TypescriptIcon from './typescript.svg?component'
 export {
   PythonIcon,
   MongoIcon,
@@ -15,4 +16,5 @@ export {
   PortfoloIcon,
   PostgresIcon,
   SvelteIcon,
+  TypescriptIcon,
 }
