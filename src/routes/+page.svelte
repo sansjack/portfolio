@@ -166,7 +166,7 @@
       <h3>Work Experience 💼</h3>
       <div class="divider !my-1" />
       <ul
-        class="relative w-full space-y-4 gap-8 sm:space-y-0 my-2 max-h-[10rem] overflow-scroll overflow-x-hidden"
+        class="relative w-full space-y-4 gap-8 sm:space-y-0 my-2 max-h-[10rem] md:max-h-[10rem] overflow-scroll overflow-x-hidden"
       >
         {#each jobExperiences.sort((a, b) => b.startDate - a.startDate) as job}
           <li

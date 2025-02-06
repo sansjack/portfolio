@@ -3,7 +3,7 @@
   import '../app.css'
 </script>
 
-<div class="hero min-h-[100vh]">
+<div class="hero min-h-[100dvh]">
   <div class="max-w-lg">
     <h1 class="text-5xl font-bold">This is embarassing...</h1>
     <p class="pb-3 pt-1 text-2xl">
