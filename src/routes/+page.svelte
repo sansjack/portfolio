@@ -120,7 +120,7 @@
 <div
   class="flex flex-col w-full overflow-y-scroll overflow-x-hidden sm:flex items-center justify-center"
 >
-  <div class="mt-[6rem]">
+  <div class="mt-[3rem] lg:mt-[5rem]">
     <div
       class="py-4 px-4 max-w-5xl flex flex-col items-center space-y-0 leading-tight gap-2"
     >
@@ -165,7 +165,9 @@
     <div class="w-full my-4">
       <h3>Work Experience 💼</h3>
       <div class="divider !my-1" />
-      <ul class="relative w-full space-y-4 gap-8 sm:space-y-0 my-2">
+      <ul
+        class="relative w-full space-y-4 gap-8 sm:space-y-0 my-2 max-h-[10rem] overflow-scroll overflow-x-hidden"
+      >
         {#each jobExperiences.sort((a, b) => b.startDate - a.startDate) as job}
           <li
             class="flex flex-row items-center justify-between hover:bg-text -mx-1 px-1 space-x-5"
