@@ -181,11 +181,7 @@
                 data-tip={job.company}
               >
                 {#if job.img && typeof job.companyIcon === 'string'}
-                  <img
-                    src={job.companyIcon}
-                    alt="canopact logo"
-                    class="size-12 mr-1 rounded-sm"
-                  />
+                  <img src={job.companyIcon} class="size-12 mr-1 rounded-sm" />
                 {:else if typeof job.companyIcon !== 'string'}
                   <job.companyIcon class="size-12 mr-1" />
                 {/if}
@@ -241,16 +237,15 @@
             <li
               class="flex flex-row justify-between gap-0 hover:bg-text text-sm md:text-base"
             >
-              <div
-                class="items-start text-start md:w-[90%] tooltip tooltip-top"
-                data-tip={writeup.description}
-              >
+              <div class="items-start text-start md:w-[90%]">
                 <a
                   href={writeup.link}
                   data-sveltekit-preload-data
                   data-sveltekit-preload-code
-                  class="link link-primary font-bold">{writeup.title}</a
-                >
+                  class="tooltip tooltip-top link link-primary font-bold"
+                  data-tip={writeup.description}
+                  >{writeup.title}
+                </a>
               </div>
               <p class="text-xs min-w-24">
                 {dayjs.unix(writeup.date).fromNow()}

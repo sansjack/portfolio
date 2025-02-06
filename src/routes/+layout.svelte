@@ -47,7 +47,7 @@
           >
         </li>
         <div class="mx-2">
-          open for freelance work, drop me an email:
+          open for freelance work:
           <code class="self-end link font-bold">
             <a href="mailto:contact@sansjack.dev">contact@jacksansom.com</a
             ></code
