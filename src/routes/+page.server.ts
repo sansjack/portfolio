@@ -1,8 +1,8 @@
-import { serializeNonPOJOs, writeupModel } from '$lib/server/mongo'
+import { writeupModel } from '$lib/server/mongo'
 
 export const load = async () => {
-  const writeups = serializeNonPOJOs(
-    await writeupModel.find({}, { _id: false }).sort({ date: -1 })
-  )
+  const writeups = 
+    await writeupModel.find({}, { _id: false }).sort({ date: -1 }).lean()
+  
   return { writeups }
 }

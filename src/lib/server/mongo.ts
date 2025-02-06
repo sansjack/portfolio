@@ -35,11 +35,3 @@ const writeupSchema = new mongoose.Schema<Writeup>(
 
 export const writeupModel =
   connection.models.writeups ?? mongoose.model('writeups', writeupSchema)
-
-export function convertToPlainObject<T>(models: any[]): T[] {
-  return models.map((model) => model.toObject())
-}
-
-export const serializeNonPOJOs = (value: object | null) => {
-  return JSON.parse(JSON.stringify(value))
-}
