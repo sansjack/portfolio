@@ -98,10 +98,8 @@
     <div><PythonIcon class="size-10" /></div>
     <div><PostgresIcon class="size-10" /></div>
     <div><MongoIcon class="size-10" /></div>
-    <div><SupabaseIcon class="size-10" /></div>
     <div><CloudflareIcon class="size-10" /></div>
     <div><AWSIcon class="size-10" /></div>
-    <div><VercelIcon class="size-12" /></div>
   </div>
   <div class="w-full flex items-center justify-center">
     <div
