@@ -160,39 +160,42 @@
     <div><AWSIcon class="size-10" /></div>
   </div>
   <div
-    class="flex flex-col m-3 sm:m-4 md:m-1 w-[90%] md:w-3/4 lg:max-w-[1110px] gap-4"
+    class="flex flex-col m-3 sm:m-4 md:m-1 w-full px-2 md:w-3/4 lg:max-w-[1110px] gap-4"
   >
     <div class="w-full my-4">
       <h3>Work Experience 💼</h3>
       <div class="divider !my-1" />
       <ul
-        class="relative w-full space-y-4 gap-8 sm:space-y-0 my-2 max-h-[10rem] md:max-h-[10rem] overflow-scroll overflow-x-hidden"
+        class="w-full space-y-4 gap-8 sm:space-y-0 my-2 max-h-[10rem] md:max-h-[10rem] overflow-y-auto overflow-x-hidden px-2"
       >
         {#each jobExperiences.sort((a, b) => b.startDate - a.startDate) as job}
           <li
-            class="flex flex-row items-center justify-between hover:bg-text -mx-1 px-1 space-x-5"
+            class="flex flex-row items-center justify-between hover:bg-text -mx-1 px-1 gap-1"
           >
-            <div
-              class="flex flex-row items-center gap-2 my-1 group"
-              data-tip={job.company}
-            >
+            <div class="flex flex-row items-center gap-2 my-1 group text-sm">
               <a
                 href={job.href}
                 target="_blank"
-                class="tooltip tooltip-top hover:cursor-pointer hover:scale-125 ease-in-out duration-200"
+                class="tooltip tooltip-right tool hover:cursor-pointer hover:scale-125 ease-in-out duration-200"
                 data-tip={job.company}
               >
                 {#if job.img && typeof job.companyIcon === 'string'}
-                  <img src={job.companyIcon} class="size-12 mr-1 rounded-sm" />
+                  <img
+                    src={job.companyIcon}
+                    class="size-10 md:size-12 mr-1 rounded-md"
+                    alt={job.company}
+                  />
                 {:else if typeof job.companyIcon !== 'string'}
                   <job.companyIcon class="size-12 mr-1" />
                 {/if}
               </a>
+
               {job.position}
             </div>
+
             <span
               class={[
-                'hidden md:block badge badge-neutral text-nowrap',
+                'hidden md:flex badge badge-neutral text-nowrap',
                 {
                   'badge-primary': dayjs().isSame(
                     dayjs.unix(job.endDate),
@@ -201,14 +204,17 @@
                 },
               ]}
             >
-              {dayjs.unix(job.startDate).format('YYYY MMM')} - {dayjs
-                .unix(job.endDate)
-                .format('YYYY MMM')}
+              {dayjs.unix(job.startDate).format('MMM YYYY')} -
+              {#if dayjs().isSame(dayjs.unix(job.endDate), 'day')}
+                Current
+              {:else}
+                {dayjs.unix(job.endDate).format('MMM YYYY')}
+              {/if}
             </span>
 
             <span
               class={[
-                'blcok md:hidden badge badge-neutral text-nowrap',
+                'flex md:hidden badge badge-neutral text-nowrap',
                 {
                   'badge-primary': dayjs().isSame(
                     dayjs.unix(job.endDate),
@@ -217,7 +223,11 @@
                 },
               ]}
             >
-              {dayjs.unix(job.endDate).format('YYYY MMM')}
+              {#if dayjs().isSame(dayjs.unix(job.endDate), 'day')}
+                Current
+              {:else}
+                {dayjs.unix(job.startDate).format('YYYY MMM')}
+              {/if}
             </span>
           </li>
         {/each}
