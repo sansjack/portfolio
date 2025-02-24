@@ -15,7 +15,7 @@ export async function GET({ setHeaders }) {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>jacksansom.com</loc>
+<loc>https://jacksansom.com</loc>
 <changefreq>daily</changefreq>
 <priority>1.0</priority>
 </url>
@@ -25,7 +25,7 @@ ${result
 <url>
 <loc>https://jacksansom.com${post.link}</loc>
 <changefreq>weekly</changefreq>
-<lastmod>${dayjs.unix(post.date)}</lastmod>
+<lastmod>${dayjs.unix(post.date).toISOString()}</lastmod>
 </url>
 `
   )
