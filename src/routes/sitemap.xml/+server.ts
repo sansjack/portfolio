@@ -23,7 +23,7 @@ ${result
   .map(
     (post) => `
 <url>
-<loc>jacksansom.com${post.link}</loc>
+<loc>https://jacksansom.com${post.link}</loc>
 <changefreq>weekly</changefreq>
 <lastmod>${dayjs.unix(post.date)}</lastmod>
 </url>
