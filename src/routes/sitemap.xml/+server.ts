@@ -22,7 +22,7 @@ ${result
 <url>
 <loc>https://jacksansom.com${post.link}</loc>
 <changefreq>weekly</changefreq>
-<lastmod>${dayjs(post.date).format('YYYY-MM-DDTHH:mm:ss[Z]')}</lastmod>
+<lastmod>${dayjs.unix(post.date).format('YYYY-MM-DDTHH:mm:ss[Z]')}</lastmod>
 </url>`
   )
   .join('')}
