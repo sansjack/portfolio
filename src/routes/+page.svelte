@@ -21,44 +21,7 @@
 	const { writeups } = data
 </script>
 
-<svelte:head>
-	<!-- Primary Meta Tags -->
-	<title>jacksansom.dev | Portfolio</title>
-	<meta name="title" content="jacksansom.dev | Portfolio" />
-	<meta
-		name="description"
-		content="Jack Sansom's Portfolio, Featuring My Projects And Writeups." />
-
-	<meta
-		name="keywords"
-		content="jacksansom.com, javascript, typescript, monitoring, SRE, reliability, javascript monitoring, sansjack dev, Jack Sansom, sveltekit developer, UK svelte developer, svelte developer, svelte, backend developer, frontend developer, frontend engineer, backend engineer, software engineer, software developer, devops engineer, devops developer, devops, monitoring, discord monitoring, slack monitoring, telegram monitoring, monitors, javascript log monitor" />
-	<meta name="robots" content="index, follow" />
-	<meta content="text/html; charset=utf-8" />
-	<meta name="language" content="English" />
-	<meta name="author" content="jacksansom" />
-
-	<!-- Open Graph / Facebook -->
-	<meta property="og:type" content="profile" />
-	<meta property="og:site_name" content="jacksansom.com" />
-	<meta property="profile:first_name" content="Jack" />
-	<meta property="profile:last_name" content="Sansom" />
-	<meta property="profile:username" content="sansjack" />
-	<meta property="og:url" content="https://jacksansom.com" />
-	<meta property="og:title" content="jacksansom.com | Portfolio" />
-	<meta
-		property="og:description"
-		content="Jack Sansom's Portfolio - Featuring My Projects And Writeups." />
-
-	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:url" content="https://jacksansom.com" />
-	<meta
-		property="twitter:title"
-		content="Jack Sansom's Portfolio - Featuring My Projects And Writeups." />
-	<meta
-		property="twitter:description"
-		content="The easy way monitor you code and receive logs to Slack, Discord & Telegram" />
-</svelte:head>
+<title>jacksansom.dev | Portfolio</title>
 <div
 	class="flex flex-col w-full overflow-y-scroll overflow-x-hidden sm:flex items-center justify-center">
 	<div class="mt-[3rem] lg:mt-[5rem]">
@@ -132,7 +95,7 @@
 								{
 									'badge-primary': dayjs().isSame(
 										dayjs.unix(job.endDate),
-										'day'
+										'day',
 									),
 								},
 							]}>
@@ -150,7 +113,7 @@
 								{
 									'badge-primary': dayjs().isSame(
 										dayjs.unix(job.endDate),
-										'day'
+										'day',
 									),
 								},
 							]}>
