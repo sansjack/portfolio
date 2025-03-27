@@ -11,11 +11,11 @@ import dayjs from 'dayjs'
 
 export const projects = [
 	{
-		title: 'boilermate.site',
+		title: 'boilermate',
 		Icon: LayoutTemplate,
 		description:
 			'Share your code boilerplates to help everyone learn and deploy faster!',
-		link: 'https://boilermate.site',
+		link: 'https://boilermate.vercel.app',
 		date: 1714147200,
 	},
 	{
