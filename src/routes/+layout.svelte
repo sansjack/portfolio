@@ -9,7 +9,7 @@
 
 <svelte:head>
 	
-	<meta name="title" content="jacksansom.dev | Portfolio" />
+	<meta name="title" content="jacksansom.com | Portfolio" />
 	<meta
 		name="description"
 		content="Jack Sansom's Portfolio, Featuring My Projects And Writeups." />

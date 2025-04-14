@@ -21,7 +21,7 @@
 	const { writeups } = data
 </script>
 
-<title>jacksansom.dev | Portfolio</title>
+<title>jacksansom.com | Portfolio</title>
 <div
 	class="flex flex-col w-full overflow-y-scroll overflow-x-hidden sm:flex items-center justify-center">
 	<div class="mt-[3rem] lg:mt-[5rem]">
