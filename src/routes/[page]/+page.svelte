@@ -8,14 +8,14 @@
 </script>
 
 <svelte:head>
-	<title>{writeup.title} | sansjack.dev</title>
-	<meta name="title" content="{writeup.title} | sansjack.dev" />
+	<title>{writeup.title} | jacksansom.com</title>
+	<meta name="title" content="{writeup.title} | jacksansom.com" />
 	<meta
 		name="description"
 		content="Jack Sansom's Portfolio, Featuring My Projects And Writeups." />
 	<meta
 		name="keywords"
-		content="javascript, typescript, monitoring, SRE, reliability, javascript monitoring, sansjack dev, Jack Sansom, sveltekit developer, UK svelte developer, svelte developer, svelte, backend developer, frontend developer, frontend engineer, backend engineer, software engineer, software developer, devops engineer, devops developer, devops, monitoring, discord monitoring, slack monitoring, telegram monitoring, monitors, javascript log monitor" />
+		content="javascript, typescript, monitoring, SRE, reliability, javascript monitoring, Jack Sansom, sveltekit developer, UK svelte developer, svelte developer, svelte, backend developer, frontend developer, frontend engineer, backend engineer, software engineer, software developer, devops engineer, devops developer, devops, monitoring, discord monitoring, slack monitoring, telegram monitoring, monitors, javascript log monitor" />
 	<meta content="text/html; charset=utf-8" />
 	<meta name="language" content="English" />
 	<meta name="author" content="sansjack" />
@@ -23,7 +23,7 @@
 	<meta name="robots" content="index, follow" />
 	<meta name="og:type" content="article" />
 	<meta name="og:description" content={writeup.description} />
-	<meta name="og:title" content="{writeup.title} | sansjack.dev" />
+	<meta name="og:title" content="{writeup.title} | jacksansom.dev" />
 	<meta
 		name="article:published_time"
 		content={dayjs.unix(writeup.date).toISOString()} />

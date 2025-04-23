@@ -8,7 +8,6 @@
 </script>
 
 <svelte:head>
-	
 	<meta name="title" content="jacksansom.com | Portfolio" />
 	<meta
 		name="description"
@@ -83,7 +82,7 @@
 				<div class="mx-2">
 					open for freelance work:
 					<code class="self-end link font-bold">
-						<a href="mailto:contact@sansjack.dev">contact@jacksansom.com</a
+						<a href="mailto:contact@jacksansom.com">contact@jacksansom.com</a
 						></code>
 				</div>
 			</ul>
