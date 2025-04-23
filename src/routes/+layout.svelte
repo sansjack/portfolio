@@ -15,7 +15,7 @@
 
 	<meta
 		name="keywords"
-		content="jacksansom.com, javascript, typescript, monitoring, SRE, reliability, javascript monitoring, sansjack dev, Jack Sansom, sveltekit developer, UK svelte developer, svelte developer, svelte, backend developer, frontend developer, frontend engineer, backend engineer, software engineer, software developer, devops engineer, devops developer, devops, monitoring, discord monitoring, slack monitoring, telegram monitoring, monitors, javascript log monitor" />
+		content="jacksansom.com, javascript, typescript, monitoring, SRE, reliability, javascript monitoring, jacksansom dev, Jack Sansom, sveltekit developer, UK svelte developer, svelte developer, svelte, backend developer, frontend developer, frontend engineer, backend engineer, software engineer, software developer, devops engineer, devops developer, devops, monitoring, discord monitoring, slack monitoring, telegram monitoring, monitors, javascript log monitor" />
 	<meta name="robots" content="index, follow" />
 	<meta content="text/html; charset=utf-8" />
 	<meta name="language" content="English" />
