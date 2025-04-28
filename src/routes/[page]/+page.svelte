@@ -17,7 +17,6 @@
 		name="keywords"
 		content="javascript, typescript, monitoring, SRE, reliability, javascript monitoring, Jack Sansom, sveltekit developer, UK svelte developer, svelte developer, svelte, backend developer, frontend developer, frontend engineer, backend engineer, software engineer, software developer, devops engineer, devops developer, devops, monitoring, discord monitoring, slack monitoring, telegram monitoring, monitors, javascript log monitor" />
 	<meta content="text/html; charset=utf-8" />
-	<meta name="language" content="English" />
 	<meta name="author" content="sansjack" />
 
 	<meta name="robots" content="index, follow" />
