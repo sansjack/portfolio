@@ -6,6 +6,7 @@ import {
 	CanopactIcon,
 	CnickIcon,
 	NovusIcon,
+	NexyIcon,
 } from '$lib/icons/jobs'
 import dayjs from 'dayjs'
 
@@ -83,6 +84,15 @@ export const jobExperiences = [
 		position: 'Svelte Fullstack Developer',
 
 		startDate: 1725112800,
+		endDate: 1740784985,
+		img: true,
+	},
+	{
+		company: 'Nexy Media',
+		companyIcon: NexyIcon,
+		href: 'https://www.nexy.media',
+		position: 'Python / Svelte Fullstack Developer',
+		startDate: 1740957785,
 		endDate: dayjs().unix(),
 		img: true,
 	},
