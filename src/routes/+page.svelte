@@ -40,12 +40,12 @@
 						</div>
 					</div>
 				</div>
-				<p class="text-md opacity-80 text-center">
-					site reliability engineer / software engineer
-				</p>
-				<p class="text-sm md:text-md opacity-80 text-center mt-2">
+				<h2 class="text-md opacity-80 text-center">
+					full stack software engineer
+				</h2>
+				<span class="text-sm md:text-md opacity-80 text-center mt-2">
 					📍 London, United Kingdom
-				</p>
+				</span>
 			</div>
 		</div>
 	</div>
@@ -95,7 +95,7 @@
 								{
 									'badge-primary': dayjs().isSame(
 										dayjs.unix(job.endDate),
-										'day',
+										'day'
 									),
 								},
 							]}>
@@ -113,7 +113,7 @@
 								{
 									'badge-primary': dayjs().isSame(
 										dayjs.unix(job.endDate),
-										'day',
+										'day'
 									),
 								},
 							]}>
