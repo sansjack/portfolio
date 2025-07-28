@@ -4,7 +4,7 @@ import CanopactIcon from "./canopact.webp"
 import CnickIcon from "./cnick.webp"
 import NovusIcon from "./novus.webp"
 import NexyIcon from "./nexymedia.png"
-import PersonaLogo from "./persona.svg?component"
+import PersonaLogo from "./persona.png"
 export {
 	DunelmIcon,
 	ArkivumIcon,
