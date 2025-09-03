@@ -1,5 +1,5 @@
-import { writeupModel } from '$lib/server/mongo'
-import dayjs from 'dayjs'
+import { writeupModel } from "$lib/server/mongo"
+import dayjs from "dayjs"
 
 export async function GET() {
 	const result = (await writeupModel
@@ -22,15 +22,15 @@ ${result
 <url>
 <loc>https://jacksansom.com${post.link}</loc>
 <changefreq>weekly</changefreq>
-<lastmod>${dayjs.unix(post.date).format('YYYY-MM-DDTHH:mm:ss[Z]')}</lastmod>
+<lastmod>${dayjs.unix(post.date).format("YYYY-MM-DDTHH:mm:ss[Z]")}</lastmod>
 </url>`
 	)
-	.join('')}
+	.join("")}
 </urlset>`
 
 	return new Response(sitemap, {
 		headers: {
-			'Content-Type': 'application/xml',
+			"Content-Type": "application/xml",
 		},
 	})
 }

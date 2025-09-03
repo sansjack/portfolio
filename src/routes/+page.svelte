@@ -1,5 +1,5 @@
 <script lang="ts">
-	import dayjs from 'dayjs'
+	import dayjs from "dayjs"
 	import {
 		SvelteIcon,
 		PostgresIcon,
@@ -8,11 +8,11 @@
 		MongoIcon,
 		PythonIcon,
 		AWSIcon,
-	} from '$lib/icons'
+	} from "$lib/icons"
 
-	import { jobExperiences, projects } from './content'
+	import { jobExperiences, projects } from "./content"
 
-	import relativeTime from 'dayjs/plugin/relativeTime'
+	import relativeTime from "dayjs/plugin/relativeTime"
 
 	dayjs.extend(relativeTime)
 
@@ -36,7 +36,8 @@
 							<img
 								src="/images/me.webp"
 								alt="picture of jack sansom"
-								class="scale-150" />
+								class="scale-150"
+								loading="lazy" />
 						</div>
 					</div>
 				</div>
@@ -76,12 +77,13 @@
 								target="_blank"
 								class="tooltip tooltip-right tool hover:cursor-pointer hover:scale-125 ease-in-out duration-200"
 								data-tip={job.company}>
-								{#if job.img && typeof job.companyIcon === 'string'}
+								{#if job.img && typeof job.companyIcon === "string"}
 									<img
 										src={job.companyIcon}
 										class="size-10 md:size-12 mr-1 rounded-md"
-										alt={job.company} />
-								{:else if typeof job.companyIcon !== 'string'}
+										alt={job.company}
+										loading="lazy" />
+								{:else if typeof job.companyIcon !== "string"}
 									<job.companyIcon class="size-12 mr-1" />
 								{/if}
 							</a>
@@ -91,36 +93,36 @@
 
 						<span
 							class={[
-								'hidden md:flex badge badge-neutral text-nowrap',
+								"hidden md:flex badge badge-neutral text-nowrap",
 								{
-									'badge-primary': dayjs().isSame(
+									"badge-primary": dayjs().isSame(
 										dayjs.unix(job.endDate),
-										'day'
+										"day"
 									),
 								},
 							]}>
-							{dayjs.unix(job.startDate).format('MMM YYYY')} -
-							{#if dayjs().isSame(dayjs.unix(job.endDate), 'day')}
+							{dayjs.unix(job.startDate).format("MMM YYYY")} -
+							{#if dayjs().isSame(dayjs.unix(job.endDate), "day")}
 								Current
 							{:else}
-								{dayjs.unix(job.endDate).format('MMM YYYY')}
+								{dayjs.unix(job.endDate).format("MMM YYYY")}
 							{/if}
 						</span>
 
 						<span
 							class={[
-								'flex md:hidden badge badge-neutral text-nowrap',
+								"flex md:hidden badge badge-neutral text-nowrap",
 								{
-									'badge-primary': dayjs().isSame(
+									"badge-primary": dayjs().isSame(
 										dayjs.unix(job.endDate),
-										'day'
+										"day"
 									),
 								},
 							]}>
-							{#if dayjs().isSame(dayjs.unix(job.endDate), 'day')}
+							{#if dayjs().isSame(dayjs.unix(job.endDate), "day")}
 								Current
 							{:else}
-								{dayjs.unix(job.startDate).format('YYYY MMM')}
+								{dayjs.unix(job.startDate).format("YYYY MMM")}
 							{/if}
 						</span>
 					</li>
@@ -177,7 +179,7 @@
 									{project.title}</a>
 							</div>
 							<p class="text-xs">
-								{#if typeof project.date === 'number'}
+								{#if typeof project.date === "number"}
 									{dayjs.unix(project.date).fromNow()}
 								{:else}
 									<span class="badge badge-accent"> {project.date}</span>
