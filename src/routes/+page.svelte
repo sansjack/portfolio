@@ -1,5 +1,6 @@
 <script lang="ts">
 	import dayjs from "dayjs"
+	import { onMount } from "svelte"
 	import {
 		SvelteIcon,
 		PostgresIcon,
@@ -18,7 +19,22 @@
 
 	const { data } = $props()
 
-	const { writeups } = data
+	let writeups: Writeup[] = $state(data.writeups || [])
+	let loadingWriteups = $state(true)
+
+	onMount(async () => {
+		try {
+			const response = await fetch("/api/writeups")
+			if (response.ok) {
+				const result = await response.json()
+				writeups = result.writeups
+			}
+		} catch (error) {
+			console.error("Failed to load writeups:", error)
+		} finally {
+			loadingWriteups = false
+		}
+	})
 </script>
 
 <title>Jack Sansom's Portfolio</title>
@@ -135,28 +151,39 @@
 			class="flex flex-col m-3 sm:m-4 md:m-1 w-[90%] md:w-3/4 lg:max-w-[1110px] gap-4">
 			<div class="flex flex-col items-center justify-center">
 				<h3 class="justify-start self-start text-center">Writeups ✏️</h3>
-				<div class="divider !my-1" />
+				<div class="divider !my-1"></div>
 				<!-- need to make it scrollable without breaking tootips :) -->
 				<ul
 					class="relative w-full space-y-2 items-center justify-center sm:space-y-0">
-					{#each writeups as writeup}
-						<li
-							class="flex flex-row justify-between gap-0 hover:bg-text text-sm md:text-base">
-							<div class="items-start text-start md:w-[90%]">
-								<a
-									href={writeup.link}
-									data-sveltekit-preload-data
-									data-sveltekit-preload-code
-									class="tooltip tooltip-top link link-primary font-bold"
-									data-tip={writeup.description}
-									>{writeup.title}
-								</a>
-							</div>
-							<p class="text-xs min-w-24">
-								{dayjs.unix(writeup.date).fromNow()}
-							</p>
+					{#if loadingWriteups}
+						<li class="flex flex-row justify-center gap-2 p-4">
+							<span class="loading loading-spinner loading-sm"></span>
+							<span class="text-sm opacity-70">Loading writeups...</span>
 						</li>
-					{/each}
+					{:else if writeups.length === 0}
+						<li class="text-sm opacity-70 text-center p-4">
+							No writeups available
+						</li>
+					{:else}
+						{#each writeups as writeup}
+							<li
+								class="flex flex-row justify-between gap-0 hover:bg-text text-sm md:text-base">
+								<div class="items-start text-start md:w-[90%]">
+									<a
+										href={writeup.link}
+										data-sveltekit-preload-data
+										data-sveltekit-preload-code
+										class="tooltip tooltip-top link link-primary font-bold"
+										data-tip={writeup.description}
+										>{writeup.title}
+									</a>
+								</div>
+								<p class="text-xs min-w-24">
+									{dayjs.unix(writeup.date).fromNow()}
+								</p>
+							</li>
+						{/each}
+					{/if}
 				</ul>
 			</div>
 			<div class="w-full my-4">

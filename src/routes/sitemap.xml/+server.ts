@@ -1,7 +1,8 @@
-import { writeupModel } from "$lib/server/mongo"
+import { getModels } from "$lib/server/mongo"
 import dayjs from "dayjs"
 
 export async function GET() {
+	const { writeupModel } = await getModels()
 	const result = (await writeupModel
 		.find({}, { _id: false })
 		.sort({ date: -1 })
