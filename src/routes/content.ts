@@ -17,28 +17,33 @@ export const projects = [
 		Icon: LayoutTemplate,
 		description:
 			"Share your code boilerplates to help everyone learn and deploy faster!",
-		link: "https://boilermate.vercel.app",
+    link: "https://boilermate.vercel.app",
+		archived: true,
 		date: 1714147200,
+		
 	},
 	{
 		title: "monitro.dev",
 		Icon: MonitroIcon,
 		description: "Simple & Cheap Log Monitoring",
-		link: "https://monitro.dev",
+    link: "https://monitro.vercel.app",
+		archived: true,
 		date: 1722413951,
 	},
 	{
 		title: "portfolo.app",
 		Icon: PortfoloIcon,
 		description: "Create A Portfolio And Add Projects Using Markdown",
-		link: "https://portfolo.app",
+    link: "https://portfolo.app",
+		archived: false,
 		date: 1718121600,
 	},
 	{
 		title: "dailydebrief.io",
 		Icon: DailyDebriefIcon,
 		description: "Daily Email digest for all your integrations",
-		link: "https://dailydebrief.io",
+    link: "dailydebreif.vercel.app",
+		archived: true,
 		date: 1742774482,
 	},
 ]
