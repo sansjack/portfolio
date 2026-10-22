@@ -1,0 +1,55 @@
+@import 'tailwindcss';
+
+@theme {
+	--color-background: #ffffff;
+	--color-panel: #f8f9fa;
+	--color-surface: #ffffff;
+	--color-foreground: #1b1b1f;
+	--color-dim: #6b7280;
+	--color-line: #d0d5dd;
+	--color-accent: #6965db;
+	--color-note: #fff3bf;
+	/* Sticky notes stay light in both themes, so their text stays dark in both */
+	--color-note-ink: #1b1b1f;
+	--animate-rise: rise 400ms ease-out backwards;
+
+	@keyframes rise {
+		from {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+	}
+
+	--font-sans: 'Rajdhani', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Dark palette overrides the same tokens; the theme is set on <html> by the script in app.html and the pull cord */
+:root {
+	color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+	color-scheme: dark;
+	--color-background: #121214;
+	--color-panel: #1b1b1f;
+	--color-surface: #202026;
+	--color-foreground: #e8e8ec;
+	--color-dim: #9a9aa6;
+	--color-line: #3a3a44;
+	--color-accent: #7c78f0;
+}
+
+@layer base {
+	html {
+		background-color: var(--color-background);
+		color: var(--color-foreground);
+		font-family: var(--font-sans);
+	}
+}
+
+/* Inline transitions on canvas cards can't use Tailwind's motion-reduce variant */
+@media (prefers-reduced-motion: reduce) {
+	main section {
+		transition: none !important;
+	}
+}

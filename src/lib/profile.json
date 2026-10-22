@@ -1,0 +1,252 @@
+{
+	"name": "Jack Sansom",
+	"url": "https://jacksansom.com",
+	"tagline": "Full stack software engineer",
+	"location": "London, United Kingdom",
+	"availability": "Looking For A Role",
+	"email": "contact@jacksansom.com",
+	"socials": [
+		{
+			"label": "Email",
+			"icon": "email",
+			"href": "mailto:contact@jacksansom.com"
+		},
+		{
+			"label": "GitHub",
+			"icon": "github",
+			"href": "https://github.com/sansjack"
+		},
+		{
+			"label": "LinkedIn",
+			"icon": "linkedin",
+			"href": "https://linkedin.com/in/jacksansom"
+		}
+	],
+	"experience": [
+		{
+			"company": "Persona AI",
+			"role": "Backend Engineer",
+			"period": "May 2025 - Current",
+			"url": "https://getpersona.xyz",
+			"logo": "/images/companies/persona-ai.png"
+		},
+		{
+			"company": "Nexy Media",
+			"role": "Python / Svelte Fullstack Developer",
+			"period": "Mar 2025 - May 2025",
+			"url": "https://nexy.media",
+			"logo": "/images/companies/nexy-media.png"
+		},
+		{
+			"company": "Novus Studio",
+			"role": "Svelte Fullstack Developer",
+			"period": "Aug 2024 - Feb 2025",
+			"url": "https://novus.studio",
+			"logo": "/images/companies/novus-studio.webp"
+		},
+		{
+			"company": "Cnick",
+			"role": "VueJs Mobile Developer",
+			"period": "Jul 2024 - Aug 2024",
+			"url": "https://cnick.io",
+			"logo": "/images/companies/cnick.webp"
+		},
+		{
+			"company": "Canopact",
+			"role": "Python Software Engineer",
+			"period": "Dec 2023 - Feb 2024",
+			"url": "https://canopact.com",
+			"logo": "/images/companies/canopact.webp"
+		},
+		{
+			"company": "Dunelm",
+			"role": "Site Reliability Engineer",
+			"period": "Mar 2022 - Dec 2023",
+			"url": "https://dunelm.com",
+			"logo": "/images/companies/dunelm.svg"
+		},
+		{
+			"company": "Arkivum",
+			"role": "Junior Site Reliability Engineer",
+			"period": "Dec 2020 - Feb 2022",
+			"url": "https://arkivum.com",
+			"logo": "/images/companies/arkivum.svg"
+		}
+	],
+	"projects": [
+		{
+			"name": "inveil-app",
+			"status": "Active",
+			"url": "https://github.com/sansjack/inveil-app",
+			"repo": {
+				"host": "github",
+				"owner": "sansjack",
+				"name": "inveil-app",
+				"language": "Rust",
+				"stars": 0,
+				"description": "Local proxy that stops PII, secrets and API keys reaching any LLM."
+			}
+		},
+		{
+			"name": "svoauth",
+			"status": "Active",
+			"url": "https://github.com/sansjack/svoauth",
+			"repo": {
+				"host": "github",
+				"owner": "sansjack",
+				"name": "svoauth",
+				"language": "TypeScript",
+				"stars": 7,
+				"description": "Lightweight, config-driven OAuth wrapper for Svelte."
+			}
+		},
+		{
+			"name": "goattic",
+			"status": "Active",
+			"url": "https://github.com/sansjack/goattic",
+			"repo": {
+				"host": "github",
+				"owner": "sansjack",
+				"name": "goattic",
+				"language": "Go",
+				"stars": 0,
+				"description": "S3-backed media storage that hands back public share links."
+			}
+		},
+		{
+			"name": "portfolo.app",
+			"status": "Archived",
+			"url": "https://portfolo.app",
+			"icon": "/images/projects/portfolo.png",
+			"accent": "#60a5fa",
+			"postMortem": {
+				"whatItWas": "A portfolio builder that turned a profile into a hosted personal site.",
+				"whyItFailed": "The growth of AI and other website builders with rich ai features made this seem pointless, i was thinking of open sourcing this project as it may have more use."
+			}
+		},
+		{
+			"name": "monitro.dev",
+			"status": "Archived",
+			"url": "https://monitro.vercel.app",
+			"icon": "/images/projects/monitro.png",
+			"accent": "#3b82f6",
+			"postMortem": {
+				"whatItWas": "Code monitoring that sent logs and alerts straight to Slack, Discord and Telegram.",
+				"whyItFailed": "The Market was saturated and tools were doing it better in a larger scale, its something that takes a lot of work to get right and production ready."
+			}
+		},
+		{
+			"name": "boilermate",
+			"status": "Archived",
+			"url": "https://boilermate.vercel.app",
+			"icon": "/images/projects/boilermate.png",
+			"accent": "#66c2c8",
+			"postMortem": {
+				"whatItWas": "A SaaS boilerplate for shipping a new product faster, with the common pieces already wired up.",
+				"whyItFailed": "It was kinda just some fun when i was learning frontend development, spam was a problem and also filtering"
+			}
+		},
+		{
+			"name": "dailydebrief.io",
+			"status": "Archived",
+			"url": "https://dailydebreif.vercel.app",
+			"icon": "/images/projects/dailydebrief.png",
+			"accent": "#f08a5d",
+			"postMortem": {
+				"whatItWas": "A daily email digest that summarised the day's news and updates into a short briefing.",
+				"whyItFailed": "This SaaS was successful for a while, untill MCP's were released and AI started growing people were making their own workflows which were more personalised."
+			}
+		}
+	],
+	"skills": [
+		{
+			"name": "Languages",
+			"items": [
+				{
+					"name": "Python"
+				},
+				{
+					"name": "TypeScript"
+				},
+				{
+					"name": "JavaScript"
+				},
+				{
+					"name": "Go",
+					"learning": true
+				},
+				{
+					"name": "Rust",
+					"learning": true
+				}
+			]
+		},
+		{
+			"name": "Frameworks",
+			"items": [
+				{
+					"name": "SvelteKit"
+				},
+				{
+					"name": "React"
+				},
+				{
+					"name": "FastAPI"
+				},
+				{
+					"name": "Tailwind"
+				},
+				{
+					"name": "Hono"
+				},
+				{
+					"name": "Better Auth"
+				}
+			]
+		},
+		{
+			"name": "Cloud",
+			"items": [
+				{
+					"name": "AWS"
+				},
+				{
+					"name": "GCP"
+				},
+				{
+					"name": "Cloudflare"
+				}
+			]
+		},
+		{
+			"name": "Infra & tools",
+			"items": [
+				{
+					"name": "Docker"
+				},
+				{
+					"name": "Linux"
+				},
+				{
+					"name": "Postgres"
+				},
+				{
+					"name": "gRPC"
+				},
+				{
+					"name": "Git"
+				}
+			]
+		}
+	],
+	"notes": [
+		{
+			"title": "What i've built",
+			"text": "Somethings i made public, somethings i wanted to make and some not"
+		},
+		{
+			"title": "The SaaS graveyard",
+			"text": "Why each of these failed, and what I'd do differently."
+		}
+	]
+}

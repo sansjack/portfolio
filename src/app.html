@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<link
+			rel="preload"
+			href="%sveltekit.assets%/fonts/rajdhani-latin-400-normal.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="%sveltekit.assets%/fonts/ubuntu-mono-latin-700-italic.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<style>
+			@font-face {
+				font-family: 'Rajdhani';
+				font-style: normal;
+				font-weight: 400;
+				font-display: swap;
+				src: url('%sveltekit.assets%/fonts/rajdhani-latin-400-normal.woff2') format('woff2');
+			}
+			/* Bold and semibold text switches to Ubuntu Mono (its 700 file, an italic cut declared as normal so upright bold picks it up). It shares the Rajdhani family name so no extra font-family is needed. */
+			@font-face {
+				font-family: 'Rajdhani';
+				font-style: normal;
+				font-weight: 600 700;
+				font-display: swap;
+				src: url('%sveltekit.assets%/fonts/ubuntu-mono-latin-700-italic.woff2') format('woff2');
+			}
+		</style>
+		<script>
+			// Set the theme before first paint so there is no flash: saved choice, else the OS preference
+			let theme;
+			try {
+				theme = localStorage.getItem('theme');
+			} catch {}
+			if (theme !== 'light' && theme !== 'dark') {
+				theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+			}
+			document.documentElement.dataset.theme = theme;
+		</script>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover" data-sveltekit-preload-code="eager">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
