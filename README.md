@@ -2,6 +2,8 @@
 
 Personal portfolio for Jack Sansom, live at [jacksansom.com](https://jacksansom.com). A fully prerendered static site, with no server code at runtime.
 
+I wanted to make this as fast and small a possible while feeling like a different feeling website. I didn't want to be a claude cannon so i decided to take a step back from my normal work and be creative with all the items i have learnt over the years on optimizing websites and optimal hosting choices.
+
 ## Stack
 
 | Area      | Choice                                                                                    |
