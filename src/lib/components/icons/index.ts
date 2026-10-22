@@ -18,6 +18,8 @@ import BetterAuthIcon from './BetterAuthIcon.svelte';
 import CloudflareIcon from './CloudflareIcon.svelte';
 import GoogleCloudIcon from './GoogleCloudIcon.svelte';
 import AwsIcon from './AwsIcon.svelte';
+import TerraformIcon from './TerraformIcon.svelte';
+import PulumiIcon from './PulumiIcon.svelte';
 
 export {
 	PythonIcon,
@@ -38,7 +40,9 @@ export {
 	BetterAuthIcon,
 	CloudflareIcon,
 	GoogleCloudIcon,
-	AwsIcon
+	AwsIcon,
+	TerraformIcon,
+	PulumiIcon
 };
 
 // Skill name (as written in profile.json) -> its icon
@@ -61,5 +65,7 @@ export const skillIcons: Record<string, Component<{ class?: string }>> = {
 	'Better Auth': BetterAuthIcon,
 	Cloudflare: CloudflareIcon,
 	GCP: GoogleCloudIcon,
-	AWS: AwsIcon
+	AWS: AwsIcon,
+	Terraform: TerraformIcon,
+	Pulumi: PulumiIcon
 };

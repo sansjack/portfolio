@@ -17,7 +17,7 @@ const WRITEUPS_GAP = 34;
 // Clear space between the hub and the projects on its left, and the archived cards on its right, in canvas px
 const HUB_GAP = { min: 40, max: 400 };
 // How much of the screen's half-width the outer edge of the project columns may reach when the hub is centred
-const CLUSTER_REACH = 0.87;
+const CLUSTER_REACH = 0.78;
 // Cards across one cluster: two columns of project cards and the gap between them
 const CLUSTER_WIDTH = PROJECT_SIZE.width * 2 + SPREAD_GAP;
 const HUB_WIDTH = 600;

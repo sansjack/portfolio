@@ -205,7 +205,7 @@
 			]
 		},
 		{
-			"name": "Cloud",
+			"name": "Cloud & IaC",
 			"items": [
 				{
 					"name": "AWS"
@@ -215,6 +215,12 @@
 				},
 				{
 					"name": "Cloudflare"
+				},
+				{
+					"name": "Terraform"
+				},
+				{
+					"name": "Pulumi"
 				}
 			]
 		},

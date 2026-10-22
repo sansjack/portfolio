@@ -44,6 +44,8 @@
 		background-color: var(--color-background);
 		color: var(--color-foreground);
 		font-family: var(--font-sans);
+		/* Rajdhani runs small, so scale the rem base up; all Tailwind text sizes follow */
+		font-size: 110%;
 	}
 }
 
