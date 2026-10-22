@@ -7,6 +7,8 @@ const MAX_ZOOM = 0.8;
 const FIT_PADDING = { vertical: 96, side: 24 };
 // Frame every section a little looser than a snug fit, so the page reads well at 100% browser zoom
 const FIT_SCALE = 0.85;
+// Every view sits this many screen px above true centre, so the content keeps clear of the bottom nav
+const VIEW_LIFT = 12;
 // The most zoomed-in a section is ever framed, so the same canvas width is visible on every wide screen
 export const MAX_FIT_ZOOM = MAX_ZOOM * FIT_SCALE;
 
@@ -44,6 +46,6 @@ export const fitView = (rects: Rect[], size: Size, focusRect?: Rect, fill?: numb
 	return {
 		zoom,
 		x: size.width / 2 - focus.x * zoom,
-		y: size.height / 2 - focus.y * zoom
+		y: size.height / 2 - focus.y * zoom - VIEW_LIFT
 	};
 };

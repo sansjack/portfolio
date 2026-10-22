@@ -14,7 +14,9 @@
 	const earliestYear = $derived(roles.at(-1)?.period.match(/\d{4}/)?.[0]);
 </script>
 
-<div class="h-full rounded-xl border border-line bg-surface p-6 shadow-md shadow-black/5">
+<div
+	class="flex h-full flex-col rounded-xl border border-line bg-surface p-6 pb-2 shadow-md shadow-black/5"
+>
 	<h2 class="mb-4 text-2xl text-foreground">Experience</h2>
 	{#key experience.opened}
 		<ol class="flex flex-col">
@@ -37,7 +39,7 @@
 		</ol>
 	{/key}
 	<button
-		class="mt-2 text-left text-accent hover:underline"
+		class="mt-auto pt-2 text-left text-accent hover:underline"
 		aria-expanded={experience.showOlder}
 		onclick={() => experience.toggle()}
 	>

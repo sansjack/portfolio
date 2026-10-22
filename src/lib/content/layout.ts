@@ -2,7 +2,7 @@ import { MAX_FIT_ZOOM, type Rect } from '#lib/camera/index.ts';
 import { archivedProjects, liveProjects } from './sections.ts';
 
 // Experience grows downward, so its height depends on whether older roles are showing
-export const EXPERIENCE_HEIGHT = { collapsed: 350, expanded: 640 };
+export const EXPERIENCE_HEIGHT = { collapsed: 380, expanded: 695 };
 
 // Live and archived projects share one size, as tall as the About hub
 const PROJECT_SIZE = { width: 300, height: 340 };
