@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { prefersReducedMotion } from '#lib/camera/index.ts';
-	import { type SectionId, sectionParam, sections } from '#lib/content/index.ts';
+	import { type ViewId, sectionParam, sections } from '#lib/content/index.ts';
 	import { resolve } from '$app/paths';
 
-	let { activeId }: { activeId: SectionId } = $props();
+	let { activeId }: { activeId: ViewId } = $props();
 
 	let nav = $state<HTMLElement>();
 

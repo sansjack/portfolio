@@ -5,14 +5,7 @@
 	"location": "London, United Kingdom",
 	"availability": "Looking For A Role",
 	"email": "contact@jacksansom.com",
-	"hirePhrases": [
-		"I fix bugs for fun.",
-		"I debug for coffee.",
-		"I deploy on Fridays.",
-		"I'll even write the docs.",
-		"I read the stack trace.",
-		"I love to refactor."
-	],
+	"hirePhrases": ["I fix bugs for fun.", "I deploy on Fridays.", "I love to refactor."],
 	"socials": [
 		{
 			"label": "Email",

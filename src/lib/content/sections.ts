@@ -9,6 +9,7 @@ import {
 	type Role,
 	type Section,
 	type SectionId,
+	type ViewId,
 	type SkillGroup,
 	type SocialLink,
 	type Writeup
@@ -150,7 +151,19 @@ const sectionsById: Record<SectionId, Section> = {
 
 export const sections: Section[] = SECTION_IDS.map((id) => sectionsById[id]);
 
-export const getSection = (id: SectionId): Section => sectionsById[id];
+// Not a page of its own: where any unknown URL lands. It is on the canvas, not in the menu, sitemap or routes.
+export const lostSection: Section = {
+	id: 'lost',
+	label: 'Not found',
+	description: 'This page does not exist.',
+	path: '/404',
+	cards: [{ id: 'lost', kind: 'lost' }]
+};
+
+// Everything the canvas draws and the camera can fly to
+export const canvasSections: Section[] = [...sections, lostSection];
+
+export const getSection = (id: ViewId): Section => (id === 'lost' ? lostSection : sectionsById[id]);
 
 export const findSectionByParam = (param: string | undefined): Section | undefined =>
 	sections.find((section) => section.path === `/${param ?? ''}`);

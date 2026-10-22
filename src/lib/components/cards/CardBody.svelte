@@ -2,6 +2,7 @@
 	import type { Card } from '#lib/content/index.ts';
 	import AboutCard from './AboutCard.svelte';
 	import ExperienceCard from './ExperienceCard.svelte';
+	import LostCard from './LostCard.svelte';
 	import NoteCard from './NoteCard.svelte';
 	import ProjectCard from './ProjectCard.svelte';
 	import SkillsCard from './SkillsCard.svelte';
@@ -36,6 +37,8 @@
 	<SkillsCard groups={card.groups} />
 {:else if card.kind === 'writeups'}
 	<WriteupsCard items={card.items} />
+{:else if card.kind === 'lost'}
+	<LostCard />
 {:else if card.kind === 'experience'}
 	<ExperienceCard roles={card.roles} />
 {:else}

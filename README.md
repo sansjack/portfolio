@@ -4,6 +4,8 @@ Personal portfolio for Jack Sansom, live at [jacksansom.com](https://jacksansom.
 
 I wanted to make this as fast and small a possible while feeling like a different feeling website. I didn't want to be a claude cannon so i decided to take a step back from my normal work and be creative with all the items i have learnt over the years on optimizing websites and optimal hosting choices.
 
+I know the data / content approach is lazy but its fast, I could of used a KV Cache (Redis) and fetch the data from there and have a seperate service hydrating it from a persistent storage but its overkill..
+
 ## Stack
 
 | Area      | Choice                                                                                    |

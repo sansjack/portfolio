@@ -13,7 +13,8 @@
 		EXPERIENCE_HEIGHT,
 		getSection,
 		POST_MORTEM_PANEL_ID,
-		type SectionId,
+		type ViewId,
+		lostSection,
 		sections
 	} from '#lib/content/index.ts';
 	import { useExperienceState, usePostMortemState } from '#lib/state/index.ts';
@@ -24,6 +25,8 @@
 	const MIN_GRID_SCREEN_PX = 10;
 	// Empty canvas the visitor can pan into beyond the outermost cards, in canvas px
 	const WORLD_MARGIN = 500;
+	// No man's land is a big empty void around the lost card, so the visitor can drift but never finds an edge quickly
+	const LOST_WORLD_MARGIN = 1500;
 	// Wheel zoom speed; a trackpad pinch arrives as a ctrl+wheel with much smaller deltas
 	const WHEEL_ZOOM_SPEED = 0.0015;
 	const PINCH_ZOOM_SPEED = 0.01;
@@ -33,7 +36,7 @@
 	const FOG_FADE =
 		'radial-gradient(ellipse at center, transparent 55%, color-mix(in srgb, var(--color-background) 70%, transparent) 100%)';
 
-	let { activeId }: { activeId: SectionId } = $props();
+	let { activeId }: { activeId: ViewId } = $props();
 
 	const camera = new Camera();
 	const experience = useExperienceState();
@@ -66,6 +69,9 @@
 		const denseOpacity = Math.min(1, (dense - MIN_GRID_SCREEN_PX) / MIN_GRID_SCREEN_PX);
 		return { dense, sparse: dense * 2, denseOpacity };
 	});
+
+	// A missing URL sends the visitor to no man's land: the real cards fade out and only the lost card remains
+	const lostActive = $derived(activeId === 'lost');
 
 	const framingKey = (): string => `${activeId}:${experience.showOlder}:${postMortems.openId}`;
 
@@ -127,7 +133,8 @@
 			viewportWidth = lastWidth;
 			frameActiveSection(false);
 			ready = true;
-			camera.flyIn(sizeOf(node));
+			// The intro zoom is for arriving at the site; a missing URL shows its card straight away
+			if (!lostActive) camera.flyIn(sizeOf(node));
 
 			const resizeObserver = new ResizeObserver(() => {
 				if (node.clientWidth === lastWidth) return;
@@ -137,7 +144,14 @@
 			});
 			resizeObserver.observe(node);
 
-			const bounds = () => worldBounds(Object.values(layout), WORLD_MARGIN);
+			const bounds = () => {
+				if (lostActive) return worldBounds([layout.lost], LOST_WORLD_MARGIN);
+
+				const realCards = Object.entries(layout)
+					.filter(([id]) => id !== 'lost')
+					.map(([, rect]) => rect);
+				return worldBounds(realCards, WORLD_MARGIN);
+			};
 
 			// Wheel zooms towards the cursor; any hand movement takes over from a camera flight
 			const onWheel = (event: WheelEvent) => {
@@ -224,9 +238,12 @@
 	class="fixed inset-0 hidden touch-none overflow-hidden md:block {dragging
 		? 'cursor-grabbing select-none'
 		: 'cursor-grab'}"
-	style:background-image="radial-gradient(circle, var(--color-line) 1.5px, transparent 1.5px),
-	radial-gradient(circle, color-mix(in srgb, var(--color-line) {grid.denseOpacity * 100}%,
-	transparent) 1.5px, transparent 1.5px)"
+	style:--dots={lostActive
+		? 'color-mix(in srgb, var(--color-line) 45%, transparent)'
+		: 'var(--color-line)'}
+	style:background-image="radial-gradient(circle, var(--dots) 1.5px, transparent 1.5px),
+	radial-gradient(circle, color-mix(in srgb, var(--dots) {grid.denseOpacity * 100}%, transparent)
+	1.5px, transparent 1.5px)"
 	style:background-size="{grid.sparse}px {grid.sparse}px, {grid.dense}px {grid.dense}px"
 	style:background-position="{camera.view.x}px {camera.view.y}px, {camera.view.x}px {camera.view
 		.y}px"
@@ -237,9 +254,31 @@
 			: 'opacity-0'}"
 		style:transform="translate({camera.view.x}px, {camera.view.y}px) scale({camera.view.zoom})"
 	>
-		{#each sections as section (section.id)}
-			<CardStack {section} {layout} active={section.id === activeId} animating={camera.animating} />
-		{/each}
+		<!-- The real world. It fades out in no man's land and back in when the visitor returns home -->
+		<div
+			class="transition-opacity duration-700 motion-reduce:transition-none {lostActive
+				? 'pointer-events-none opacity-0'
+				: ''}"
+			inert={lostActive}
+		>
+			{#each sections as section (section.id)}
+				<CardStack
+					{section}
+					{layout}
+					active={section.id === activeId}
+					animating={camera.animating}
+				/>
+			{/each}
+		</div>
+		<!-- No man's land: only there when the visitor is -->
+		<div
+			class="transition-opacity duration-700 motion-reduce:transition-none {lostActive
+				? ''
+				: 'pointer-events-none opacity-0'}"
+			inert={!lostActive}
+		>
+			<CardStack section={lostSection} {layout} active={lostActive} animating={camera.animating} />
+		</div>
 	</div>
 
 	<div

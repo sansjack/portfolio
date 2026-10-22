@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
-
 	type Props = { status: number; message: string; onretry?: () => void };
 
 	let { status, message, onretry }: Props = $props();
@@ -15,13 +13,9 @@
 	style:background-size="32px 32px"
 >
 	<p class="text-8xl leading-none text-accent">{status}</p>
-	<h1 class="text-4xl text-foreground">{status === 404 ? 'Page not found' : 'Something broke'}</h1>
+	<h1 class="text-4xl text-foreground">Something broke</h1>
 	<p class="max-w-md text-xl text-dim">{message}</p>
-	{#if status === 404}
-		<a href={resolve('/[[section=section]]', { section: '' })} class={actionClass}>
-			Back to home
-		</a>
-	{:else if onretry}
+	{#if onretry}
 		<button class="{actionClass} cursor-pointer" onclick={onretry}>Try again</button>
 	{/if}
 </main>

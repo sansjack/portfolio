@@ -1,5 +1,5 @@
 import { getContext, setContext } from 'svelte';
-import type { SectionId } from '#lib/content/index.ts';
+import type { ViewId } from '#lib/content/index.ts';
 
 const EXPERIENCE_KEY = Symbol('experience');
 
@@ -9,7 +9,7 @@ export class ExperienceState {
 	opened = $state(0);
 	#isOpen: boolean;
 
-	constructor(activeId: SectionId) {
+	constructor(activeId: ViewId) {
 		this.#isOpen = activeId === 'experience';
 		this.showOlder = this.#isOpen;
 	}
@@ -19,7 +19,7 @@ export class ExperienceState {
 	}
 
 	// Opening Experience shows every role; leaving it folds the older ones away
-	follow(activeId: SectionId) {
+	follow(activeId: ViewId) {
 		const isOpen = activeId === 'experience';
 		if (isOpen === this.#isOpen) return;
 
@@ -29,7 +29,7 @@ export class ExperienceState {
 	}
 }
 
-export const provideExperienceState = (activeId: SectionId): ExperienceState =>
+export const provideExperienceState = (activeId: ViewId): ExperienceState =>
 	setContext(EXPERIENCE_KEY, new ExperienceState(activeId));
 
 export const useExperienceState = (): ExperienceState =>

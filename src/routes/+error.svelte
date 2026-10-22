@@ -8,7 +8,10 @@
 	<meta name="robots" content="noindex" />
 </svelte:head>
 
-<ErrorScreen
-	status={page.status}
-	message={page.error?.message ?? 'An unexpected error occurred.'}
-/>
+<!-- A 404 is the lost card on the canvas (see +layout.svelte); anything else is a standalone failure screen -->
+{#if page.status !== 404}
+	<ErrorScreen
+		status={page.status}
+		message={page.error?.message ?? 'An unexpected error occurred.'}
+	/>
+{/if}

@@ -13,6 +13,9 @@ export const SECTION_IDS = [
 
 export type SectionId = (typeof SECTION_IDS)[number];
 
+// What the canvas can be framed on: any section, or the lost card that an unknown URL flies to
+export type ViewId = SectionId | 'lost';
+
 export type SocialIconName = 'email' | 'github' | 'linkedin' | 'x';
 
 export type SocialLink = { label: string; href: string; icon: SocialIconName };
@@ -110,10 +113,14 @@ export type WriteupsCard = CardBase & {
 	items: Writeup[];
 };
 
-export type Card = AboutCard | ProjectCard | SkillsCard | ExperienceCard | NoteCard | WriteupsCard;
+// The 404: an item placed out in the world, so a missing page is somewhere you can fly to like anywhere else
+export type LostCard = CardBase & { kind: 'lost' };
+
+export type Card =
+	AboutCard | ProjectCard | SkillsCard | ExperienceCard | NoteCard | WriteupsCard | LostCard;
 
 export type Section = {
-	id: SectionId;
+	id: ViewId;
 	label: string;
 	// Meta description for search results and link previews
 	description: string;

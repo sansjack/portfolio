@@ -1,9 +1,11 @@
 export { buildLayout, EXPERIENCE_HEIGHT, POST_MORTEM_PANEL_ID } from './layout.ts';
 export {
+	canvasSections,
 	findSectionByParam,
 	findWriteup,
 	formatWriteupDate,
 	getSection,
+	lostSection,
 	sectionParam,
 	sections,
 	sectionTitle,
@@ -17,6 +19,7 @@ export type {
 	Card,
 	ExperienceCard,
 	GitRepo,
+	LostCard,
 	NoteCard,
 	PostMortem,
 	ProjectCard,
@@ -28,6 +31,7 @@ export type {
 	SkillsCard,
 	SocialIconName,
 	SocialLink,
+	ViewId,
 	Writeup,
 	WriteupsCard
 } from './types.ts';

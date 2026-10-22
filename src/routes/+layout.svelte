@@ -12,7 +12,7 @@
 	import { SoundToggle } from '#lib/components/sound/index.ts';
 	import { PullCord } from '#lib/components/theme/index.ts';
 	import { loadWriteupStyles } from '#lib/components/writeups/index.ts';
-	import { findSectionByParam, siteUrl } from '#lib/content/index.ts';
+	import { findSectionByParam, siteUrl, type ViewId } from '#lib/content/index.ts';
 	import profile from '#lib/profile.json';
 	import { loadSound, provideExperienceState, providePostMortemState } from '#lib/state/index.ts';
 	import type { LayoutProps } from './$types';
@@ -38,15 +38,21 @@
 		});
 	});
 
-	const activeId = $derived(findSectionByParam(page.params.section)?.id ?? 'about');
+	// A missing URL frames the lost card; any other URL frames its section
+	const activeId: ViewId = $derived(
+		page.status === 404 ? 'lost' : (findSectionByParam(page.params.section)?.id ?? 'about')
+	);
 
 	// svelte-ignore state_referenced_locally
 	const experience = provideExperienceState(activeId);
 	// Before the DOM updates, so the camera frames Experience at the height it is about to have
 	$effect.pre(() => experience.follow(activeId));
 
-	// The error screen and a writeup's own page stand alone instead of drawing the canvas
-	const isStandalone = $derived(Boolean(page.error) || page.route.id === '/writeups/[slug]');
+	// A writeup's own page and real failures stand alone instead of drawing the canvas. A 404 does not: it is
+	// the lost card on the canvas. A failure stays standalone because the canvas may be what broke.
+	const isStandalone = $derived(
+		page.error ? page.status !== 404 : page.route.id === '/writeups/[slug]'
+	);
 
 	// Preload the writeup styles as soon as the Writeups section is focused, before a writeup is opened
 	$effect(() => {

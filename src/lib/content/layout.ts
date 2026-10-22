@@ -7,6 +7,9 @@ export const EXPERIENCE_HEIGHT = { collapsed: 332, expanded: 648 };
 // Live and archived projects share one size, as tall as the About hub
 const PROJECT_SIZE = { width: 300, height: 340 };
 const NOTE_SIZE = { width: 260, height: 150 };
+const LOST_SIZE = { width: 320, height: 340 };
+// Clear space between the bottom of the Experience card (open) and the lost card, in canvas px
+const LOST_GAP = 260;
 const SPREAD_GAP = 24;
 const NOTE_GAP = 30;
 const SKILLS_HEIGHT = 380;
@@ -58,6 +61,12 @@ export const buildLayout = (
 			y: hub.y + hub.height + 50,
 			width: hub.width,
 			height: experienceHeight
+		},
+		// Out in the void below Experience, centred on the hub's column, a long way down so it is a find
+		lost: {
+			x: hub.x + (hub.width - LOST_SIZE.width) / 2,
+			y: hub.y + hub.height + 50 + EXPERIENCE_HEIGHT.expanded + LOST_GAP,
+			...LOST_SIZE
 		},
 		'note-0': { x: liveX, y: noteY, ...NOTE_SIZE },
 		'note-1': { x: archivedX, y: noteY, ...NOTE_SIZE }

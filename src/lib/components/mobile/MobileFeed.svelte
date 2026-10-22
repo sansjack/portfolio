@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { prefersReducedMotion } from '#lib/camera/index.ts';
 	import { CardBody } from '#lib/components/cards/index.ts';
-	import { getSection, type SectionId, sections } from '#lib/content/index.ts';
+	import { getSection, lostSection, type ViewId, sections } from '#lib/content/index.ts';
 	import ProjectPile from './ProjectPile.svelte';
 
 	// Matches Tailwind's `md`, where the canvas takes over
 	const CANVAS_MIN_WIDTH = 768;
 
-	let { activeId }: { activeId: SectionId } = $props();
+	let { activeId }: { activeId: ViewId } = $props();
 
 	// Each stacked section (live projects, archived) is its own pile, open or closed
 	const stackedIds = sections.filter((section) => section.stacked).map((section) => section.id);
@@ -27,11 +27,7 @@
 	});
 </script>
 
-<main
-	class="flex min-h-svh flex-col items-center gap-12 px-4 pt-14 pb-28 md:hidden"
-	style:background-image="radial-gradient(circle, var(--color-line) 1px, transparent 1px)"
-	style:background-size="20px 20px"
->
+{#snippet feed()}
 	{#each sections as section (section.id)}
 		{#if section.stacked}
 			<!-- Sticky note above its own pile, as on the canvas -->
@@ -54,4 +50,21 @@
 			{/each}
 		{/if}
 	{/each}
+{/snippet}
+
+<main
+	class="flex min-h-svh flex-col items-center gap-12 px-4 pt-14 pb-28 md:hidden {activeId === 'lost'
+		? 'justify-center'
+		: ''}"
+	style:background-image="radial-gradient(circle, var(--color-line) 1px, transparent 1px)"
+	style:background-size="20px 20px"
+>
+	<!-- No man's land: the real feed is gone and only the lost card is left, in the same dotted space -->
+	{#if activeId === 'lost'}
+		<section id="mobile-lost" class="h-80 w-full max-w-md scroll-mt-14">
+			<CardBody card={lostSection.cards[0]} />
+		</section>
+	{:else}
+		{@render feed()}
+	{/if}
 </main>
