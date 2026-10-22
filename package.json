@@ -11,7 +11,11 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"lint:fix": "eslint . --fix",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"fix": "prettier --write . && eslint . --fix",
+		"verify": "bun run check && bun run lint && bun run build"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
