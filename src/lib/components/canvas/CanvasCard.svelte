@@ -35,6 +35,7 @@
 	class="absolute {active ? 'cursor-default' : 'cursor-pointer hover:brightness-110'}"
 	onclickcapture={onclick}
 	data-press-sound={active ? undefined : ''}
+	data-active={active ? '' : undefined}
 	style:transform
 	style:transition
 	style:left="{rect.x}px"

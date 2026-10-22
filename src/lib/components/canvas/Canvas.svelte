@@ -176,12 +176,24 @@
 			};
 			const stopDragging = () => (dragging = false);
 
+			// Clicking the card of the section you are already on brings the camera back to it after you have panned
+			// or zoomed away. Links, buttons and a text selection are left alone.
+			const onClick = (event: MouseEvent) => {
+				const target = event.target as Element;
+				if (target.closest('a, button')) return;
+				if (!target.closest('section[data-active]')) return;
+				if (!getSelection()?.isCollapsed) return;
+
+				frameActiveSection(true);
+			};
+
 			// Not passive: the wheel must not also scroll or zoom the browser page
 			node.addEventListener('wheel', onWheel, { passive: false });
 			node.addEventListener('pointerdown', onPointerDown);
 			node.addEventListener('pointermove', onPointerMove);
 			node.addEventListener('pointerup', stopDragging);
 			node.addEventListener('pointercancel', stopDragging);
+			node.addEventListener('click', onClick);
 
 			return () => {
 				camera.stop();
@@ -191,6 +203,7 @@
 				node.removeEventListener('pointermove', onPointerMove);
 				node.removeEventListener('pointerup', stopDragging);
 				node.removeEventListener('pointercancel', stopDragging);
+				node.removeEventListener('click', onClick);
 				viewport = null;
 			};
 		});
