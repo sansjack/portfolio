@@ -2,9 +2,7 @@
 	import { marked } from 'marked';
 	import { formatWriteupDate, type Writeup } from '#lib/content/index.ts';
 
-	type Props = { writeup: Writeup; headingTag: 'h1' | 'h3' };
-
-	let { writeup, headingTag }: Props = $props();
+	let { writeup }: { writeup: Writeup } = $props();
 
 	// The markdown is written by the site author, so its HTML is trusted
 	const html = $derived(marked.parse(writeup.body, { async: false }));
@@ -13,9 +11,7 @@
 <article class="flex flex-col gap-6">
 	<header class="flex flex-col gap-3">
 		<time datetime={writeup.date} class="text-lg text-dim">{formatWriteupDate(writeup.date)}</time>
-		<svelte:element this={headingTag} class="text-4xl leading-none text-foreground md:text-6xl">
-			{writeup.title}
-		</svelte:element>
+		<h1 class="text-4xl leading-none text-foreground md:text-6xl">{writeup.title}</h1>
 		<p class="text-xl text-dim md:text-2xl">{writeup.summary}</p>
 		{#if writeup.repo}
 			<a

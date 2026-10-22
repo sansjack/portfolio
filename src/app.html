@@ -50,5 +50,14 @@
 	</head>
 	<body data-sveltekit-preload-data="hover" data-sveltekit-preload-code="eager">
 		<div style="display: contents">%sveltekit.body%</div>
+		<script>
+			// One random hiring-note phrase per visit, chosen before first paint so there is no swap. The canvas and
+			// the phone layout share the roll, so resizing never shows a different phrase.
+			const roll = Math.random();
+			for (const phrases of document.querySelectorAll('.phrases')) {
+				phrases.children[Math.floor(roll * phrases.children.length)].classList.add('picked');
+				phrases.classList.add('rolled');
+			}
+		</script>
 	</body>
 </html>

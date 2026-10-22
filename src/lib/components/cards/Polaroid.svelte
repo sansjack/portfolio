@@ -25,7 +25,5 @@
 				.join('')}
 		</div>
 	{/if}
-	<figcaption class="absolute inset-x-0 bottom-2 text-center text-sm text-dim">
-		{name.split(' ')[0]}
-	</figcaption>
+	<figcaption class="absolute inset-x-0 bottom-2 text-center text-sm text-dim">Me</figcaption>
 </figure>

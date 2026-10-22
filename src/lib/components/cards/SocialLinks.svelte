@@ -5,13 +5,13 @@
 	let { links }: { links: SocialLink[] } = $props();
 </script>
 
-<div class="-ml-2 flex items-center gap-2">
+<div class="flex items-center gap-2 @lg:-ml-2">
 	{#each links as link (link.label)}
 		<a
 			href={link.href}
 			rel="external"
 			aria-label={link.label}
-			class="p-2 text-dim transition-colors hover:text-foreground"
+			class="p-2 text-dim hover:-translate-y-0.5 hover:text-foreground"
 		>
 			<SocialIcon name={link.icon} />
 		</a>

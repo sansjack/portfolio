@@ -74,7 +74,7 @@
 				{href}
 				{postMortem}
 				onclose={() => postMortems.close()}
-				class="fixed inset-x-0 bottom-0 z-50 max-h-[85svh] animate-rise rounded-t-2xl pb-[max(1.25rem,env(safe-area-inset-bottom))] motion-reduce:animate-none md:hidden"
+				class="fixed inset-x-0 bottom-0 z-50 max-h-[85dvh] animate-rise rounded-t-2xl pb-[max(1.25rem,env(safe-area-inset-bottom))] motion-reduce:animate-none md:hidden"
 			/>
 		{/if}
 	{:else}

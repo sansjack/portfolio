@@ -10,7 +10,7 @@
 >
 	<h2 class="text-2xl text-foreground">Skills</h2>
 	<!-- One row per group from sm up, so the height is groups x badge size and does not depend on how many badges wrap -->
-	<dl class="mt-4 flex flex-1 flex-col justify-center gap-3">
+	<dl class="flex flex-1 flex-col justify-center gap-3">
 		{#each groups as group (group.name)}
 			<div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
 				<dt class="text-sm tracking-widest text-dim uppercase sm:w-32 sm:shrink-0">

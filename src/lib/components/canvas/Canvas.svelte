@@ -1,18 +1,33 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import { Camera, fitView, type Size } from '#lib/camera/index.ts';
+	import {
+		Camera,
+		constrainView,
+		fitView,
+		type Size,
+		worldBounds,
+		zoomViewAt
+	} from '#lib/camera/index.ts';
 	import {
 		buildLayout,
 		EXPERIENCE_HEIGHT,
-		POST_MORTEM_PANEL_ID,
 		getSection,
-		sections,
-		type SectionId
+		POST_MORTEM_PANEL_ID,
+		type SectionId,
+		sections
 	} from '#lib/content/index.ts';
 	import { useExperienceState, usePostMortemState } from '#lib/state/index.ts';
 	import CardStack from './CardStack.svelte';
 
 	const GRID_SIZE = 32;
+	// The tightest the dense dot layer may get on screen, in px, before it has fully faded out
+	const MIN_GRID_SCREEN_PX = 10;
+	// Empty canvas the visitor can pan into beyond the outermost cards, in canvas px
+	const WORLD_MARGIN = 500;
+	// Wheel zoom speed; a trackpad pinch arrives as a ctrl+wheel with much smaller deltas
+	const WHEEL_ZOOM_SPEED = 0.0015;
+	const PINCH_ZOOM_SPEED = 0.01;
+	const WHEEL_LINE_PIXELS = 16;
 	// The fade is the page colour, so it suits both themes
 	const FOG_BLUR_MASK = 'radial-gradient(ellipse at center, transparent 62%, black 100%)';
 	const FOG_FADE =
@@ -31,6 +46,7 @@
 	let viewportWidth = $state(0);
 	// What the camera last framed, so the effect only moves it when the framing changes
 	let framedKey = '';
+	let dragging = $state(false);
 
 	const layout = $derived(
 		buildLayout(
@@ -39,6 +55,17 @@
 			viewportWidth
 		)
 	);
+
+	// The dots are locked to the canvas, so their gap is GRID_SIZE x zoom. Zooming out would pack them into a moire,
+	// so past MIN_GRID_SCREEN_PX the gap doubles. Two layers make that seamless: the sparse one (every other dot)
+	// is always fully visible, and the dense one fades out as it nears the limit, so no dot ever pops.
+	const grid = $derived.by(() => {
+		const gap = GRID_SIZE * camera.view.zoom;
+		const doublings = Math.max(0, Math.ceil(Math.log2(MIN_GRID_SCREEN_PX / gap)));
+		const dense = gap * 2 ** doublings;
+		const denseOpacity = Math.min(1, (dense - MIN_GRID_SCREEN_PX) / MIN_GRID_SCREEN_PX);
+		return { dense, sparse: dense * 2, denseOpacity };
+	});
 
 	const framingKey = (): string => `${activeId}:${experience.showOlder}:${postMortems.openId}`;
 
@@ -96,9 +123,57 @@
 			});
 			resizeObserver.observe(node);
 
+			const bounds = () => worldBounds(Object.values(layout), WORLD_MARGIN);
+
+			// Wheel zooms towards the cursor; any hand movement takes over from a camera flight
+			const onWheel = (event: WheelEvent) => {
+				event.preventDefault();
+				const pixels =
+					event.deltaMode === WheelEvent.DOM_DELTA_LINE
+						? event.deltaY * WHEEL_LINE_PIXELS
+						: event.deltaY;
+				const factor = Math.exp(-pixels * (event.ctrlKey ? PINCH_ZOOM_SPEED : WHEEL_ZOOM_SPEED));
+				const box = node.getBoundingClientRect();
+				const anchor = { x: event.clientX - box.left, y: event.clientY - box.top };
+				camera.jumpTo(zoomViewAt(camera.view, factor, anchor, sizeOf(node), bounds()));
+			};
+
+			// Dragging pans, but only from empty canvas: on a card the press belongs to the card
+			const onPointerDown = (event: PointerEvent) => {
+				if (event.button !== 0) return;
+				if ((event.target as Element).closest('section, aside, a, button')) return;
+
+				dragging = true;
+				camera.stop();
+				node.setPointerCapture(event.pointerId);
+			};
+			const onPointerMove = (event: PointerEvent) => {
+				if (!dragging) return;
+
+				const moved = {
+					...camera.view,
+					x: camera.view.x + event.movementX,
+					y: camera.view.y + event.movementY
+				};
+				camera.jumpTo(constrainView(moved, sizeOf(node), bounds()));
+			};
+			const stopDragging = () => (dragging = false);
+
+			// Not passive: the wheel must not also scroll or zoom the browser page
+			node.addEventListener('wheel', onWheel, { passive: false });
+			node.addEventListener('pointerdown', onPointerDown);
+			node.addEventListener('pointermove', onPointerMove);
+			node.addEventListener('pointerup', stopDragging);
+			node.addEventListener('pointercancel', stopDragging);
+
 			return () => {
 				camera.stop();
 				resizeObserver.disconnect();
+				node.removeEventListener('wheel', onWheel);
+				node.removeEventListener('pointerdown', onPointerDown);
+				node.removeEventListener('pointermove', onPointerMove);
+				node.removeEventListener('pointerup', stopDragging);
+				node.removeEventListener('pointercancel', stopDragging);
 				viewport = null;
 			};
 		});
@@ -116,10 +191,15 @@
 
 <main
 	{@attach attachViewport}
-	class="fixed inset-0 hidden overflow-hidden md:block"
-	style:background-image="radial-gradient(circle, var(--color-line) 1.5px, transparent 1.5px)"
-	style:background-size="{GRID_SIZE * camera.view.zoom}px {GRID_SIZE * camera.view.zoom}px"
-	style:background-position="{camera.view.x}px {camera.view.y}px"
+	class="fixed inset-0 hidden touch-none overflow-hidden md:block {dragging
+		? 'cursor-grabbing select-none'
+		: 'cursor-grab'}"
+	style:background-image="radial-gradient(circle, var(--color-line) 1.5px, transparent 1.5px),
+	radial-gradient(circle, color-mix(in srgb, var(--color-line) {grid.denseOpacity * 100}%,
+	transparent) 1.5px, transparent 1.5px)"
+	style:background-size="{grid.sparse}px {grid.sparse}px, {grid.dense}px {grid.dense}px"
+	style:background-position="{camera.view.x}px {camera.view.y}px, {camera.view.x}px {camera.view
+		.y}px"
 >
 	<div
 		class="absolute top-0 left-0 origin-top-left transition-opacity duration-300 {ready

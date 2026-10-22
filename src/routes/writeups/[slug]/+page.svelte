@@ -30,20 +30,27 @@
 </svelte:head>
 
 <main
-	class="flex min-h-svh flex-col items-center gap-8 px-4 py-16"
+	class="flex min-h-svh flex-col items-center overflow-x-clip px-4"
 	style:background-image="radial-gradient(circle, var(--color-line) 1.5px, transparent 1.5px)"
 	style:background-size="32px 32px"
 >
-	<div class="flex w-full max-w-3xl flex-col gap-8">
+	<div
+		class="relative isolate flex w-full max-w-3xl flex-1 flex-col gap-8 py-16 [--fade:2.5rem] md:[--fade:6rem]"
+	>
+		<!-- Solid behind the reading column only; it blurs and fades out sideways so the dots show either side -->
+		<div
+			class="absolute -inset-x-(--fade) inset-y-0 -z-10 bg-background [mask-image:linear-gradient(to_right,transparent,black_var(--fade),black_calc(100%-var(--fade)),transparent)] backdrop-blur-md"
+			aria-hidden="true"
+		></div>
 		<div class="flex items-center justify-between gap-6">
 			<a
 				href={resolve('/[[section=section]]', { section: 'writeups' })}
-				class="w-fit text-xl text-accent hover:underline"
+				class="w-fit text-xl text-accent link-underline"
 			>
 				← All writeups
 			</a>
 			<CopyLinkButton url={data.canonicalUrl} />
 		</div>
-		<WriteupArticle writeup={data.writeup} headingTag="h1" />
+		<WriteupArticle writeup={data.writeup} />
 	</div>
 </main>

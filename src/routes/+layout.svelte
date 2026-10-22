@@ -1,19 +1,42 @@
 <script lang="ts">
 	import './layout.css';
+	import { onMount } from 'svelte';
+	import { onNavigate } from '$app/navigation';
 	import { page } from '$app/state';
+	import { prefersReducedMotion } from '#lib/camera/index.ts';
 	import favicon from '#lib/assets/favicon.svg';
 	import { ErrorScreen } from '#lib/components/error/index.ts';
 	import { Canvas } from '#lib/components/canvas/index.ts';
 	import { MobileFeed } from '#lib/components/mobile/index.ts';
 	import { SectionNav } from '#lib/components/nav/index.ts';
+	import { SoundToggle } from '#lib/components/sound/index.ts';
 	import { PullCord } from '#lib/components/theme/index.ts';
 	import { loadWriteupStyles } from '#lib/components/writeups/index.ts';
 	import { findSectionByParam, siteUrl } from '#lib/content/index.ts';
 	import profile from '#lib/profile.json';
-	import { provideExperienceState, providePostMortemState } from '#lib/state/index.ts';
+	import { loadSound, provideExperienceState, providePostMortemState } from '#lib/state/index.ts';
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();
+
+	onMount(loadSound);
+
+	const WRITEUP_ROUTE = '/writeups/[slug]';
+
+	// Going into or out of a writeup swaps the whole screen, so let the browser animate the swap (see layout.css).
+	// Section changes are left alone: the camera already flies between those.
+	onNavigate((navigation) => {
+		const touchesWriteup =
+			navigation.from?.route.id === WRITEUP_ROUTE || navigation.to?.route.id === WRITEUP_ROUTE;
+		if (!touchesWriteup || !document.startViewTransition || prefersReducedMotion()) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 
 	const activeId = $derived(findSectionByParam(page.params.section)?.id ?? 'about');
 
@@ -90,3 +113,4 @@
 	</svelte:boundary>
 {/if}
 <PullCord />
+<SoundToggle />

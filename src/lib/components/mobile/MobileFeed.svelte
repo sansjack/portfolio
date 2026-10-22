@@ -28,7 +28,7 @@
 </script>
 
 <main
-	class="flex min-h-svh flex-col items-center gap-12 px-4 pt-8 pb-28 md:hidden"
+	class="flex min-h-svh flex-col items-center gap-12 px-4 pt-14 pb-28 md:hidden"
 	style:background-image="radial-gradient(circle, var(--color-line) 1px, transparent 1px)"
 	style:background-size="20px 20px"
 >
@@ -48,7 +48,7 @@
 			</div>
 		{:else}
 			{#each section.cards as card (card.id)}
-				<section id="mobile-{card.id}" class="w-full max-w-md scroll-mt-6">
+				<section id="mobile-{card.id}" class="w-full max-w-md scroll-mt-14">
 					<CardBody {card} />
 				</section>
 			{/each}

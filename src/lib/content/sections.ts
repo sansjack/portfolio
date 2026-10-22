@@ -22,7 +22,6 @@ const aboutCard: AboutCard = {
 	heading: profile.name,
 	tagline: profile.tagline,
 	location: profile.location,
-	availability: profile.availability,
 	links: profile.socials as SocialLink[],
 	image: '/images/me.jpeg',
 	imageAlt: `Photo of ${profile.name}`

@@ -15,7 +15,7 @@
 	};
 </script>
 
-<button type="button" class="cursor-pointer text-xl text-accent hover:underline" onclick={copyLink}>
+<button type="button" class="cursor-pointer text-xl text-accent link-underline" onclick={copyLink}>
 	{status === 'copied'
 		? 'Link copied ✓'
 		: status === 'failed'

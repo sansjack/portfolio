@@ -11,7 +11,7 @@ export const SECTION_IDS = [
 
 export type SectionId = (typeof SECTION_IDS)[number];
 
-export type SocialIconName = 'email' | 'github' | 'linkedin';
+export type SocialIconName = 'email' | 'github' | 'linkedin' | 'x';
 
 export type SocialLink = { label: string; href: string; icon: SocialIconName };
 
@@ -53,7 +53,6 @@ export type AboutCard = CardBase & {
 	heading: string;
 	tagline: string;
 	location: string;
-	availability: string;
 	links: SocialLink[];
 	// Photo shown in the hub's polaroid, relative to /static (e.g. '/images/me.webp'); a placeholder shows until set
 	image?: string;

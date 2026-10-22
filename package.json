@@ -39,6 +39,7 @@
 		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
+		"cuelume": "^0.2.8",
 		"marked": "^18.1.1"
 	}
 }

@@ -1,3 +1,4 @@
+export { constrainView, worldBounds, zoomViewAt } from './bounds.ts';
 export { Camera } from './camera.svelte.ts';
 export { fitView, MAX_FIT_ZOOM } from './fit.ts';
 export { prefersReducedMotion } from './flight.ts';

@@ -5,6 +5,14 @@
 	"location": "London, United Kingdom",
 	"availability": "Looking For A Role",
 	"email": "contact@jacksansom.com",
+	"hirePhrases": [
+		"I fix bugs for fun.",
+		"I debug for coffee.",
+		"I deploy on Fridays.",
+		"I'll even write the docs.",
+		"I read the stack trace.",
+		"I love to refactor."
+	],
 	"socials": [
 		{
 			"label": "Email",
@@ -20,6 +28,11 @@
 			"label": "LinkedIn",
 			"icon": "linkedin",
 			"href": "https://linkedin.com/in/jacksansom"
+		},
+		{
+			"label": "X",
+			"icon": "x",
+			"href": "https://x.com/sansjackdev"
 		}
 	],
 	"experience": [

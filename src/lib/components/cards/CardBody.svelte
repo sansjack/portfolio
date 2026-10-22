@@ -15,7 +15,6 @@
 		heading={card.heading}
 		tagline={card.tagline}
 		location={card.location}
-		availability={card.availability}
 		links={card.links}
 		image={card.image}
 		imageAlt={card.imageAlt}

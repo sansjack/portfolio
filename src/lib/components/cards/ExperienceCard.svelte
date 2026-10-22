@@ -11,17 +11,23 @@
 	const experience = useExperienceState();
 	const recentRoles = $derived(roles.slice(0, RECENT_ROLE_COUNT));
 	const olderRoles = $derived(roles.slice(RECENT_ROLE_COUNT));
-	const earliestYear = $derived(roles.at(-1)?.period.match(/\d{4}/)?.[0]);
 </script>
 
-<div
-	class="flex h-full flex-col rounded-xl border border-line bg-surface p-6 pb-2 shadow-md shadow-black/5"
->
-	<h2 class="mb-4 text-2xl text-foreground">Experience</h2>
+<div class="h-full rounded-xl border border-line bg-surface p-6 pb-3 shadow-md shadow-black/5">
+	<div class="mb-4 flex items-baseline justify-between gap-4">
+		<h2 class="text-2xl text-foreground">Experience</h2>
+		<button
+			class="text-accent link-underline"
+			aria-expanded={experience.showOlder}
+			onclick={() => experience.toggle()}
+		>
+			{experience.showOlder ? 'Show less' : 'Show all'}
+		</button>
+	</div>
 	{#key experience.opened}
 		<ol class="flex flex-col">
 			{#each recentRoles as role, index (role.company)}
-				<RoleRow {role} animationDelayMs={index * ROW_STAGGER_MS} />
+				<RoleRow {role} {index} animationDelayMs={index * ROW_STAGGER_MS} />
 			{/each}
 			<!-- Older roles sit in a row that grows from 0 to its content height, so they fold away smoothly -->
 			<li
@@ -32,17 +38,14 @@
 			>
 				<ol class="min-h-0 overflow-hidden">
 					{#each olderRoles as role, index (role.company)}
-						<RoleRow {role} animationDelayMs={index * ROW_STAGGER_MS} />
+						<RoleRow
+							{role}
+							index={RECENT_ROLE_COUNT + index}
+							animationDelayMs={index * ROW_STAGGER_MS}
+						/>
 					{/each}
 				</ol>
 			</li>
 		</ol>
 	{/key}
-	<button
-		class="mt-auto pt-2 text-left text-accent hover:underline"
-		aria-expanded={experience.showOlder}
-		onclick={() => experience.toggle()}
-	>
-		{experience.showOlder ? 'Show less' : `Show older · back to ${earliestYear}`}
-	</button>
 </div>

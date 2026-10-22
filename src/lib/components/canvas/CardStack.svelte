@@ -13,8 +13,9 @@
 		PILE_START_DELAY_MS,
 		PILE_STEP
 	} from '#lib/pile.ts';
+	import { prefersReducedMotion } from '#lib/camera/index.ts';
 	import { PostMortemPanel } from '#lib/components/cards/index.ts';
-	import { usePostMortemState } from '#lib/state/index.ts';
+	import { playSound, usePostMortemState } from '#lib/state/index.ts';
 	import CanvasCard from './CanvasCard.svelte';
 
 	type Props = {
@@ -47,6 +48,19 @@
 			? section.cards.filter((card) => card.kind === 'project').map((card) => card.id)
 			: []
 	);
+
+	// As the pile deals out, each card gets a soft cue as it lands, on the same stagger as the animation
+	$effect(() => {
+		if (!active || pileIds.length === 0 || prefersReducedMotion()) return;
+
+		const timers = pileIds.map((_, index) =>
+			setTimeout(
+				() => playSound('select'),
+				PILE_START_DELAY_MS + index * PILE_STAGGER_MS + PILE_DURATION_MS / 2
+			)
+		);
+		return () => timers.forEach(clearTimeout);
+	});
 
 	const pileTransform = (card: Card): string | undefined => {
 		const index = pileIds.indexOf(card.id);

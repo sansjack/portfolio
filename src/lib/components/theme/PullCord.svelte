@@ -95,24 +95,24 @@
 
 <!-- Phones: a wall light switch along the top instead of a cord. On means the lights are on (light theme). -->
 <button
-	class="fixed top-[max(0.75rem,env(safe-area-inset-top))] right-4 z-40 cursor-pointer sm:hidden"
+	class="fixed top-[max(0.25rem,env(safe-area-inset-top))] right-1 z-40 cursor-pointer p-2 sm:hidden"
 	role="switch"
 	aria-checked={theme === 'light'}
 	aria-label="Light mode"
 	onclick={pull}
 >
 	<span
-		class="block h-10 w-[4.5rem] rounded-lg border border-line bg-surface p-1 shadow-md inset-shadow-xs shadow-black/10"
+		class="block h-5 w-9 rounded-md border border-line bg-surface p-0.5 shadow-sm inset-shadow-xs shadow-black/10"
 	>
 		<span
-			class="flex h-full w-1/2 items-center justify-center gap-1 rounded-md border border-line bg-panel shadow-sm transition-transform duration-200 motion-reduce:transition-none {theme ===
+			class="flex h-full w-1/2 items-center justify-center gap-0.5 rounded-sm border border-line bg-panel shadow-sm transition-transform duration-200 motion-reduce:transition-none {theme ===
 			'light'
 				? 'translate-x-full'
 				: ''}"
 		>
 			<!-- Grip ridges on the rocker -->
-			<span class="h-4 w-px bg-dim/60"></span>
-			<span class="h-4 w-px bg-dim/60"></span>
+			<span class="h-2 w-px bg-dim/60"></span>
+			<span class="h-2 w-px bg-dim/60"></span>
 		</span>
 	</span>
 </button>
