@@ -1,3 +1,5 @@
+import type { AssetPath } from '$app/types';
+
 // To add a section: add its id to SECTION_IDS, then define it in `sectionsById` (sections.ts)
 // and give its cards a place on the canvas (layout.ts). TypeScript fails the build until all three agree.
 export const SECTION_IDS = [
@@ -20,8 +22,8 @@ export type Role = {
 	role: string;
 	period: string;
 	url: string;
-	// Company mark, relative to /static (e.g. '/images/companies/persona-ai.png')
-	logo?: string;
+	// Company mark, relative to /static (e.g. 'images/companies/persona-ai.webp')
+	logo?: AssetPath;
 };
 
 export type Skill = {
@@ -54,8 +56,8 @@ export type AboutCard = CardBase & {
 	tagline: string;
 	location: string;
 	links: SocialLink[];
-	// Photo shown in the hub's polaroid, relative to /static (e.g. '/images/me.webp'); a placeholder shows until set
-	image?: string;
+	// Photo shown in the hub's polaroid, relative to /static (e.g. 'images/me.webp'); a placeholder shows until set
+	image?: AssetPath;
 	imageAlt?: string;
 };
 
@@ -78,10 +80,10 @@ export type ProjectCard = CardBase & {
 	href: string;
 	// Set for git links, which get a generated banner instead of an image
 	repo?: GitRepo;
-	image?: string;
+	image?: AssetPath;
 	imageAlt?: string;
 	// App icon relative to /static, shown on a banner tinted with `accent` (any CSS colour)
-	icon?: string;
+	icon?: AssetPath;
 	accent?: string;
 	postMortem?: PostMortem;
 };

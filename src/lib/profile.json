@@ -41,49 +41,49 @@
 			"role": "Backend Engineer",
 			"period": "May 2025 - Current",
 			"url": "https://insightscompany.io",
-			"logo": "/images/companies/insightscompany.png"
+			"logo": "images/companies/insightscompany.webp"
 		},
 		{
 			"company": "Nexy Media",
 			"role": "Python / Svelte Fullstack Developer",
 			"period": "Mar 2025 - May 2025",
 			"url": "https://nexy.media",
-			"logo": "/images/companies/nexy-media.png"
+			"logo": "images/companies/nexy-media.webp"
 		},
 		{
 			"company": "Novus Studio",
 			"role": "Svelte Fullstack Developer",
 			"period": "Aug 2024 - Feb 2025",
 			"url": "https://novus.studio",
-			"logo": "/images/companies/novus-studio.webp"
+			"logo": "images/companies/novus-studio.webp"
 		},
 		{
 			"company": "Cnick",
 			"role": "VueJs Mobile Developer",
 			"period": "Jul 2024 - Aug 2024",
 			"url": "https://cnick.io",
-			"logo": "/images/companies/cnick.webp"
+			"logo": "images/companies/cnick.webp"
 		},
 		{
 			"company": "Canopact",
 			"role": "Python Software Engineer",
 			"period": "Dec 2023 - Feb 2024",
 			"url": "https://canopact.com",
-			"logo": "/images/companies/canopact.webp"
+			"logo": "images/companies/canopact.webp"
 		},
 		{
 			"company": "Dunelm",
 			"role": "Site Reliability Engineer",
 			"period": "Mar 2022 - Dec 2023",
 			"url": "https://dunelm.com",
-			"logo": "/images/companies/dunelm.svg"
+			"logo": "images/companies/dunelm.svg"
 		},
 		{
 			"company": "Arkivum",
 			"role": "Junior Site Reliability Engineer",
 			"period": "Dec 2020 - Feb 2022",
 			"url": "https://arkivum.com",
-			"logo": "/images/companies/arkivum.svg"
+			"logo": "images/companies/arkivum.svg"
 		}
 	],
 	"projects": [
@@ -130,7 +130,7 @@
 			"name": "portfolo.app",
 			"status": "Archived",
 			"url": "https://portfolo.app",
-			"icon": "/images/projects/portfolo.png",
+			"icon": "images/projects/portfolo.webp",
 			"accent": "#60a5fa",
 			"postMortem": {
 				"whatItWas": "A portfolio builder that turned a profile into a hosted personal site.",
@@ -141,7 +141,7 @@
 			"name": "monitro.dev",
 			"status": "Archived",
 			"url": "https://monitro.vercel.app",
-			"icon": "/images/projects/monitro.png",
+			"icon": "images/projects/monitro.webp",
 			"accent": "#3b82f6",
 			"postMortem": {
 				"whatItWas": "Code monitoring that sent logs and alerts straight to Slack, Discord and Telegram.",
@@ -152,7 +152,7 @@
 			"name": "boilermate",
 			"status": "Archived",
 			"url": "https://boilermate.vercel.app",
-			"icon": "/images/projects/boilermate.png",
+			"icon": "images/projects/boilermate.webp",
 			"accent": "#66c2c8",
 			"postMortem": {
 				"whatItWas": "A SaaS boilerplate for shipping a new product faster, with the common pieces already wired up.",
@@ -163,7 +163,7 @@
 			"name": "dailydebrief.io",
 			"status": "Archived",
 			"url": "https://dailydebreif.vercel.app",
-			"icon": "/images/projects/dailydebrief.png",
+			"icon": "images/projects/dailydebrief.webp",
 			"accent": "#f08a5d",
 			"postMortem": {
 				"whatItWas": "A daily email digest that summarised the day's news and updates into a short briefing.",

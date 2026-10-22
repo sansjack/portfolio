@@ -23,8 +23,10 @@
 	>
 		{#if role.logo}
 			<img
-				src={asset(role.logo as Parameters<typeof asset>[0])}
+				src={asset(role.logo)}
 				alt=""
+				width="44"
+				height="44"
 				class="size-11 rounded-full border border-line bg-white object-contain p-1.5 group-hover:border-accent"
 				loading="lazy"
 				draggable="false"

@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { asset } from '$app/paths';
+	import type { AssetPath } from '$app/types';
 
-	let { icon, accent }: { icon: string; accent: string } = $props();
+	let { icon, accent }: { icon: AssetPath; accent: string } = $props();
 </script>
 
 <div
@@ -10,8 +11,11 @@
 	linear-gradient(135deg, {accent}22, transparent)"
 >
 	<img
-		src={asset(icon as Parameters<typeof asset>[0])}
+		src={asset(icon)}
 		alt=""
+		width="64"
+		height="64"
+		loading="lazy"
 		class="size-16 rounded-2xl shadow-lg ring-1 shadow-black/20 ring-black/10"
 		draggable="false"
 	/>

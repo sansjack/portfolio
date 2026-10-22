@@ -69,6 +69,20 @@
 
 	const framingKey = (): string => `${activeId}:${experience.showOlder}:${postMortems.openId}`;
 
+	// Is the pointer over something that scrolls up and down, like a long post-mortem? Then the wheel is its, not the camera's
+	const isOverScrollableArea = (target: Element, canvas: Element): boolean => {
+		for (
+			let element: Element | null = target;
+			element && element !== canvas;
+			element = element.parentElement
+		) {
+			const { overflowY } = getComputedStyle(element);
+			const scrolls = overflowY === 'auto' || overflowY === 'scroll';
+			if (scrolls && element.scrollHeight > element.clientHeight) return true;
+		}
+		return false;
+	};
+
 	const sizeOf = (node: HTMLElement): Size => ({
 		width: node.clientWidth,
 		height: node.clientHeight
@@ -127,6 +141,9 @@
 
 			// Wheel zooms towards the cursor; any hand movement takes over from a camera flight
 			const onWheel = (event: WheelEvent) => {
+				// A pinch (ctrl + wheel) still zooms; a plain wheel over a scrollable area scrolls it natively
+				if (!event.ctrlKey && isOverScrollableArea(event.target as Element, node)) return;
+
 				event.preventDefault();
 				const pixels =
 					event.deltaMode === WheelEvent.DOM_DELTA_LINE

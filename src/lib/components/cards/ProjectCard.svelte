@@ -37,7 +37,7 @@
 		<IconBanner {icon} {accent} />
 	{:else if image}
 		<img
-			src={asset(image as Parameters<typeof asset>[0])}
+			src={asset(image)}
 			alt={imageAlt ?? ''}
 			class="h-0 min-h-28 w-full flex-1 object-cover"
 			loading="lazy"

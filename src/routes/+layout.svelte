@@ -66,7 +66,7 @@
 		name: profile.name,
 		jobTitle: profile.tagline,
 		url: siteUrl,
-		image: `${siteUrl}/images/me.jpeg`,
+		image: `${siteUrl}/images/me.webp`,
 		email: profile.email,
 		address: { '@type': 'PostalAddress', addressLocality: profile.location },
 		sameAs: profile.socials.filter(({ icon }) => icon !== 'email').map(({ href }) => href)

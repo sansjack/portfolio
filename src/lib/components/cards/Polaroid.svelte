@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { asset } from '$app/paths';
+	import type { AssetPath } from '$app/types';
 
-	type Props = { name: string; image?: string; imageAlt?: string };
+	type Props = { name: string; image?: AssetPath; imageAlt?: string };
 
 	let { name, image, imageAlt }: Props = $props();
 </script>
@@ -12,8 +13,11 @@
 	<span class="absolute -top-3 left-1/2 h-5 w-14 -translate-x-1/2 rotate-2 bg-note/80"></span>
 	{#if image}
 		<img
-			src={asset(image as Parameters<typeof asset>[0])}
+			src={asset(image)}
 			alt={imageAlt ?? ''}
+			width="160"
+			height="160"
+			fetchpriority="high"
 			class="size-40 object-cover"
 			draggable="false"
 		/>

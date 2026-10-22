@@ -27,7 +27,7 @@
 				<a
 					href={emailHref}
 					rel="external"
-					class="w-fit -rotate-2 bg-note px-3 py-1 text-lg text-note-ink shadow-md shadow-black/15 hover:-translate-y-0.5 hover:rotate-0"
+					class="text-md w-fit -rotate-2 bg-note px-3 py-1 text-note-ink shadow-md shadow-black/15 hover:-translate-y-0.5 hover:rotate-0"
 				>
 					Hire me?
 					<!-- Every phrase is in the prerendered HTML; the script in app.html shows a random one (see layout.css) -->

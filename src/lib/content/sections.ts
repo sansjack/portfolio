@@ -1,4 +1,4 @@
-// Image paths are relative to /static (e.g. static/images/projects/one.webp -> '/images/projects/one.webp')
+// Image paths are relative to /static (e.g. static/images/projects/one.webp -> 'images/projects/one.webp')
 import profile from '../profile.json';
 import { SECTION_PATHS } from './paths.ts';
 import {
@@ -6,6 +6,7 @@ import {
 	type AboutCard,
 	type GitRepo,
 	type ProjectCard,
+	type Role,
 	type Section,
 	type SectionId,
 	type SkillGroup,
@@ -23,7 +24,7 @@ const aboutCard: AboutCard = {
 	tagline: profile.tagline,
 	location: profile.location,
 	links: profile.socials as SocialLink[],
-	image: '/images/me.jpeg',
+	image: 'images/me.webp',
 	imageAlt: `Photo of ${profile.name}`
 };
 
@@ -109,7 +110,7 @@ const sectionsById: Record<SectionId, Section> = {
 		label: 'Experience',
 		description: `Roles ${profile.name} has held as a backend, full stack and site reliability engineer, from ${profile.experience.at(-1)!.company} to ${profile.experience[0].company}.`,
 		path: SECTION_PATHS.experience,
-		cards: [{ id: 'experience', kind: 'experience', roles: profile.experience }]
+		cards: [{ id: 'experience', kind: 'experience', roles: profile.experience as Role[] }]
 	},
 	projects: {
 		id: 'projects',
