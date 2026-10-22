@@ -29,19 +29,22 @@
 			✕
 		</button>
 	</div>
-	<div>
-		<p class="text-sm tracking-widest text-dim uppercase">Why it failed</p>
-		<p class="text-base leading-snug text-foreground">{postMortem.whyItFailed}</p>
-	</div>
-	<div>
-		<p class="text-sm tracking-widest text-dim uppercase">What it was</p>
-		<p class="text-base leading-snug text-dim">{postMortem.whatItWas}</p>
+	<!-- Takes whatever height the title and button leave and scrolls if the text is longer, so the button never gets pushed out -->
+	<div class="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto overscroll-contain">
+		<div>
+			<p class="text-sm tracking-widest text-dim uppercase">Why it failed</p>
+			<p class="text-base leading-snug text-foreground">{postMortem.whyItFailed}</p>
+		</div>
+		<div>
+			<p class="text-sm tracking-widest text-dim uppercase">What it was</p>
+			<p class="text-base leading-snug text-dim">{postMortem.whatItWas}</p>
+		</div>
 	</div>
 	<a
 		{href}
 		target="_blank"
 		rel="external noopener noreferrer"
-		class="mt-auto rounded-full bg-accent px-5 py-1.5 text-center text-lg text-white transition hover:brightness-110"
+		class="shrink-0 rounded-full bg-accent px-5 py-1.5 text-center text-lg text-white transition hover:brightness-110"
 	>
 		Visit site ↗ <span class="sr-only">(opens in a new tab)</span>
 	</a>
