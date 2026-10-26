@@ -35,7 +35,7 @@
 	style:background-size="32px 32px"
 >
 	<div
-		class="relative isolate flex w-full max-w-3xl flex-1 flex-col gap-8 py-16 [--fade:2.5rem] md:[--fade:6rem]"
+		class="relative isolate flex w-full max-w-3xl flex-1 flex-col gap-8 py-12 [--fade:2.5rem] md:[--fade:6rem]"
 	>
 		<!-- Solid behind the reading column only; it blurs and fades out sideways so the dots show either side -->
 		<div
@@ -45,7 +45,7 @@
 		<div class="flex items-center justify-between gap-6">
 			<a
 				href={resolve('/[[section=section]]', { section: 'writeups' })}
-				class="w-fit text-xl text-accent link-underline"
+				class="w-fit text-base text-accent link-underline"
 			>
 				← All writeups
 			</a>

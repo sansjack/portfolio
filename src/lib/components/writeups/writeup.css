@@ -2,8 +2,8 @@
    (open-writeup.ts), and statically by the writeup's own page. Uses the theme variables so it follows light and dark. */
 .writeup {
 	color: var(--color-foreground);
-	font-size: 1.25rem;
-	line-height: 1.6;
+	font-size: 1rem;
+	line-height: 1.65;
 	overflow-wrap: anywhere;
 }
 
@@ -20,18 +20,18 @@
 }
 
 .writeup h2 {
-	font-size: 1.9rem;
+	font-size: 1.4rem;
 	border-bottom: 3px solid color-mix(in srgb, var(--color-accent) 60%, transparent);
 	width: fit-content;
 	padding-bottom: 0.1em;
 }
 
 .writeup h3 {
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 }
 
 .writeup h4 {
-	font-size: 1.25rem;
+	font-size: 1.05rem;
 }
 
 .writeup a {
@@ -101,7 +101,7 @@
 	border-radius: 0.6rem;
 	padding: 1em 1.2em;
 	overflow-x: auto;
-	font-size: 1rem;
+	font-size: 0.875rem;
 	line-height: 1.5;
 }
 
@@ -125,7 +125,7 @@
 .writeup table {
 	width: 100%;
 	border-collapse: collapse;
-	font-size: 1.1rem;
+	font-size: 0.95rem;
 }
 
 .writeup th,

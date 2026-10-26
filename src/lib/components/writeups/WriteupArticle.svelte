@@ -10,15 +10,15 @@
 
 <article class="flex flex-col gap-6">
 	<header class="flex flex-col gap-3">
-		<time datetime={writeup.date} class="text-lg text-dim">{formatWriteupDate(writeup.date)}</time>
-		<h1 class="text-4xl leading-none text-foreground md:text-6xl">{writeup.title}</h1>
-		<p class="text-xl text-dim md:text-2xl">{writeup.summary}</p>
+		<time datetime={writeup.date} class="text-sm text-dim">{formatWriteupDate(writeup.date)}</time>
+		<h1 class="text-3xl leading-tight text-foreground md:text-4xl">{writeup.title}</h1>
+		<p class="text-base text-dim md:text-lg">{writeup.summary}</p>
 		{#if writeup.repo}
 			<a
 				href={writeup.repo}
 				target="_blank"
 				rel="external noopener noreferrer"
-				class="mt-1 w-fit rounded-full bg-accent px-5 py-1.5 text-lg text-white transition hover:brightness-110"
+				class="mt-1 w-fit rounded-full bg-accent px-4 py-1 text-sm text-white transition hover:brightness-110"
 			>
 				View on GitHub ↗ <span class="sr-only">(opens in a new tab)</span>
 			</a>
