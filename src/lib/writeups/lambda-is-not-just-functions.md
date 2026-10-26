@@ -4,8 +4,6 @@ date: 2026-10-26
 summary: Web Functions, MicroVMs, Durable Functions and Managed Instances. Everything I wanted from Lambda about five years ago.
 ---
 
-The 15 minute cap always seemed reasonable. Right up until it wasn't.
-
 I once worked on a system where years of developers had found it far too easy to keep adding "just one more step" to a single Lambda. It got so big it was painful to pull apart, and it was forever timing out at 15 minutes. We did eventually split it up, but it was a slog. And don't get me started on package handling inside Lambdas, or the cold starts.
 
 So when AWS announced that Lambda is no longer one thing, I read the whole post with a very big grin.
@@ -33,7 +31,7 @@ The fine print matters, though. At launch it's Node.js 24 on Arm64 only, in five
 
 ## MicroVMs
 
-A proper Firecracker VM with its own OS, disk and HTTPS endpoint (HTTP/2, gRPC and WebSockets). *You* decide when it lives and dies.
+A proper Firecracker VM with its own OS, disk and HTTPS endpoint (HTTP/2, gRPC and WebSockets). _You_ decide when it lives and dies.
 
 Let an agent install packages and write files, suspend it when the user wanders off, and resume it later with memory and disk intact. It's a pet VM, on Lambda. Five years ago I'd have laughed at that sentence.
 

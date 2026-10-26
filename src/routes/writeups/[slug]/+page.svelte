@@ -41,11 +41,15 @@
 	style:background-size="32px 32px"
 >
 	<div
-		class="relative isolate flex w-full max-w-2xl flex-1 flex-col gap-8 py-12 [--fade:2.5rem] md:[--fade:6rem]"
+		class="relative isolate flex w-full max-w-2xl flex-1 flex-col gap-8 py-12 [--fade:4rem] md:[--fade:10rem]"
 	>
-		<!-- Solid behind the reading column only; it blurs and fades out sideways so the dots show either side -->
+		<!-- Behind the reading column: a blur that ramps in sideways, then a solid panel that fades out over it, so the dots go soft before they disappear -->
 		<div
-			class="absolute -inset-x-(--fade) inset-y-0 -z-10 bg-background [mask-image:linear-gradient(to_right,transparent,black_var(--fade),black_calc(100%-var(--fade)),transparent)] backdrop-blur-md"
+			class="absolute -inset-x-(--fade) inset-y-0 -z-10 [mask-image:linear-gradient(to_right,transparent,black_var(--fade),black_calc(100%-var(--fade)),transparent)] backdrop-blur-lg"
+			aria-hidden="true"
+		></div>
+		<div
+			class="absolute -inset-x-(--fade) inset-y-0 -z-10 bg-background [mask-image:linear-gradient(to_right,transparent,rgb(0_0_0/0.35)_calc(var(--fade)*0.5),black_var(--fade),black_calc(100%-var(--fade)),rgb(0_0_0/0.35)_calc(100%-var(--fade)*0.5),transparent)]"
 			aria-hidden="true"
 		></div>
 		<div class="flex items-center justify-between gap-6">

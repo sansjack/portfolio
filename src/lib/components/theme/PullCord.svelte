@@ -52,11 +52,10 @@
 
 <!-- Warm glow around the ball while the light is on (dark theme); the cord only exists from sm up -->
 <div
-	class="pointer-events-none fixed -top-[2.3rem] -right-[4.4rem] z-30 hidden size-64 rounded-full mix-blend-screen transition-opacity duration-700 sm:block {theme ===
+	class="pointer-events-none fixed top-[0.7rem] -right-[1.4rem] z-30 hidden size-40 rounded-full bg-[radial-gradient(circle,rgb(255_190_90/0.18),rgb(255_190_90/0.06)_40%,transparent_70%)] mix-blend-screen transition-opacity duration-700 sm:block {theme ===
 	'dark'
 		? 'opacity-100'
 		: 'opacity-0'}"
-	style:background="radial-gradient(circle, rgb(255 190 90 / 0.3), transparent 65%)"
 	aria-hidden="true"
 ></div>
 

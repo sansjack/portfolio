@@ -2,11 +2,8 @@ import type { PlayOptions, SoundName } from 'cuelume';
 
 const MUTED_KEY = 'sound-muted';
 const VOLUME_KEY = 'sound-volume';
-// The lightest touch the library offers: every cue plays at this weight
 const SUBTLE = { emphasis: 'subtle' } as const;
-// Cues are quiet by design: they should be felt more than heard
-const DEFAULT_VOLUME = 0.15;
-// If the browser never goes idle, load anyway after this long
+const DEFAULT_VOLUME = 0.35;
 const IDLE_TIMEOUT_MS = 3000;
 
 type Cuelume = typeof import('cuelume');
