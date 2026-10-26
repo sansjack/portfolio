@@ -8,7 +8,6 @@ const BANNER = String.raw`
 |_| |_|\___|_|_|\___/
 `;
 
-// Shown to anyone who opens the dev tools console
 export function logConsoleGreeting() {
 	console.log(`%c${BANNER}`, 'color: #6965db; font-weight: bold; font-family: monospace;');
 	console.log(

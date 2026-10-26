@@ -1,13 +1,13 @@
 <script lang="ts">
-	import writeupStyles from '#lib/components/writeups/writeup.css?url';
-	import { resolve } from '$app/paths';
 	import { CopyLinkButton, WriteupArticle } from '#lib/components/writeups/index.ts';
-	import { siteName, siteUrl } from '#lib/content/index.ts';
+	import writeupStyles from '#lib/components/writeups/writeup.css?url';
+	import { siteName } from '#lib/content/index.ts';
+	import { resolve } from '$app/paths';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 
-	const imageUrl = `${siteUrl}/og-image.png`;
+	const imageUrl = $derived(`${data.canonicalUrl}/og.png`);
 </script>
 
 <svelte:head>
@@ -18,13 +18,19 @@
 	<link rel="canonical" href={data.canonicalUrl} />
 	<meta property="og:type" content="article" />
 	<meta property="og:site_name" content={siteName} />
-	<meta property="og:title" content={data.title} />
+	<meta property="og:locale" content="en_GB" />
+	<meta property="og:title" content={data.writeup.title} />
 	<meta property="og:description" content={data.writeup.summary} />
 	<meta property="og:url" content={data.canonicalUrl} />
 	<meta property="og:image" content={imageUrl} />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="630" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content={data.writeup.title} />
 	<meta property="article:published_time" content={data.writeup.date} />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content={data.title} />
+	<meta property="article:author" content={siteName} />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content={data.writeup.title} />
 	<meta name="twitter:description" content={data.writeup.summary} />
 	<meta name="twitter:image" content={imageUrl} />
 </svelte:head>
