@@ -2,9 +2,14 @@
    (open-writeup.ts), and statically by the writeup's own page. Uses the theme variables so it follows light and dark. */
 .writeup {
 	color: var(--color-foreground);
-	font-size: 1rem;
-	line-height: 1.65;
+	font-size: 1.125rem;
+	line-height: 1.7;
 	overflow-wrap: anywhere;
+}
+
+.writeup p,
+.writeup li {
+	text-wrap: pretty;
 }
 
 .writeup > * + * {
@@ -14,24 +19,52 @@
 .writeup h2,
 .writeup h3,
 .writeup h4 {
-	line-height: 1.15;
+	line-height: 1.2;
 	font-weight: 700;
-	margin-top: 1.6em;
+	margin-top: 2.2em;
+	text-wrap: balance;
+}
+
+.writeup :is(h2, h3, h4) {
+	scroll-margin-top: 1.5rem;
+}
+
+/* The # link sits after the heading text, shown on hover or keyboard focus and always on touch screens */
+.writeup .heading-anchor {
+	margin-left: 0.4em;
+	color: var(--color-accent);
+	font-weight: 400;
+	text-decoration: none;
+	opacity: 0;
+	transition: opacity 150ms;
+}
+
+.writeup :is(h2, h3, h4):hover .heading-anchor,
+.writeup .heading-anchor:focus-visible {
+	opacity: 1;
+}
+
+@media (hover: none) {
+	.writeup .heading-anchor {
+		opacity: 0.6;
+	}
+}
+
+/* A heading belongs to what follows it, so it sits closer to that than to the text before */
+.writeup :is(h2, h3, h4) + * {
+	margin-top: 0.6em;
 }
 
 .writeup h2 {
-	font-size: 1.4rem;
-	border-bottom: 3px solid color-mix(in srgb, var(--color-accent) 60%, transparent);
-	width: fit-content;
-	padding-bottom: 0.1em;
+	font-size: 1.6rem;
 }
 
 .writeup h3 {
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 }
 
 .writeup h4 {
-	font-size: 1.05rem;
+	font-size: 1.15rem;
 }
 
 .writeup a {
@@ -97,11 +130,16 @@
 	border-radius: 0.6rem;
 	padding: 1em 1.2em;
 	overflow-x: auto;
-	font-size: 0.875rem;
-	line-height: 1.5;
+	font-size: 0.9rem;
+	line-height: 1.6;
+	tab-size: 2;
 }
 
+/* Blocks are long runs of code, so regular weight and no wrapping rather than the bold inline look */
 .writeup pre code {
+	font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+	font-weight: 400;
+	overflow-wrap: normal;
 	background: none;
 	border: 0;
 	padding: 0;
@@ -134,4 +172,13 @@
 .writeup th {
 	background: var(--color-panel);
 	font-weight: 700;
+}
+
+/* Syntax colours from highlight-code.ts: each token carries both theme colours as variables */
+.writeup pre code span {
+	color: var(--shiki-light);
+}
+
+:root[data-theme='dark'] .writeup pre code span {
+	color: var(--shiki-dark);
 }

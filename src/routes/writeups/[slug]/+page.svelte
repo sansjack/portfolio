@@ -41,7 +41,7 @@
 	style:background-size="32px 32px"
 >
 	<div
-		class="relative isolate flex w-full max-w-3xl flex-1 flex-col gap-8 py-12 [--fade:2.5rem] md:[--fade:6rem]"
+		class="relative isolate flex w-full max-w-2xl flex-1 flex-col gap-8 py-12 [--fade:2.5rem] md:[--fade:6rem]"
 	>
 		<!-- Solid behind the reading column only; it blurs and fades out sideways so the dots show either side -->
 		<div
@@ -57,6 +57,6 @@
 			</a>
 			<CopyLinkButton url={data.canonicalUrl} />
 		</div>
-		<WriteupArticle writeup={data.writeup} />
+		<WriteupArticle writeup={data.writeup} canonicalUrl={data.canonicalUrl} />
 	</div>
 </main>
