@@ -1,5 +1,14 @@
 /* Styles for rendered writeup markdown. Loaded on demand the first time a writeup opens
    (open-writeup.ts), and statically by the writeup's own page. Uses the theme variables so it follows light and dark. */
+/* The site's bold face is an italic cut, so headings use the upright 700 under their own name */
+@font-face {
+	font-family: 'Ubuntu Mono Upright';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('/fonts/ubuntu-mono-latin-700-normal.woff2') format('woff2');
+}
+
 .writeup {
 	color: var(--color-foreground);
 	font-size: 1rem;
@@ -14,6 +23,7 @@
 .writeup h2,
 .writeup h3,
 .writeup h4 {
+	font-family: 'Ubuntu Mono Upright', 'Rajdhani', sans-serif;
 	line-height: 1.15;
 	font-weight: 700;
 	margin-top: 1.6em;
