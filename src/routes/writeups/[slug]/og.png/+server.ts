@@ -40,8 +40,7 @@ export const GET: RequestHandler = async ({ params }) => {
 				justifyContent: 'space-between',
 				padding: 56,
 				background: '#121214',
-				color: '#e8e8ec',
-				borderLeft: '16px solid #7c78f0'
+				color: '#e8e8ec'
 			},
 			children: [
 				text(`WRITEUP · ${formatWriteupDate(writeup.date)}`, {
