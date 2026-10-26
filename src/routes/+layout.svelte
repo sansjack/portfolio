@@ -4,6 +4,7 @@
 	import { onNavigate } from '$app/navigation';
 	import { page } from '$app/state';
 	import { prefersReducedMotion } from '#lib/camera/index.ts';
+	import { logConsoleGreeting } from '#lib/console-greeting.ts';
 	import favicon from '#lib/assets/favicon.svg';
 	import { ErrorScreen } from '#lib/components/error/index.ts';
 	import { Canvas } from '#lib/components/canvas/index.ts';
@@ -19,7 +20,10 @@
 
 	let { children }: LayoutProps = $props();
 
-	onMount(loadSound);
+	onMount(() => {
+		loadSound();
+		logConsoleGreeting();
+	});
 
 	const WRITEUP_ROUTE = '/writeups/[slug]';
 
