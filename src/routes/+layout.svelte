@@ -9,7 +9,7 @@
 	import { ErrorScreen } from '#lib/components/error/index.ts';
 	import { Canvas } from '#lib/components/canvas/index.ts';
 	import { MobileFeed } from '#lib/components/mobile/index.ts';
-	import { SectionNav } from '#lib/components/nav/index.ts';
+	import { NavigationHint, SectionNav } from '#lib/components/nav/index.ts';
 	import { SoundToggle } from '#lib/components/sound/index.ts';
 	import { PullCord } from '#lib/components/theme/index.ts';
 	import { loadWriteupStyles } from '#lib/components/writeups/index.ts';
@@ -24,6 +24,9 @@
 		loadSound();
 		logConsoleGreeting();
 	});
+
+	// Greets every visit: the hint holds the section nav's spot until the visitor makes a move
+	let hintVisible = $state(true);
 
 	const WRITEUP_ROUTE = '/writeups/[slug]';
 
@@ -109,7 +112,8 @@
 		<!-- The canvas lives here, not in the page, so it persists between routes and the camera can fly -->
 		<Canvas {activeId} />
 		<MobileFeed {activeId} />
-		<SectionNav {activeId} />
+		<SectionNav {activeId} hintActive={hintVisible} />
+		<NavigationHint visible={hintVisible} ondismiss={() => (hintVisible = false)} />
 		{@render children()}
 
 		<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -- reset is the second argument -->

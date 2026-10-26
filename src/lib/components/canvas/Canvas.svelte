@@ -169,10 +169,17 @@
 				camera.jumpTo(zoomViewAt(camera.view, factor, anchor, sizeOf(node), bounds()));
 			};
 
-			// Dragging pans, but only from empty canvas: on a card the press belongs to the card
+			// Dragging pans with the left button from empty canvas (on a card the press belongs to the card),
+			// or with the middle button from anywhere but a link or button, which would open in a new tab
 			const onPointerDown = (event: PointerEvent) => {
-				if (event.button !== 0) return;
-				if ((event.target as Element).closest('section, aside, a, button')) return;
+				const isMiddleButton = event.button === 1;
+				if (event.button !== 0 && !isMiddleButton) return;
+
+				const blockedBy = isMiddleButton ? 'a, button' : 'section, aside, a, button';
+				if ((event.target as Element).closest(blockedBy)) return;
+
+				// Stops the browser's middle-click autoscroll and text selection
+				if (isMiddleButton) event.preventDefault();
 
 				dragging = true;
 				camera.stop();
