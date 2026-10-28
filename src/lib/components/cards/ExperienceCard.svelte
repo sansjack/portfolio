@@ -13,7 +13,7 @@
 	const olderRoles = $derived(roles.slice(RECENT_ROLE_COUNT));
 </script>
 
-<div class="h-full rounded-xl border border-line bg-surface p-6 pb-3 shadow-md shadow-black/5">
+<div class="h-full rounded-xl border border-line bg-surface py-4 p-3 md:p-6 pb-3 shadow-md shadow-black/5">
 	<div class="mb-4 flex items-baseline justify-between gap-4">
 		<h2 class="text-2xl text-foreground">Experience</h2>
 		<button

@@ -42,7 +42,7 @@
 	</a>
 	<div class="min-w-0 flex-1">
 		<p class="text-xl text-foreground">{role.company}</p>
-		<p class="text-dim">{role.role}</p>
+		<p class="text-dim text-sm">{role.role}</p>
 	</div>
 	<p class="shrink-0 text-sm {role.period.endsWith('Current') ? 'text-accent' : 'text-dim'}">
 		{role.period}
