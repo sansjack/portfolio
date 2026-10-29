@@ -12,10 +12,10 @@
 		buildLayout,
 		EXPERIENCE_HEIGHT,
 		getSection,
-		POST_MORTEM_PANEL_ID,
-		type ViewId,
 		lostSection,
-		sections
+		POST_MORTEM_PANEL_ID,
+		sections,
+		type ViewId
 	} from '#lib/content/index.ts';
 	import { useExperienceState, usePostMortemState } from '#lib/state/index.ts';
 	import CardStack from './CardStack.svelte';
@@ -105,7 +105,8 @@
 	};
 
 	// untrack: only the framing key should trigger a move, not everything the move reads
-	$effect(() => {
+	// .pre: camera.animating must be true before the cards re-render, or a pile opens with its transitions still off
+	$effect.pre(() => {
 		const key = framingKey();
 		untrack(() => {
 			if (key !== framedKey) frameActiveSection(true);
