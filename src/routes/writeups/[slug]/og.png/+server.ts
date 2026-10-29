@@ -13,7 +13,6 @@ const SIZE = 630;
 
 const readFont = (file: string) => readFile(`node_modules/@fontsource/${file}`);
 
-// Same card colours as the dark theme in layout.css
 export const GET: RequestHandler = async ({ params }) => {
 	const writeup = findWriteup(params.slug);
 	if (!writeup) error(404, 'Writeup not found');

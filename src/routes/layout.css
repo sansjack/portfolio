@@ -23,7 +23,10 @@
 	--font-sans: 'Rajdhani', ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Dark palette overrides the same tokens; the theme is set on <html> by the script in app.html and the pull cord */
+@utility card-surface {
+	@apply rounded-xl border border-line bg-surface p-6 shadow-md shadow-black/5;
+}
+
 :root {
 	color-scheme: light;
 }
@@ -40,7 +43,6 @@
 }
 
 @layer base {
-	/* Every link and button eases between its states instead of snapping */
 	@media (prefers-reduced-motion: no-preference) {
 		a,
 		button {
@@ -56,7 +58,6 @@
 		cursor: pointer;
 	}
 
-	/* Keyboard focus: a soft accent ring, only when navigating by keyboard */
 	:focus-visible {
 		outline: 2px solid var(--color-accent);
 		outline-offset: 3px;
@@ -71,7 +72,6 @@
 	}
 }
 
-/* The hiring note holds several phrases. Without JS the first shows; the script in app.html picks a random one before first paint */
 .phrase {
 	display: none;
 }
@@ -81,7 +81,6 @@
 	display: inline;
 }
 
-/* Accent text links: the underline fades in on hover instead of appearing */
 @utility link-underline {
 	text-decoration-line: underline;
 	text-decoration-color: transparent;
@@ -92,7 +91,6 @@
 	}
 }
 
-/* Opening or leaving a writeup: the old screen settles back and fades while the new one rises in */
 @keyframes screen-out {
 	to {
 		opacity: 0;

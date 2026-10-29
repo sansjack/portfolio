@@ -1,7 +1,6 @@
 import { createHighlighterCore, type HighlighterCore } from 'shiki/core';
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
 
-// Only the languages the writeups use, each its own chunk, fetched when a post actually contains one
 const languageLoaders: Record<string, () => Promise<unknown>> = {
 	bash: () => import('shiki/langs/bash.mjs'),
 	python: () => import('shiki/langs/python.mjs'),
@@ -18,7 +17,6 @@ const getHighlighter = () =>
 		engine: createJavaScriptRegexEngine()
 	}));
 
-// Colours the code blocks in place after the plain text is already on screen, so reading never waits on this
 export const highlightCodeBlocks = async (root: HTMLElement): Promise<void> => {
 	const blocks = [...root.querySelectorAll<HTMLElement>('pre > code[class*="language-"]')].flatMap(
 		(code) => {

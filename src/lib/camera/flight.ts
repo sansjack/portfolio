@@ -6,7 +6,6 @@ const RHO = 1.4;
 const MS_PER_UNIT = 900;
 const MIN_MS = 800;
 const MAX_MS = 1700;
-// With reduced motion the camera still pans (a snap is disorienting) but as one short, plain glide
 const REDUCED_MS = 450;
 
 // The flight maths describes a view by the canvas point at screen centre and how much canvas
@@ -15,7 +14,6 @@ type Lens = { x: number; y: number; span: number };
 
 export type Flight = {
 	duration: number;
-	// The view part-way through the flight, with time running from 0 to 1
 	at: (time: number) => View;
 };
 

@@ -3,6 +3,7 @@ import type { SectionId } from './types.ts';
 // Kept free of imports beyond types: the route matcher in src/params loads this file directly in Node
 export const SECTION_PATHS: Record<SectionId, string> = {
 	about: '/',
+	live: '/live',
 	experience: '/experience',
 	projects: '/projects',
 	archived: '/archived',

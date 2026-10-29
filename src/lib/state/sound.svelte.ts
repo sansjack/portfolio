@@ -8,7 +8,6 @@ const IDLE_TIMEOUT_MS = 3000;
 
 type Cuelume = typeof import('cuelume');
 
-// Set once the library has loaded; until then every sound is a no-op
 let cuelume: Cuelume | undefined;
 
 export const sound = $state({ muted: false, volume: DEFAULT_VOLUME });
@@ -44,12 +43,9 @@ const load = async () => {
 	}
 
 	cuelume.setVolume(sound.volume);
-	// The dry, precise material: the closest to an old mechanical keyboard
 	cuelume.setTheme('mech');
 	cuelume.setEnabled(!sound.muted);
-	// Browsers keep audio locked until a gesture; the first press unlocks it
 	addEventListener('pointerdown', () => cuelume?.unlock(), { once: true, capture: true });
-	// Every link, button and unfocused canvas card clicks. On pointerdown, not click, so it lands with the press
 	addEventListener(
 		'pointerdown',
 		(event) => {
@@ -67,7 +63,6 @@ const load = async () => {
 const NOTE_ROOT_HZ = 440;
 const SCALE_SEMITONES = [0, 2, 4, 7, 9];
 const NOTE_LEVEL = 0.2;
-// Short and dull, like a key bottoming out
 const NOTE_SECONDS = 0.06;
 const NOTE_ATTACK_SECONDS = 0.003;
 const NOTE_LOWPASS_HZ = 1200;
@@ -76,12 +71,10 @@ const SILENCE = 0.0001;
 
 let audioContext: AudioContext | undefined;
 
-// Position 0 is the highest note and every step down the list drops one scale degree
 export const playNote = (position: number) => {
 	if (sound.muted || sound.volume === 0) return;
 
 	audioContext ??= new AudioContext();
-	// Browsers keep audio suspended until the visitor has interacted with the page
 	if (audioContext.state === 'suspended') void audioContext.resume();
 
 	const octaves = Math.floor(position / SCALE_SEMITONES.length);
@@ -109,7 +102,6 @@ export const playSound = (name: SoundName, options: PlayOptions = SUBTLE) => {
 	cuelume?.play(name, options);
 };
 
-// Fetches the sound library once the page is idle, so it never holds up the first load
 export const loadSound = () => {
 	sound.muted = read(MUTED_KEY) === 'true';
 	sound.volume = readVolume();
@@ -124,12 +116,10 @@ export const toggleMute = async () => {
 	cuelume?.setEnabled(!sound.muted);
 	if (sound.muted || !cuelume) return;
 
-	// Unmuting is a gesture, so it can unlock audio and confirm itself with a cue
 	await cuelume.unlock();
 	cuelume.play('toggle', SUBTLE);
 };
 
-// Moving the slider is a deliberate ask for sound, so it also unmutes
 export const setVolume = (volume: number) => {
 	sound.volume = volume;
 	store(VOLUME_KEY, String(volume));

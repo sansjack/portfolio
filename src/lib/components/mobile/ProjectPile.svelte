@@ -3,8 +3,6 @@
 	import { CardBody } from '#lib/components/cards/index.ts';
 	import { PILE_STAGGER_MS, PILE_STEP } from '#lib/pile.ts';
 
-	// Every card is the same height so the pile and list heights are simple sums. Tall enough for a repo card:
-	// banner, title, three lines of description and the stats row. The banner stretches to take up any spare.
 	const CARD_HEIGHT = 340;
 	const CARD_GAP = 16;
 
@@ -16,7 +14,6 @@
 	const listHeight = $derived(projects.length * CARD_HEIGHT + (projects.length - 1) * CARD_GAP);
 </script>
 
-<!-- All projects in one pile; a tap deals them out into a list. While piled, taps open the pile instead of a link. -->
 <section class="flex w-full max-w-md flex-col items-center gap-3">
 	<div
 		class="relative w-full transition-[height] duration-500 ease-out motion-reduce:transition-none {expanded

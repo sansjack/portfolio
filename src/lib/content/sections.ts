@@ -1,10 +1,10 @@
-// Image paths are relative to /static (e.g. static/images/projects/one.webp -> 'images/projects/one.webp')
 import profile from '../profile.json';
 import { SECTION_PATHS } from './paths.ts';
 import {
 	SECTION_IDS,
 	type AboutCard,
 	type GitRepo,
+	type LiveCard,
 	type ProjectCard,
 	type Role,
 	type Section,
@@ -52,6 +52,21 @@ const projectCards: (ProjectCard & { archived: boolean })[] = (
 export const liveProjects = projectCards.filter((card) => !card.archived);
 export const archivedProjects = projectCards.filter((card) => card.archived);
 
+type ProductEntry = Pick<LiveCard, 'tagline' | 'logo' | 'accent'> & {
+	name: string;
+	url: string;
+};
+
+export const liveCards: LiveCard[] = (profile.products as ProductEntry[]).map((product) => ({
+	id: `live-${product.name}`,
+	kind: 'live',
+	title: product.name,
+	href: product.url,
+	tagline: product.tagline,
+	logo: product.logo,
+	accent: product.accent
+}));
+
 // Array.sort is stable, so skills still being learned move to the back of their group and the rest keep their order
 const skillGroups: SkillGroup[] = (profile.skills as SkillGroup[]).map((group) => ({
 	name: group.name,
@@ -60,7 +75,6 @@ const skillGroups: SkillGroup[] = (profile.skills as SkillGroup[]).map((group) =
 	)
 }));
 
-// Each writeup is a markdown file in src/lib/writeups with title, date and summary in its frontmatter
 const writeupFiles = import.meta.glob<string>('../writeups/*.md', {
 	query: '?raw',
 	import: 'default',
@@ -86,7 +100,6 @@ const parseWriteup = (path: string, source: string): Writeup => {
 	};
 };
 
-// Newest first
 export const writeups: Writeup[] = Object.entries(writeupFiles)
 	.map(([path, source]) => parseWriteup(path, source))
 	.sort((first, second) => second.date.localeCompare(first.date));
@@ -105,6 +118,14 @@ const sectionsById: Record<SectionId, Section> = {
 		path: SECTION_PATHS.about,
 		focusCardId: aboutCard.id,
 		cards: [aboutCard]
+	},
+	live: {
+		id: 'live',
+		label: 'Live',
+		description: `Products by ${profile.name} that are running in production right now: ${liveCards.map((card) => card.title).join(', ')}.`,
+		path: SECTION_PATHS.live,
+		below: 'projects',
+		cards: liveCards
 	},
 	experience: {
 		id: 'experience',
@@ -144,6 +165,7 @@ const sectionsById: Record<SectionId, Section> = {
 		label: 'Writeups',
 		description: `Rants and writeups by ${profile.name} on software, side projects and things that went wrong.`,
 		path: SECTION_PATHS.writeups,
+		below: 'archived',
 		fill: 0.75,
 		cards: [{ id: 'writeups', kind: 'writeups', items: writeups }]
 	}
@@ -151,7 +173,6 @@ const sectionsById: Record<SectionId, Section> = {
 
 export const sections: Section[] = SECTION_IDS.map((id) => sectionsById[id]);
 
-// Not a page of its own: where any unknown URL lands. It is on the canvas, not in the menu, sitemap or routes.
 export const lostSection: Section = {
 	id: 'lost',
 	label: 'Not found',
@@ -160,7 +181,6 @@ export const lostSection: Section = {
 	cards: [{ id: 'lost', kind: 'lost' }]
 };
 
-// Everything the canvas draws and the camera can fly to
 export const canvasSections: Section[] = [...sections, lostSection];
 
 export const getSection = (id: ViewId): Section => (id === 'lost' ? lostSection : sectionsById[id]);

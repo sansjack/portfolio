@@ -11,11 +11,8 @@
 	const emailHref = $derived(links.find(({ icon }) => icon === 'email')?.href);
 </script>
 
-<!-- Container queries restack the photo above the text when the card is narrow, as on phones -->
 <div class="@container relative h-full">
-	<div
-		class="flex h-full flex-col items-center gap-6 rounded-xl border border-line bg-surface p-8 shadow-md shadow-black/5 @lg:flex-row @lg:gap-8"
-	>
+	<div class="flex h-full flex-col items-center gap-6 card-surface @lg:flex-row @lg:gap-8">
 		<Polaroid name={heading} {image} {imageAlt} />
 
 		<div class="flex flex-col items-center gap-3 text-center @lg:items-start @lg:text-left">
@@ -23,7 +20,6 @@
 			<p class="text-xl text-foreground">{tagline}</p>
 			<p class="text-base text-dim">📍 {location}</p>
 			{#if emailHref}
-				<!-- The hiring note: a sticky note like the ones on the canvas, tilted, that straightens on hover -->
 				<a
 					href={emailHref}
 					rel="external"

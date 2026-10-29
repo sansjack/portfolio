@@ -67,7 +67,6 @@
 			</div>
 		</div>
 
-		<!-- Phones get a bottom sheet; on the canvas the panel is a grid cell drawn by CardStack -->
 		{#if open}
 			<PostMortemPanel
 				{title}

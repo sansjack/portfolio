@@ -43,7 +43,6 @@
 	<div
 		class="relative isolate flex w-full max-w-2xl flex-1 flex-col gap-8 py-12 [--fade:4rem] md:[--fade:10rem]"
 	>
-		<!-- Behind the reading column: a blur that ramps in sideways, then a solid panel that fades out over it, so the dots go soft before they disappear -->
 		<div
 			class="absolute -inset-x-(--fade) inset-y-0 -z-10 [mask-image:linear-gradient(to_right,transparent,black_var(--fade),black_calc(100%-var(--fade)),transparent)] backdrop-blur-lg"
 			aria-hidden="true"

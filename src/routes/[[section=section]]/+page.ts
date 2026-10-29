@@ -7,7 +7,6 @@ import {
 } from '#lib/content/index.ts';
 import type { EntryGenerator, PageLoad } from './$types';
 
-// Every section is prerendered at its own URL
 export const entries: EntryGenerator = () =>
 	sections.map((section) => ({ section: sectionParam(section) }));
 

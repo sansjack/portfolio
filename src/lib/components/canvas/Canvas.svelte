@@ -21,17 +21,12 @@
 	import CardStack from './CardStack.svelte';
 
 	const GRID_SIZE = 32;
-	// The tightest the dense dot layer may get on screen, in px, before it has fully faded out
 	const MIN_GRID_SCREEN_PX = 10;
-	// Empty canvas the visitor can pan into beyond the outermost cards, in canvas px
 	const WORLD_MARGIN = 500;
-	// No man's land is a big empty void around the lost card, so the visitor can drift but never finds an edge quickly
 	const LOST_WORLD_MARGIN = 1500;
-	// Wheel zoom speed; a trackpad pinch arrives as a ctrl+wheel with much smaller deltas
 	const WHEEL_ZOOM_SPEED = 0.0015;
 	const PINCH_ZOOM_SPEED = 0.01;
 	const WHEEL_LINE_PIXELS = 16;
-	// The fade is the page colour, so it suits both themes
 	const FOG_BLUR_MASK = 'radial-gradient(ellipse at center, transparent 62%, black 100%)';
 	const FOG_FADE =
 		'radial-gradient(ellipse at center, transparent 55%, color-mix(in srgb, var(--color-background) 70%, transparent) 100%)';
@@ -45,9 +40,6 @@
 	let ready = $state(false);
 	let viewport: HTMLElement | null = null;
 	let lastWidth = 0;
-	// Drives the layout's spacing; 0 until the canvas is measured (it is hidden on phones)
-	let viewportWidth = $state(0);
-	// What the camera last framed, so the effect only moves it when the framing changes
 	let framedKey = '';
 	let dragging = $state(false);
 
@@ -55,7 +47,7 @@
 		buildLayout(
 			experience.showOlder ? EXPERIENCE_HEIGHT.expanded : EXPERIENCE_HEIGHT.collapsed,
 			postMortems.openId,
-			viewportWidth
+			activeId
 		)
 	);
 
@@ -70,12 +62,10 @@
 		return { dense, sparse: dense * 2, denseOpacity };
 	});
 
-	// A missing URL sends the visitor to no man's land: the real cards fade out and only the lost card remains
 	const lostActive = $derived(activeId === 'lost');
 
 	const framingKey = (): string => `${activeId}:${experience.showOlder}:${postMortems.openId}`;
 
-	// Is the pointer over something that scrolls up and down, like a long post-mortem? Then the wheel is its, not the camera's
 	const isOverScrollableArea = (target: Element, canvas: Element): boolean => {
 		for (
 			let element: Element | null = target;
@@ -95,11 +85,9 @@
 	});
 
 	const frameActiveSection = (animate: boolean) => {
-		// A hidden canvas (phone layout) has no size to fit to
 		if (!viewport || viewport.clientWidth === 0) return;
 
 		const section = getSection(activeId);
-		// Notes are scraps beside the content, not part of what a section frames
 		const framedCards = section.cards.filter((card) => card.kind !== 'note');
 		const size = sizeOf(viewport);
 		const rects = framedCards.map((card) => layout[card.id]);
@@ -130,16 +118,13 @@
 		untrack(() => {
 			viewport = node;
 			lastWidth = node.clientWidth;
-			viewportWidth = lastWidth;
 			frameActiveSection(false);
 			ready = true;
-			// The intro zoom is for arriving at the site; a missing URL shows its card straight away
 			if (!lostActive) camera.flyIn(sizeOf(node));
 
 			const resizeObserver = new ResizeObserver(() => {
 				if (node.clientWidth === lastWidth) return;
 				lastWidth = node.clientWidth;
-				viewportWidth = lastWidth;
 				frameActiveSection(false);
 			});
 			resizeObserver.observe(node);
@@ -153,9 +138,7 @@
 				return worldBounds(realCards, WORLD_MARGIN);
 			};
 
-			// Wheel zooms towards the cursor; any hand movement takes over from a camera flight
 			const onWheel = (event: WheelEvent) => {
-				// A pinch (ctrl + wheel) still zooms; a plain wheel over a scrollable area scrolls it natively
 				if (!event.ctrlKey && isOverScrollableArea(event.target as Element, node)) return;
 
 				event.preventDefault();
@@ -169,8 +152,6 @@
 				camera.jumpTo(zoomViewAt(camera.view, factor, anchor, sizeOf(node), bounds()));
 			};
 
-			// Dragging pans with the left button from empty canvas (on a card the press belongs to the card),
-			// or with the middle button from anywhere but a link or button, which would open in a new tab
 			const onPointerDown = (event: PointerEvent) => {
 				const isMiddleButton = event.button === 1;
 				if (event.button !== 0 && !isMiddleButton) return;
@@ -178,7 +159,6 @@
 				const blockedBy = isMiddleButton ? 'a, button' : 'section, aside, a, button';
 				if ((event.target as Element).closest(blockedBy)) return;
 
-				// Stops the browser's middle-click autoscroll and text selection
 				if (isMiddleButton) event.preventDefault();
 
 				dragging = true;
@@ -197,8 +177,6 @@
 			};
 			const stopDragging = () => (dragging = false);
 
-			// Clicking the card of the section you are already on brings the camera back to it after you have panned
-			// or zoomed away. Links, buttons and a text selection are left alone.
 			const onClick = (event: MouseEvent) => {
 				const target = event.target as Element;
 				if (target.closest('a, button')) return;
@@ -261,7 +239,6 @@
 			: 'opacity-0'}"
 		style:transform="translate({camera.view.x}px, {camera.view.y}px) scale({camera.view.zoom})"
 	>
-		<!-- The real world. It fades out in no man's land and back in when the visitor returns home -->
 		<div
 			class="transition-opacity duration-700 motion-reduce:transition-none {lostActive
 				? 'pointer-events-none opacity-0'
@@ -277,7 +254,6 @@
 				/>
 			{/each}
 		</div>
-		<!-- No man's land: only there when the visitor is -->
 		<div
 			class="transition-opacity duration-700 motion-reduce:transition-none {lostActive
 				? ''

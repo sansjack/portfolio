@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Rect } from '#lib/camera/index.ts';
 	import {
+		getSection,
 		POST_MORTEM_PANEL_ID,
 		sectionParam,
 		type Card,
@@ -14,7 +15,8 @@
 		PILE_STAGGER_MS,
 		PILE_START_DELAY_MS,
 		PILE_STEP,
-		PUSH_GLIDE_MS
+		PUSH_GLIDE_MS,
+		pileMotion
 	} from '#lib/pile.ts';
 	import { prefersReducedMotion } from '#lib/camera/index.ts';
 	import { PostMortemPanel } from '#lib/components/cards/index.ts';
@@ -52,7 +54,6 @@
 			: []
 	);
 
-	// As the pile deals out, each card gets a soft cue as it lands, on the same stagger as the animation
 	$effect(() => {
 		if (!active || pileIds.length === 0 || prefersReducedMotion()) return;
 
@@ -76,11 +77,28 @@
 		return `translate(${offsetX}px, ${offsetY}px)`;
 	};
 
+	const distanceFromAnchor = (cardId: string, anchorId: string): number => {
+		const anchor = layout[anchorId];
+		const rect = layout[cardId];
+		return Math.hypot(anchor.x - rect.x, anchor.y - rect.y);
+	};
+
 	const PUSH_GLIDE = `left ${PUSH_GLIDE_MS}ms ease-out, top ${PUSH_GLIDE_MS}ms ease-out`;
 
 	const cardTransition = (card: Card): string => {
-		// Experience grows and shrinks with its older roles; the card height follows the same easing
 		if (card.kind === 'experience') return animating ? 'height 500ms ease-out' : 'none';
+		// A card under a pile rides the pile's last card: same delay, duration and easing, over the same distance,
+		// so it trails that card at a constant gap whether the pile is opening or closing
+		if (section.below) {
+			if (!animating) return 'none';
+			const pile = getSection(section.below).cards.filter((card) => card.kind === 'project');
+			const lastIndex = pile.length - 1;
+			const { delay, duration } = pileMotion(
+				lastIndex,
+				distanceFromAnchor(pile[lastIndex].id, pile[0].id)
+			);
+			return `top ${duration}ms ${PILE_EASING} ${delay}ms`;
+		}
 
 		const index = pileIds.indexOf(card.id);
 		if (index === -1) return 'none';
@@ -88,8 +106,8 @@
 		// panel also flies the camera, and that must not turn the glide off.
 		if (!animating) return PUSH_GLIDE;
 
-		const delay = PILE_START_DELAY_MS + index * PILE_STAGGER_MS;
-		return `transform ${PILE_DURATION_MS}ms ${PILE_EASING} ${delay}ms, ${PUSH_GLIDE}`;
+		const { delay, duration } = pileMotion(index, distanceFromAnchor(card.id, pileIds[0]));
+		return `transform ${duration}ms ${PILE_EASING} ${delay}ms, ${PUSH_GLIDE}`;
 	};
 </script>
 
@@ -116,7 +134,6 @@
 
 {#if openProject?.kind === 'project' && openProject.postMortem && layout[POST_MORTEM_PANEL_ID]}
 	{@const rect = layout[POST_MORTEM_PANEL_ID]}
-	<!-- Keyed by project, so switching panels fades the old one out and rises a new one in after the cards have glided -->
 	{#key openProject.id}
 		<div
 			class="absolute animate-rise motion-reduce:animate-none"

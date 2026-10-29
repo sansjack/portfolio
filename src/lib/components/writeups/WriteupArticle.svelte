@@ -5,8 +5,6 @@
 
 	let { writeup, canonicalUrl }: { writeup: Writeup; canonicalUrl: string } = $props();
 
-	// Each h2-h4 gets an id from its text, numbered when a post repeats a heading, and a # link that copies its URL.
-	// The ids are in the prerendered HTML, so opening a link with a #section lands on the heading with no script.
 	const renderMarkdown = (markdown: string) => {
 		const seenIds: Record<string, number> = {};
 		const markdownParser = new Marked({
@@ -62,7 +60,6 @@
 		}, 2000);
 	};
 
-	// Highlighting is a separate chunk that loads after the post is readable
 	$effect(() => {
 		void html;
 		import('./highlight-code.ts').then(({ highlightCodeBlocks }) => highlightCodeBlocks(article));
@@ -85,7 +82,6 @@
 			</a>
 		{/if}
 	</header>
-	<!-- The # links are real anchors, so keyboard users already trigger this click -->
 	<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	<div class="writeup" onclick={copyHeadingLink}>{@html html}</div>

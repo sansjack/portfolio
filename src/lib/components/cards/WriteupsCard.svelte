@@ -5,10 +5,8 @@
 	let { items }: { items: Writeup[] } = $props();
 </script>
 
-<div
-	class="relative flex h-full flex-col overflow-hidden rounded-xl border border-line bg-surface shadow-md shadow-black/5 max-md:min-h-[32rem]"
->
-	<div class="flex min-h-0 flex-1 flex-col p-6 md:p-8">
+<div class="relative flex h-full flex-col overflow-hidden card-surface max-md:min-h-[32rem]">
+	<div class="flex min-h-0 flex-1 flex-col">
 		<h2
 			class="flex -rotate-1 items-baseline gap-3 text-3xl leading-none text-foreground md:text-5xl"
 		>
@@ -16,7 +14,9 @@
 			<span class="text-dim">/</span>
 			<span class="font-normal">writeups</span>
 		</h2>
-		<ul class="mt-8 flex min-h-0 flex-1 snap-y snap-proximity flex-col overflow-y-auto overscroll-contain">
+		<ul
+			class="mt-8 flex min-h-0 flex-1 snap-y snap-proximity flex-col overflow-y-auto overscroll-contain"
+		>
 			{#each items as item (item.slug)}
 				<li class="snap-start border-t border-line first:border-t-0">
 					<a

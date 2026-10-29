@@ -2,14 +2,11 @@
 	import { onMount } from 'svelte';
 	import { prefersReducedMotion } from '#lib/camera/index.ts';
 
-	// Hover the ball this long and the page flickers
 	const FLICKER_AFTER_MS = 600;
-	// Opacity of a dark veil over the page; each step snaps to the next, so the light stutters
 	const FLICKER_STEPS = [0, 0.35, 0, 0.5, 0.1, 0.4, 0, 0.25, 0];
 	const FLICKER_DURATION_MS = 700;
 
 	let theme = $state<'light' | 'dark'>('light');
-	// Bumped on every pull so the swing animation restarts
 	let pulls = $state(0);
 	let veil: HTMLElement;
 	let flickerTimer: ReturnType<typeof setTimeout> | undefined;
@@ -31,7 +28,6 @@
 	};
 
 	const startFlickerTimer = (event: PointerEvent) => {
-		// A tap on touch screens is a pull, not a hover
 		if (event.pointerType !== 'mouse' || prefersReducedMotion()) return;
 
 		flickerTimer = setTimeout(() => {
@@ -50,7 +46,6 @@
 	aria-hidden="true"
 ></div>
 
-<!-- Warm glow around the ball while the light is on (dark theme); the cord only exists from sm up -->
 <div
 	class="pointer-events-none fixed top-[0.7rem] -right-[1.4rem] z-30 hidden size-40 rounded-full bg-[radial-gradient(circle,rgb(255_190_90/0.18),rgb(255_190_90/0.06)_40%,transparent_70%)] mix-blend-screen transition-opacity duration-700 sm:block {theme ===
 	'dark'
@@ -92,7 +87,6 @@
 	{/key}
 </button>
 
-<!-- Phones: a wall light switch along the top instead of a cord. On means the lights are on (light theme). -->
 <button
 	class="fixed top-[max(0.25rem,env(safe-area-inset-top))] right-1 z-40 cursor-pointer p-2 sm:hidden"
 	role="switch"
@@ -109,7 +103,6 @@
 				? 'translate-x-full'
 				: ''}"
 		>
-			<!-- Grip ridges on the rocker -->
 			<span class="h-2 w-px bg-dim/60"></span>
 			<span class="h-2 w-px bg-dim/60"></span>
 		</span>

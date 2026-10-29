@@ -2,7 +2,6 @@ import { getContext, setContext } from 'svelte';
 
 const POST_MORTEM_KEY = Symbol('post-mortem');
 
-// At most one post-mortem panel is open; on the canvas it takes a slot in the card grid
 export class PostMortemState {
 	openId = $state<string | null>(null);
 

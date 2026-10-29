@@ -19,6 +19,7 @@ export type {
 	Card,
 	ExperienceCard,
 	GitRepo,
+	LiveCard,
 	LostCard,
 	NoteCard,
 	PostMortem,

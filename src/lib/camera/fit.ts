@@ -1,19 +1,12 @@
 import type { Rect, Size, View } from './types.ts';
 
 const MIN_ZOOM = 0.15;
-// Never show a section larger than this, so there is breathing room around it
 const MAX_ZOOM = 0.8;
-// Vertical padding is equal top and bottom (sized to clear the menu) so the focus point sits at the true screen centre
 const FIT_PADDING = { vertical: 96, side: 24 };
-// Frame every section a little looser than a snug fit, so the page reads well at 100% browser zoom
 const FIT_SCALE = 0.85;
-// Every view sits this many screen px above true centre, so the content keeps clear of the bottom nav
 const VIEW_LIFT = 12;
-// The most zoomed-in a section is ever framed, so the same canvas width is visible on every wide screen
 export const MAX_FIT_ZOOM = MAX_ZOOM * FIT_SCALE;
 
-// Centred on the focus rect if given, else on the rects' bounding box.
-// `fill` (0-1) instead sizes the rects to that share of the screen, ignoring the usual zoom cap and looseness.
 export const fitView = (rects: Rect[], size: Size, focusRect?: Rect, fill?: number): View => {
 	const left = Math.min(...rects.map((rect) => rect.x));
 	const top = Math.min(...rects.map((rect) => rect.y));
@@ -24,7 +17,6 @@ export const fitView = (rects: Rect[], size: Size, focusRect?: Rect, fill?: numb
 		? { x: focusRect.x + focusRect.width / 2, y: focusRect.y + focusRect.height / 2 }
 		: { x: (left + right) / 2, y: (top + bottom) / 2 };
 
-	// Room needed either side of the focus point to keep every rect on screen
 	const halfWidth = Math.max(focus.x - left, right - focus.x);
 	const halfHeight = Math.max(focus.y - top, bottom - focus.y);
 	const availableWidth = size.width - FIT_PADDING.side * 2;

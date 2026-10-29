@@ -5,11 +5,8 @@
 	let { groups }: { groups: SkillGroup[] } = $props();
 </script>
 
-<div
-	class="flex h-full flex-col rounded-xl border border-line bg-surface p-6 shadow-md shadow-black/5"
->
+<div class="flex h-full flex-col card-surface">
 	<h2 class="text-2xl text-foreground">Skills</h2>
-	<!-- One row per group from sm up, so the height is groups x badge size and does not depend on how many badges wrap -->
 	<dl class="flex flex-1 flex-col justify-center gap-3">
 		{#each groups as group (group.name)}
 			<div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">

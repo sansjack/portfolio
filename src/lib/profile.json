@@ -79,6 +79,15 @@
 			"logo": "images/companies/arkivum.svg"
 		}
 	],
+	"products": [
+		{
+			"name": "ModelMonitor",
+			"url": "https://modelmonitor.dev",
+			"tagline": "A free, read-only API for AI model pricing, capabilities and hosting, refreshed daily.",
+			"logo": "images/projects/modelmonitor.svg",
+			"accent": "#34d399"
+		}
+	],
 	"projects": [
 		{
 			"name": "inveil-app",

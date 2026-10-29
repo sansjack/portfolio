@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { playSound, setVolume, sound, toggleMute } from '#lib/state/index.ts';
 
-	// Silent either way, so the icon shows it
 	const silent = $derived(sound.muted || sound.volume === 0);
 </script>
 
-<!-- Phones: the slider always sits inline beside the button, tucked into the corner. From sm up it slides out on hover or focus instead, so it stays out of the way until wanted -->
 <div
 	class="group fixed top-[max(0.25rem,env(safe-area-inset-top))] left-1 z-40 flex items-center opacity-60 transition-opacity focus-within:opacity-100 hover:opacity-100 sm:top-[max(0.75rem,env(safe-area-inset-top))] sm:left-4"
 >

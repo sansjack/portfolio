@@ -45,7 +45,6 @@ export {
 	PulumiIcon
 };
 
-// Skill name (as written in profile.json) -> its icon
 export const skillIcons: Record<string, Component<{ class?: string }>> = {
 	Python: PythonIcon,
 	TypeScript: TypeScriptIcon,

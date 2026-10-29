@@ -9,13 +9,11 @@
 
 	let { activeId }: { activeId: ViewId } = $props();
 
-	// Each stacked section (live projects, archived) is its own pile, open or closed
 	const stackedIds = sections.filter((section) => section.stacked).map((section) => section.id);
 	let expanded = $state<Record<string, boolean>>(
 		Object.fromEntries(stackedIds.map((id) => [id, false]))
 	);
 
-	// The menu scrolls the phone list to the section instead of flying a camera
 	$effect(() => {
 		if (matchMedia(`(min-width: ${CANVAS_MIN_WIDTH}px)`).matches) return;
 
@@ -30,7 +28,6 @@
 {#snippet feed()}
 	{#each sections as section (section.id)}
 		{#if section.stacked}
-			<!-- Sticky note above its own pile, as on the canvas -->
 			<div class="flex w-full max-w-md flex-col gap-6">
 				{#each section.cards.filter((card) => card.kind === 'note') as note (note.id)}
 					<div class="w-full self-start md:h-36 md:w-64">
@@ -59,7 +56,6 @@
 	style:background-image="radial-gradient(circle, var(--color-line) 1px, transparent 1px)"
 	style:background-size="20px 20px"
 >
-	<!-- No man's land: the real feed is gone and only the lost card is left, in the same dotted space -->
 	{#if activeId === 'lost'}
 		<section id="mobile-lost" class="h-80 w-full max-w-md scroll-mt-14">
 			<CardBody card={lostSection.cards[0]} />

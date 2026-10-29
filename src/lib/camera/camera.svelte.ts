@@ -1,12 +1,10 @@
 import { planFlight, prefersReducedMotion } from './flight.ts';
 import type { Size, View } from './types.ts';
 
-// The page opens with the camera at this fraction of the final zoom, then flies in
 const INTRO_ZOOM = 0.6;
 
 export class Camera {
 	view = $state<View>({ x: 0, y: 0, zoom: 1 });
-	// Also lets stacked cards deal out smoothly
 	animating = $state(false);
 	#frame = 0;
 
@@ -22,9 +20,7 @@ export class Camera {
 		this.#fly(target, size, reducedMotion);
 	}
 
-	// Intro: pull back from the current view, then fly in to it
 	flyIn(size: Size) {
-		// A hidden canvas (phone layout) has no size
 		if (prefersReducedMotion() || size.width === 0) return;
 
 		const target = this.view;

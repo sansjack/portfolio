@@ -2,6 +2,7 @@
 	import type { Card } from '#lib/content/index.ts';
 	import AboutCard from './AboutCard.svelte';
 	import ExperienceCard from './ExperienceCard.svelte';
+	import LiveCard from './LiveCard.svelte';
 	import LostCard from './LostCard.svelte';
 	import NoteCard from './NoteCard.svelte';
 	import ProjectCard from './ProjectCard.svelte';
@@ -19,6 +20,14 @@
 		links={card.links}
 		image={card.image}
 		imageAlt={card.imageAlt}
+	/>
+{:else if card.kind === 'live'}
+	<LiveCard
+		title={card.title}
+		href={card.href}
+		tagline={card.tagline}
+		logo={card.logo}
+		accent={card.accent}
 	/>
 {:else if card.kind === 'project'}
 	<ProjectCard

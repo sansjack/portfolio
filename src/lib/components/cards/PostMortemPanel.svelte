@@ -6,7 +6,6 @@
 		href: string;
 		postMortem: PostMortem;
 		onclose: () => void;
-		// Where and how it sits: a grid cell on the canvas, a bottom sheet on phones
 		class: string;
 	};
 
@@ -29,7 +28,6 @@
 			✕
 		</button>
 	</div>
-	<!-- Takes whatever height the title and button leave and scrolls if the text is longer, so the button never gets pushed out -->
 	<div class="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto overscroll-contain">
 		<div>
 			<p class="text-sm tracking-widest text-dim uppercase">Why it failed</p>

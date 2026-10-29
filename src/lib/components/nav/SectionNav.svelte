@@ -3,12 +3,10 @@
 	import { type ViewId, sectionParam, sections } from '#lib/content/index.ts';
 	import { resolve } from '$app/paths';
 
-	// While the navigation hint holds the spot (desktop only), the nav waits invisible
 	let { activeId, hintActive = false }: { activeId: ViewId; hintActive?: boolean } = $props();
 
 	let nav = $state<HTMLElement>();
 
-	// On a narrow phone the pill scrolls sideways; keep the current section in view
 	$effect(() => {
 		void activeId;
 		nav?.querySelector('[aria-current="page"]')?.scrollIntoView({
@@ -27,7 +25,6 @@
 		: ''} transition-opacity duration-300"
 >
 	{#each sections as section (section.id)}
-		<!-- Taller on phones for a thumb-sized target; tight on larger screens -->
 		<a
 			href={resolve('/[[section=section]]', { section: sectionParam(section) })}
 			data-sveltekit-reset="false"

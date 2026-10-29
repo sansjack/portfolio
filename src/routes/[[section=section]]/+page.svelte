@@ -7,7 +7,6 @@
 	const imageUrl = `${siteUrl}/og-image.png`;
 </script>
 
-<!-- The section itself is drawn by the layout's canvas; this route owns its URL and metadata -->
 <svelte:head>
 	<title>{data.title}</title>
 	<meta name="description" content={data.description} />

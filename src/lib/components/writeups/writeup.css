@@ -1,5 +1,3 @@
-/* Styles for rendered writeup markdown. Loaded on demand the first time a writeup opens
-   (open-writeup.ts), and statically by the writeup's own page. Uses the theme variables so it follows light and dark. */
 .writeup {
 	color: var(--color-foreground);
 	font-size: 1.125rem;
@@ -29,7 +27,6 @@
 	scroll-margin-top: 1.5rem;
 }
 
-/* The # link sits after the heading text, shown on hover or keyboard focus and always on touch screens */
 .writeup .heading-anchor {
 	margin-left: 0.4em;
 	color: var(--color-accent);
@@ -50,7 +47,6 @@
 	}
 }
 
-/* A heading belongs to what follows it, so it sits closer to that than to the text before */
 .writeup :is(h2, h3, h4) + * {
 	margin-top: 0.6em;
 }
@@ -135,7 +131,6 @@
 	tab-size: 2;
 }
 
-/* Blocks are long runs of code, so regular weight and no wrapping rather than the bold inline look */
 .writeup pre code {
 	font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 	font-weight: 400;
@@ -174,7 +169,6 @@
 	font-weight: 700;
 }
 
-/* Syntax colours from highlight-code.ts: each token carries both theme colours as variables */
 .writeup pre code span {
 	color: var(--shiki-light);
 }

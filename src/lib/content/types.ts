@@ -6,6 +6,7 @@ export const SECTION_IDS = [
 	'about',
 	'experience',
 	'projects',
+	'live',
 	'archived',
 	'skills',
 	'writeups'
@@ -13,7 +14,6 @@ export const SECTION_IDS = [
 
 export type SectionId = (typeof SECTION_IDS)[number];
 
-// What the canvas can be framed on: any section, or the lost card that an unknown URL flies to
 export type ViewId = SectionId | 'lost';
 
 export type SocialIconName = 'email' | 'github' | 'linkedin' | 'x';
@@ -25,25 +25,20 @@ export type Role = {
 	role: string;
 	period: string;
 	url: string;
-	// Company mark, relative to /static (e.g. 'images/companies/persona-ai.webp')
 	logo?: AssetPath;
 };
 
 export type Skill = {
 	name: string;
-	// Still being picked up: shown dimmed and listed after the skills I know well
 	learning?: boolean;
 };
 
 export type Writeup = {
 	slug: string;
 	title: string;
-	// ISO date (YYYY-MM-DD)
 	date: string;
 	summary: string;
-	// GitHub repo the writeup is about, shown as a button
 	repo?: string;
-	// Markdown
 	body: string;
 };
 
@@ -59,12 +54,10 @@ export type AboutCard = CardBase & {
 	tagline: string;
 	location: string;
 	links: SocialLink[];
-	// Photo shown in the hub's polaroid, relative to /static (e.g. 'images/me.webp'); a placeholder shows until set
 	image?: AssetPath;
 	imageAlt?: string;
 };
 
-// A git repo link renders a generated banner; add hosts here as more kinds of git link are needed
 export type GitRepo = {
 	host: 'github';
 	owner: string;
@@ -81,14 +74,21 @@ export type ProjectCard = CardBase & {
 	title: string;
 	status: string;
 	href: string;
-	// Set for git links, which get a generated banner instead of an image
 	repo?: GitRepo;
 	image?: AssetPath;
 	imageAlt?: string;
-	// App icon relative to /static, shown on a banner tinted with `accent` (any CSS colour)
 	icon?: AssetPath;
 	accent?: string;
 	postMortem?: PostMortem;
+};
+
+export type LiveCard = CardBase & {
+	kind: 'live';
+	title: string;
+	href: string;
+	tagline: string;
+	logo: AssetPath;
+	accent: string;
 };
 
 export type SkillsCard = CardBase & {
@@ -104,7 +104,6 @@ export type ExperienceCard = CardBase & {
 export type NoteCard = CardBase & {
 	kind: 'note';
 	title: string;
-	// Line breaks in the text are kept
 	text: string;
 };
 
@@ -113,26 +112,29 @@ export type WriteupsCard = CardBase & {
 	items: Writeup[];
 };
 
-// The 404: an item placed out in the world, so a missing page is somewhere you can fly to like anywhere else
 export type LostCard = CardBase & { kind: 'lost' };
 
 export type Card =
-	AboutCard | ProjectCard | SkillsCard | ExperienceCard | NoteCard | WriteupsCard | LostCard;
+	| AboutCard
+	| LiveCard
+	| ProjectCard
+	| SkillsCard
+	| ExperienceCard
+	| NoteCard
+	| WriteupsCard
+	| LostCard;
 
 export type Section = {
 	id: ViewId;
 	label: string;
-	// Meta description for search results and link previews
 	description: string;
-	// Where the section lives in the URL; the About section is the home page
 	path: string;
 	cards: Card[];
-	// Small label above the section's cards on the canvas
 	tag?: string;
-	// Share of the screen (0-1) the framed cards should fill, instead of the default loose fit
 	fill?: number;
-	// Card the camera centres on instead of the middle of the whole section
 	focusCardId?: string;
-	// Project cards pile up on the first one until the section is open
 	stacked?: boolean;
+	// Sits under this stacked section's pile. Its position and its animation timing both follow from this:
+	// it moves down as the pile opens, and waits for the pile to finish collapsing before moving back up.
+	below?: SectionId;
 };

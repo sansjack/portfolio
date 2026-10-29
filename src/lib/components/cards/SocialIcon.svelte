@@ -18,7 +18,6 @@
 			d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"
 		/>
 	{:else}
-		<!-- Filled envelope, scaled up so it matches the weight of the brand marks -->
 		<path
 			transform="translate(12 12) scale(1.15) translate(-12 -12)"
 			d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"

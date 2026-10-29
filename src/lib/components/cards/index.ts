@@ -2,6 +2,7 @@ export { default as AboutCard } from './AboutCard.svelte';
 export { default as CardBody } from './CardBody.svelte';
 export { default as ExperienceCard } from './ExperienceCard.svelte';
 export { default as IconBanner } from './IconBanner.svelte';
+export { default as LiveCard } from './LiveCard.svelte';
 export { default as LostCard } from './LostCard.svelte';
 export { default as NoteCard } from './NoteCard.svelte';
 export { default as PostMortemPanel } from './PostMortemPanel.svelte';

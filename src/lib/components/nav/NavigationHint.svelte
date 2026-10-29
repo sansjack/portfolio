@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	// If the visitor does nothing, hand the spot back to the section nav after this long
 	const HINT_MS = 8000;
 
 	let { visible, ondismiss }: { visible: boolean; ondismiss: () => void } = $props();
@@ -13,7 +12,6 @@
 </script>
 
 <svelte:head>
-	<!-- Without JavaScript nothing would dismiss the hint, so keep the nav and drop the hint -->
 	<noscript
 		><style>
 			nav[aria-label='Sections'] {
@@ -27,10 +25,8 @@
 	>
 </svelte:head>
 
-<!-- Any move at all means the visitor has found their way around -->
 <svelte:window onpointerdown={ondismiss} onwheel={ondismiss} onkeydown={ondismiss} />
 
-<!-- Sits exactly where the section nav does and trades places with it. The canvas is hidden on phones, where the feed scrolls like any other page -->
 <p
 	data-navigation-hint
 	role="status"

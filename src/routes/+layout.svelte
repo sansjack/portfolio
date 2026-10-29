@@ -25,13 +25,10 @@
 		logConsoleGreeting();
 	});
 
-	// Greets every visit: the hint holds the section nav's spot until the visitor makes a move
 	let hintVisible = $state(true);
 
 	const WRITEUP_ROUTE = '/writeups/[slug]';
 
-	// Going into or out of a writeup swaps the whole screen, so let the browser animate the swap (see layout.css).
-	// Section changes are left alone: the camera already flies between those.
 	onNavigate((navigation) => {
 		const touchesWriteup =
 			navigation.from?.route.id === WRITEUP_ROUTE || navigation.to?.route.id === WRITEUP_ROUTE;
@@ -45,7 +42,6 @@
 		});
 	});
 
-	// A missing URL frames the lost card; any other URL frames its section
 	const activeId: ViewId = $derived(
 		page.status === 404 ? 'lost' : (findSectionByParam(page.params.section)?.id ?? 'about')
 	);
@@ -61,14 +57,12 @@
 		page.error ? page.status !== 404 : page.route.id === '/writeups/[slug]'
 	);
 
-	// Preload the writeup styles as soon as the Writeups section is focused, before a writeup is opened
 	$effect(() => {
 		if (activeId === 'writeups') loadWriteupStyles();
 	});
 
 	const postMortems = providePostMortemState();
 	$effect.pre(() => {
-		// Read so the panel closes whenever the section changes
 		void activeId;
 		postMortems.close();
 	});
@@ -107,9 +101,7 @@
 {#if isStandalone}
 	{@render children()}
 {:else}
-	<!-- A render error anywhere below falls back to a 500 screen instead of a blank page -->
 	<svelte:boundary onerror={(error) => console.error(error)}>
-		<!-- The canvas lives here, not in the page, so it persists between routes and the camera can fly -->
 		<Canvas {activeId} />
 		<MobileFeed {activeId} />
 		<SectionNav {activeId} hintActive={hintVisible} />

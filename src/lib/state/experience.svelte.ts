@@ -5,7 +5,6 @@ const EXPERIENCE_KEY = Symbol('experience');
 
 export class ExperienceState {
 	showOlder = $state(false);
-	// Bumped on each open so the rows animate in again
 	opened = $state(0);
 	#isOpen: boolean;
 
@@ -18,7 +17,6 @@ export class ExperienceState {
 		this.showOlder = !this.showOlder;
 	}
 
-	// Opening Experience shows every role; leaving it folds the older ones away
 	follow(activeId: ViewId) {
 		const isOpen = activeId === 'experience';
 		if (isOpen === this.#isOpen) return;

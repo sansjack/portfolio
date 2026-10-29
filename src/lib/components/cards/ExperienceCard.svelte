@@ -13,7 +13,7 @@
 	const olderRoles = $derived(roles.slice(RECENT_ROLE_COUNT));
 </script>
 
-<div class="h-full rounded-xl border border-line bg-surface py-4 p-3 md:p-6 pb-3 shadow-md shadow-black/5">
+<div class="h-full card-surface">
 	<div class="mb-4 flex items-baseline justify-between gap-4">
 		<h2 class="text-2xl text-foreground">Experience</h2>
 		<button
@@ -29,7 +29,6 @@
 			{#each recentRoles as role, index (role.company)}
 				<RoleRow {role} {index} animationDelayMs={index * ROW_STAGGER_MS} />
 			{/each}
-			<!-- Older roles sit in a row that grows from 0 to its content height, so they fold away smoothly -->
 			<li
 				class="grid transition-[grid-template-rows] duration-500 ease-out motion-reduce:transition-none {experience.showOlder
 					? 'grid-rows-[1fr]'

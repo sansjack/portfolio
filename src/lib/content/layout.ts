@@ -1,78 +1,63 @@
-import { MAX_FIT_ZOOM, type Rect } from '#lib/camera/index.ts';
-import { archivedProjects, liveProjects } from './sections.ts';
+import type { Rect } from '#lib/camera/index.ts';
+import { archivedProjects, getSection, liveCards, liveProjects } from './sections.ts';
+import type { SectionId, ViewId } from './types.ts';
 
-// Experience grows downward, so its height depends on whether older roles are showing
 export const EXPERIENCE_HEIGHT = { collapsed: 332, expanded: 648 };
 
-// Live and archived projects share one size, as tall as the About hub
 const PROJECT_SIZE = { width: 300, height: 340 };
 const NOTE_SIZE = { width: 260, height: 150 };
 const LOST_SIZE = { width: 320, height: 340 };
-// Clear space between the bottom of the Experience card (open) and the lost card, in canvas px
 const LOST_GAP = 260;
 const SPREAD_GAP = 24;
-const NOTE_GAP = 30;
+const BLOCK_GAP = 40;
 const SKILLS_HEIGHT = 380;
-const WRITEUPS_HEIGHT = 640;
-// Space between the archived grid and the writeups card below it
-const WRITEUPS_GAP = 34;
+const LIVE_HEIGHT = 180;
+const WRITEUPS_HEIGHT = EXPERIENCE_HEIGHT.expanded;
 
-// Clear space between the hub and the projects on its left, and the archived cards on its right, in canvas px
-const HUB_GAP = { min: 40, max: 400 };
-// How much of the screen's half-width the outer edge of the project columns may reach when the hub is centred
-const CLUSTER_REACH = 0.78;
-// Cards across one cluster: two columns of project cards and the gap between them
 const CLUSTER_WIDTH = PROJECT_SIZE.width * 2 + SPREAD_GAP;
 const HUB_WIDTH = 600;
 
-// The gap between the hub and the project clusters grows with the screen, so the clusters sit near the
-// edges of a wide screen instead of leaving it empty, and tuck in closer on a narrow one
-const hubGapFor = (viewportWidth: number): number => {
-	const visibleHalfWidth = viewportWidth / 2 / MAX_FIT_ZOOM;
-	const gap = visibleHalfWidth * CLUSTER_REACH - HUB_WIDTH / 2 - CLUSTER_WIDTH;
-	return Math.round(Math.min(HUB_GAP.max, Math.max(HUB_GAP.min, gap)));
-};
-
-// Rect key of the open post-mortem panel; it sits in the row right after the card that opened it
 export const POST_MORTEM_PANEL_ID = 'post-mortem-panel';
 
 // The canvas (desktop) layout is a hand-placed map from card id to position. Skills, the About hub and
-// Experience share one centre column (x 460-1060), 50px clear above and below. The live projects sit
+// Experience share one centre column (x 460-1060), BLOCK_GAP clear above and below. The live projects sit
 // to its left and the archived ones to its right, mirrored: same card size, same gap to the hub, and
 // each cluster's first card (where its pile forms until opened) nearest the hub, with its sticky note above.
 export const buildLayout = (
 	experienceHeight: number,
 	openPostMortemId: string | null,
-	viewportWidth: number
+	activeId: ViewId
 ): Record<string, Rect> => {
 	const hub = { x: 460, y: 285, width: HUB_WIDTH, height: 340 };
-	const hubGap = hubGapFor(viewportWidth);
 	const clusterY = hub.y;
 	const columnStep = PROJECT_SIZE.width + SPREAD_GAP;
-	const liveX = hub.x - hubGap - PROJECT_SIZE.width;
-	const archivedX = hub.x + hub.width + hubGap;
-	const noteY = clusterY - NOTE_SIZE.height - NOTE_GAP;
+	const liveX = hub.x - BLOCK_GAP - PROJECT_SIZE.width;
+	const archivedX = hub.x + hub.width + BLOCK_GAP;
+	const noteY = clusterY - NOTE_SIZE.height - BLOCK_GAP;
 
 	const layout: Record<string, Rect> = {
 		about: hub,
-		skills: { x: hub.x, y: hub.y - 50 - SKILLS_HEIGHT, width: hub.width, height: SKILLS_HEIGHT },
+		skills: {
+			x: hub.x,
+			y: hub.y - BLOCK_GAP - SKILLS_HEIGHT,
+			width: hub.width,
+			height: SKILLS_HEIGHT
+		},
 		experience: {
 			x: hub.x,
-			y: hub.y + hub.height + 50,
+			y: hub.y + hub.height + BLOCK_GAP,
 			width: hub.width,
 			height: experienceHeight
 		},
-		// Out in the void below Experience, centred on the hub's column, a long way down so it is a find
 		lost: {
 			x: hub.x + (hub.width - LOST_SIZE.width) / 2,
-			y: hub.y + hub.height + 50 + EXPERIENCE_HEIGHT.expanded + LOST_GAP,
+			y: hub.y + hub.height + BLOCK_GAP + EXPERIENCE_HEIGHT.expanded + LOST_GAP,
 			...LOST_SIZE
 		},
 		'note-0': { x: liveX, y: noteY, ...NOTE_SIZE },
 		'note-1': { x: archivedX, y: noteY, ...NOTE_SIZE }
 	};
 
-	// 2-column grids filled row by row, spilling away from the hub
 	const placeGrid = (cards: { id: string }[], firstX: number, direction: 1 | -1) => {
 		const cellRect = (row: number, column: number): Rect => ({
 			x: firstX + direction * column * columnStep,
@@ -84,7 +69,6 @@ export const buildLayout = (
 
 		cards.forEach((card, index) => {
 			const row = Math.floor(index / 2);
-			// The open card's panel takes the cell after it, pushing the cards further along its row
 			const isPushed = openIndex !== -1 && row === openRow && index > openIndex;
 			layout[card.id] = cellRect(row, (index % 2) + (isPushed ? 1 : 0));
 		});
@@ -93,11 +77,30 @@ export const buildLayout = (
 	placeGrid(liveProjects, liveX, -1);
 	placeGrid(archivedProjects, archivedX, 1);
 
-	// Bottom right: under the archived grid, a little wider than the hub
-	const archivedRows = Math.ceil(archivedProjects.length / 2);
+	// A pile only deals out into its grid while its section is open; closed, it is one card tall, so the
+	// cards below it sit right under the pile instead of leaving a gap where the grid would be
+	// Which pile a section sits under is declared on the section (`below`), which also drives its animation timing
+	const yUnderPileOf = (sectionId: SectionId): number => {
+		const pileId = getSection(sectionId).below;
+		if (!pileId) throw new Error(`Section "${sectionId}" does not sit under a pile`);
+
+		const pileSize = getSection(pileId).cards.filter((card) => card.kind === 'project').length;
+		const rows = activeId === pileId ? Math.ceil(pileSize / 2) : 1;
+		return clusterY + rows * (PROJECT_SIZE.height + SPREAD_GAP) - SPREAD_GAP + BLOCK_GAP;
+	};
+
+	liveCards.forEach((card, index) => {
+		layout[card.id] = {
+			x: liveX - columnStep,
+			y: yUnderPileOf('live') + index * (LIVE_HEIGHT + SPREAD_GAP),
+			width: CLUSTER_WIDTH,
+			height: LIVE_HEIGHT
+		};
+	});
+
 	layout.writeups = {
 		x: archivedX,
-		y: clusterY + archivedRows * (PROJECT_SIZE.height + SPREAD_GAP) - SPREAD_GAP + WRITEUPS_GAP,
+		y: yUnderPileOf('writeups'),
 		width: hub.width + 260,
 		height: WRITEUPS_HEIGHT
 	};
