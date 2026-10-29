@@ -21,8 +21,8 @@
 		class="size-16 shrink-0 rounded-2xl bg-[#0d1117] p-2 ring-1 ring-black/10"
 		draggable="false"
 	/>
-	<div class="flex flex-col gap-2">
-		<h2 class="flex items-center gap-3 text-2xl leading-none text-foreground">
+	<div class="flex min-w-0 flex-col gap-2">
+		<h2 class="flex flex-wrap items-center gap-x-3 gap-y-2 text-2xl leading-none text-foreground">
 			{title}
 			<span class="flex items-center gap-2 text-sm leading-none tracking-widest text-dim uppercase">
 				<span class="relative flex size-2" aria-hidden="true">
