@@ -2,10 +2,16 @@
 	"name": "Jack Sansom",
 	"url": "https://jacksansom.com",
 	"tagline": "Full stack software engineer",
-	"location": "London, United Kingdom",
+	"location": "Outside London, United Kingdom",
 	"availability": "Looking For A Role",
 	"email": "contact@jacksansom.com",
-	"hirePhrases": ["I fix bugs for fun.", "I deploy on Fridays.", "I love to refactor."],
+	"hirePhrases": [
+		"Svelte > React",
+		"Types save lives",
+		"I love to refactor",
+		"ohmyzsh is goated",
+		"windows is bloated"
+	],
 	"socials": [
 		{
 			"label": "Email",
