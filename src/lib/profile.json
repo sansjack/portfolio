@@ -10,7 +10,8 @@
 		"Types save lives",
 		"I love to refactor",
 		"ohmyzsh is goated",
-		"windows is bloated"
+		"windows is bloated",
+		"I draw boxes and arrows for fun"
 	],
 	"socials": [
 		{
@@ -92,6 +93,13 @@
 			"tagline": "A free, read-only API for AI model pricing, capabilities and hosting, refreshed daily.",
 			"logo": "images/projects/modelmonitor.svg",
 			"accent": "#34d399"
+		},
+		{
+			"name": "Draw",
+			"url": "https://draw.jacksansom.com",
+			"tagline": "A fast, hand-drawn style whiteboard. Sketch boxes, arrows and dev icons; it all saves in your browser.",
+			"logo": "images/projects/draw.svg",
+			"accent": "#a5a3f5"
 		}
 	],
 	"projects": [
